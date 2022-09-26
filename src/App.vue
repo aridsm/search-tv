@@ -1,30 +1,133 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <HeaderVue />
+  <main>
+    <router-view></router-view>
+  </main>
+  <Footer />
 </template>
+<script>
+import HeaderVue from "./components/Header.vue";
+import Footer from "./components/Footer.vue";
 
+export default {
+  name: "App",
+  components: { HeaderVue, Footer },
+};
+</script>
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-nav {
-  padding: 30px;
+:root {
+  --cor-1: #1f1e34;
+  --cor-2: #2b2a42;
+  --cor-3: #ffed8d;
+  --cor-4: #95a2b9;
+  --cor-5: #dbd0f9;
+  --cor-6: #32314b;
 }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
+body {
+  background: var(--cor-1);
+  color: var(--cor-5);
+  font-family: "Raleway", sans-serif;
+  font-size: 15px;
 }
 
-nav a.router-link-exact-active {
-  color: #42b983;
+ul {
+  list-style: none;
+}
+
+main {
+  padding-top: 11rem;
+  min-height: 100vh;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.container {
+  padding: 0 2rem;
+  max-width: 1250px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+label {
+  position: absolute;
+  visibility: hidden;
+}
+
+.title {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  border-left: 15px solid #ffed8d;
+  padding-left: 0.5rem;
+}
+
+.input-style {
+  background: var(--cor-2);
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  height: 2.5rem;
+  padding: 0 1rem;
+  font-family: inherit;
+  font-size: 0.8rem;
+  color: inherit;
+  transition: 0.2s;
+}
+
+.input-style::placeholder {
+  color: var(--cor-4);
+  font-style: italic;
+}
+
+.input-style:hover,
+.input-style:focus {
+  box-shadow: 0 0 0 1px var(--cor-3);
+}
+
+.btn-padrao {
+  padding: 0 2rem;
+  height: 2.5rem;
+  background: var(--cor-3);
+  font-weight: 800;
+  color: var(--cor-1);
+  border-radius: 50px;
+  display: grid;
+  place-items: center;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+  transform: translateY(1rem);
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: 0.2s; /* MISSING RULE */
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cor-2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cor-3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cor-5);
 }
 </style>
