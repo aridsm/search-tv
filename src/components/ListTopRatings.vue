@@ -5,9 +5,12 @@
       :slides-per-view="5"
       :space-between="20"
       @reachEnd="fetchNewData"
+      grab-cursor
       v-if="listMovies && listMovies.length"
       class="list-movies"
+      :preload-images="true"
     >
+      <ButtonsSlider class="btns-slide" />
       <swiper-slide
         v-for="movie in listMovies"
         :key="movie.id"
@@ -33,21 +36,22 @@
           <span class="vote">
             {{ transformVoteToStars(movie.vote_average).vote }}
           </span>
-        </router-link></swiper-slide
-      >
+        </router-link>
+      </swiper-slide>
     </swiper>
   </section>
 </template>
-
 <script>
 import { getTopRatings } from "@/urlsAPI";
 import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
+import ButtonsSlider from "./ButtonsSlider.vue";
 
 export default {
   name: "ListTopRatings",
-  components: { Swiper, SwiperSlide },
+  components: { Swiper, SwiperSlide, ButtonsSlider },
+
   data() {
     return {
       listMovies: [],
@@ -66,7 +70,7 @@ export default {
       this.fetchData();
     },
     transformVoteToStars(rawVote) {
-      const vote = Math.round((rawVote / 2) * 2) / 2;
+      const vote = Math.round(rawVote) / 2;
 
       const starsImages = [];
 
@@ -88,10 +92,6 @@ export default {
   },
   created() {
     this.fetchData();
-    window.addEventListener("mouseup", this.endDrag);
-  },
-  destroyed: function () {
-    window.removeEventListener("mouseup", this.endDrag);
   },
 };
 </script>
@@ -104,6 +104,14 @@ export default {
 .list-movies {
   margin-top: 3rem;
   padding: 2px;
+  height: 380px;
+  position: relative;
+}
+.btns-slide {
+  opacity: 0;
+}
+.list-movies:hover .btns-slide {
+  opacity: 1;
 }
 .item-movie {
   background: var(--cor-2);
@@ -111,6 +119,7 @@ export default {
   border-radius: 5px;
   height: 100%;
   transition: 0.2s;
+  max-width: 250px;
 }
 
 .item-movie:hover {
@@ -120,6 +129,7 @@ export default {
 
 .img {
   width: 100%;
+  height: 15rem;
 }
 .item-movie h3 {
   font-weight: 800;
