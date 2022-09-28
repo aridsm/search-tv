@@ -1,17 +1,148 @@
 <template>
   <section class="section">
     <h2 class="title">Top ratings</h2>
+    <swiper
+      :slides-per-view="5"
+      :space-between="20"
+      @reachEnd="fetchNewData"
+      v-if="listMovies && listMovies.length"
+      class="list-movies"
+    >
+      <swiper-slide
+        v-for="movie in listMovies"
+        :key="movie.id"
+        class="item-movie"
+      >
+        <router-link to="/aqui">
+          <img
+            :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
+            :alt="movie.title"
+            class="img"
+          />
+          <h3>
+            {{ movie.title }}
+          </h3>
+          <div class="stars">
+            <img
+              v-for="(star, index) in transformVoteToStars(movie.vote_average)
+                .starsImages"
+              :key="index"
+              :src="require(`../assets/${star}`)"
+            />
+          </div>
+          <span class="vote">
+            {{ transformVoteToStars(movie.vote_average).vote }}
+          </span>
+        </router-link></swiper-slide
+      >
+    </swiper>
   </section>
 </template>
 
 <script>
+import { getTopRatings } from "@/urlsAPI";
+import axios from "axios";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/css";
+
 export default {
   name: "ListTopRatings",
+  components: { Swiper, SwiperSlide },
+  data() {
+    return {
+      listMovies: [],
+      currPage: 1,
+    };
+  },
+  methods: {
+    fetchData() {
+      axios.get(getTopRatings(this.currPage)).then((r) => {
+        this.listMovies = [...this.listMovies, ...r.data.results];
+      });
+    },
+
+    fetchNewData() {
+      this.currPage++;
+      this.fetchData();
+    },
+    transformVoteToStars(rawVote) {
+      const vote = Math.round((rawVote / 2) * 2) / 2;
+
+      const starsImages = [];
+
+      const fillStars = Math.floor(vote);
+      const halfStar = vote % 1;
+      const emptyStar = 5 - Math.ceil(vote);
+
+      for (let i = 0; i < fillStars; i++) {
+        starsImages.push("star-fill.svg");
+      }
+      if (halfStar) starsImages.push("star-half.svg");
+
+      for (let i = 0; i < emptyStar; i++) {
+        starsImages.push("star-empty.svg");
+      }
+
+      return { starsImages, vote };
+    },
+  },
+  created() {
+    this.fetchData();
+    window.addEventListener("mouseup", this.endDrag);
+  },
+  destroyed: function () {
+    window.removeEventListener("mouseup", this.endDrag);
+  },
 };
 </script>
 
 <style scoped>
 .section {
   margin-top: 6rem;
+}
+
+.list-movies {
+  margin-top: 3rem;
+  padding: 2px;
+}
+.item-movie {
+  background: var(--cor-2);
+  padding: 0.7rem;
+  border-radius: 5px;
+  height: 100%;
+  transition: 0.2s;
+}
+
+.item-movie:hover {
+  background: var(--cor-6);
+  box-shadow: 0 0 0 1px rgb(96, 68, 238);
+}
+
+.img {
+  width: 100%;
+}
+.item-movie h3 {
+  font-weight: 800;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.stars {
+  margin-top: 0.5rem;
+  display: inline-block;
+}
+
+.stars img {
+  width: 16px;
+}
+.stars img + img {
+  margin-left: 4px;
+}
+.vote {
+  font-weight: 800;
+  color: var(--cor-3);
+  margin-left: 0.5rem;
+  display: inline-block;
+  transform: translateY(-4px);
 }
 </style>

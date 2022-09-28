@@ -28,7 +28,7 @@ export default {
   --cor-2: #2b2a42;
   --cor-3: #ffed8d;
   --cor-4: #95a2b9;
-  --cor-5: #dbd0f9;
+  --cor-5: #e5defb;
   --cor-6: #32314b;
 }
 
@@ -45,6 +45,7 @@ ul {
 
 main {
   padding-top: 11rem;
+  padding-bottom: 6rem;
   min-height: 100vh;
 }
 a {

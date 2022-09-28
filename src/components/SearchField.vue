@@ -34,8 +34,8 @@
 
 <script>
 import axios from "axios";
-import { searchMovies } from "@/mixins/fetchData";
 import { toRaw } from "@vue/reactivity";
+import { getSearchMovies } from "@/urlsAPI";
 
 export default {
   name: "SearchField",
@@ -49,7 +49,7 @@ export default {
     getSearchResults() {
       if (this.searchQuery.length) {
         axios
-          .get(searchMovies(this.searchQuery))
+          .get(getSearchMovies(this.searchQuery))
           .then((r) => (this.searchData = r.data));
       }
     },
