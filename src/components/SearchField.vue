@@ -20,10 +20,21 @@
         v-if="searchQuery.length"
       >
         <ul v-if="searchResults && searchResults.length">
-          <li v-for="movie in searchResults" :key="movie.id" class="item-movie">
-            {{ movie.title }}
-            {{ movie.popularity }}
-            {{ movie.release_date }}
+          <li v-for="movie in searchResults" :key="movie.id">
+            <router-link :to="`/movies/${movie.id}`" class="item-movie">
+              <div class="img-container">
+                <img
+                  v-if="movie.poster_path"
+                  :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
+                  :alt="movie.title"
+                />
+                <NoImage v-else />
+              </div>
+              <div class="movie-infos">
+                <p>{{ movie.title }}</p>
+                <span>{{ formatDate(movie.release_date) }}</span>
+              </div>
+            </router-link>
           </li>
         </ul>
         <p v-else>No results</p>
@@ -36,6 +47,7 @@
 import axios from "axios";
 import { toRaw } from "@vue/reactivity";
 import { getSearchMovies } from "@/urlsAPI";
+import NoImage from "./NoImage.vue";
 
 export default {
   name: "SearchField",
@@ -56,13 +68,38 @@ export default {
     cleanSearchQuery() {
       this.searchQuery = "";
     },
+    formatDate(date) {
+      const meses = [
+        "Jan",
+        "Fev",
+        "Mar",
+        "Abr",
+        "Mai",
+        "Jun",
+        "Jul",
+        "Ago",
+        "Set",
+        "Out",
+        "Nov",
+        "Dez",
+      ];
+      let newData = new Date(date);
+      let formatedDate =
+        newData.getDate() +
+        " " +
+        meses[newData.getMonth()] +
+        " " +
+        newData.getFullYear();
+      return formatedDate;
+    },
   },
   computed: {
     searchResults() {
       const fetchedData = toRaw(this.searchData);
-      if (fetchedData.results) return fetchedData.results.slice(0, 10);
+      if (fetchedData.results) return fetchedData.results.slice(0, 20);
     },
   },
+  components: { NoImage },
 };
 </script>
 
@@ -78,7 +115,7 @@ export default {
 
 .form {
   position: relative;
-  min-width: 20rem;
+  min-width: 25rem;
 }
 
 .form::after {
@@ -92,7 +129,7 @@ export default {
   height: 1rem;
   background-size: 1rem;
   background-position: center;
-  z-index: 2;
+  z-index: 9;
 }
 
 .results {
@@ -108,12 +145,36 @@ export default {
 
 .item-movie {
   padding: 0.5rem;
-  height: 3.5rem;
   border-radius: 5px;
   background: var(--cor-6);
+  display: flex;
 }
 
-.item-movie + .item-movie {
+ul li + li {
   margin-top: 0.5rem;
+}
+
+.img-container {
+  min-width: 4rem;
+  max-width: 4rem;
+  height: 4rem;
+}
+.img-container > * {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.movie-infos {
+  margin-left: 1rem;
+}
+.movie-infos p {
+  font-weight: 800;
+}
+.movie-infos span {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  display: block;
+  color: var(--cor-4);
 }
 </style>

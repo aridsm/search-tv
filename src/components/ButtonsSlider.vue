@@ -32,7 +32,7 @@ export default {
   border: none;
   position: absolute;
   transition: 0.2s;
-  box-shadow: 0 0 30px 0 var(--cor-1);
+  box-shadow: 0 0 50px 0 var(--cor-1);
 }
 
 .btn-prev {

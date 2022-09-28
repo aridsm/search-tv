@@ -1,9 +1,19 @@
 <template>
-  <footer>Projeto feito por <a href="/">Ariane Morelato</a></footer>
+  <footer class="footer">
+    Projeto feito por <a href="/">Ariane Morelato</a>
+  </footer>
 </template>
 
 <script>
-export default {};
+export default {
+  name: "Footer",
+};
 </script>
 
-<style></style>
+<style>
+.footer {
+  text-align: center;
+  padding: 2rem;
+  background: var(--cor-2);
+}
+</style>

@@ -26,6 +26,8 @@ export default {
   text-align: center;
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 2;
   align-items: center;
 }
 
@@ -40,7 +42,6 @@ export default {
   margin-top: 1rem;
   font-size: 0.8rem;
   color: var(--cor-4);
-  font-style: italic;
 }
 
 .dados a {

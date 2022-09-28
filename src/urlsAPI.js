@@ -5,6 +5,10 @@ export const getSearchMovies = (query) => {
   return `${base}search/movie?api_key=${api_key}&language=pt-BR&page=1&include_adult=false&query=${query}`;
 };
 
-export const getTopRatings = (page) => {
-  return `${base}movie/top_rated?api_key=${api_key}&language=pt-BR&page=${page}`;
+export const getPopularMovies = (page) => {
+  return `${base}movie/popular?api_key=${api_key}&language=pt-BR&page=${page}`;
+};
+
+export const getMovieById = (id) => {
+  return `${base}movie/${id}?api_key=${api_key}&language=pt-BR`;
 };

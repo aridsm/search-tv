@@ -1,11 +1,11 @@
 <template>
   <header class="header">
     <div class="container">
-      <div class="logo">TV</div>
+      <router-link class="logo" to="/">TV</router-link>
 
       <SearchField class="form" />
 
-      <router-link to="/" class="login btn-padrao">Login</router-link>
+      <router-link to="/login" class="login btn-padrao">Login</router-link>
       <button
         :class="['menu-btn', menuShown ? 'menu-active' : '']"
         aria-label="menu"
@@ -15,7 +15,7 @@
       <transition>
         <nav class="nav" v-show="menuShown">
           <router-link to="/">Home</router-link>
-          <router-link to="/">Todos os filmes</router-link>
+          <router-link to="/movies">Todos os filmes</router-link>
         </nav>
       </transition>
     </div>

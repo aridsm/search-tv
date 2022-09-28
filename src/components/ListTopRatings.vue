@@ -1,6 +1,6 @@
 <template>
   <section class="section">
-    <h2 class="title">Top ratings</h2>
+    <h2 class="title">Popular hoje</h2>
     <swiper
       :slides-per-view="5"
       :space-between="20"
@@ -16,7 +16,7 @@
         :key="movie.id"
         class="item-movie"
       >
-        <router-link to="/aqui">
+        <router-link :to="`/movies/${movie.id}`">
           <img
             :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
             :alt="movie.title"
@@ -25,32 +25,23 @@
           <h3>
             {{ movie.title }}
           </h3>
-          <div class="stars">
-            <img
-              v-for="(star, index) in transformVoteToStars(movie.vote_average)
-                .starsImages"
-              :key="index"
-              :src="require(`../assets/${star}`)"
-            />
-          </div>
-          <span class="vote">
-            {{ transformVoteToStars(movie.vote_average).vote }}
-          </span>
+          <StarVotings :rawVote="movie.vote_average" />
         </router-link>
       </swiper-slide>
     </swiper>
   </section>
 </template>
 <script>
-import { getTopRatings } from "@/urlsAPI";
+import { getPopularMovies } from "@/urlsAPI";
 import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import ButtonsSlider from "./ButtonsSlider.vue";
+import StarVotings from "./StarVotings.vue";
 
 export default {
   name: "ListTopRatings",
-  components: { Swiper, SwiperSlide, ButtonsSlider },
+  components: { Swiper, SwiperSlide, ButtonsSlider, StarVotings },
 
   data() {
     return {
@@ -60,7 +51,7 @@ export default {
   },
   methods: {
     fetchData() {
-      axios.get(getTopRatings(this.currPage)).then((r) => {
+      axios.get(getPopularMovies(this.currPage)).then((r) => {
         this.listMovies = [...this.listMovies, ...r.data.results];
       });
     },
@@ -68,26 +59,6 @@ export default {
     fetchNewData() {
       this.currPage++;
       this.fetchData();
-    },
-    transformVoteToStars(rawVote) {
-      const vote = Math.round(rawVote) / 2;
-
-      const starsImages = [];
-
-      const fillStars = Math.floor(vote);
-      const halfStar = vote % 1;
-      const emptyStar = 5 - Math.ceil(vote);
-
-      for (let i = 0; i < fillStars; i++) {
-        starsImages.push("star-fill.svg");
-      }
-      if (halfStar) starsImages.push("star-half.svg");
-
-      for (let i = 0; i < emptyStar; i++) {
-        starsImages.push("star-empty.svg");
-      }
-
-      return { starsImages, vote };
     },
   },
   created() {
@@ -129,30 +100,10 @@ export default {
 
 .img {
   width: 100%;
-  height: 15rem;
 }
 .item-movie h3 {
   font-weight: 800;
   font-size: 0.8rem;
   margin-top: 0.5rem;
-}
-
-.stars {
-  margin-top: 0.5rem;
-  display: inline-block;
-}
-
-.stars img {
-  width: 16px;
-}
-.stars img + img {
-  margin-left: 4px;
-}
-.vote {
-  font-weight: 800;
-  color: var(--cor-3);
-  margin-left: 0.5rem;
-  display: inline-block;
-  transform: translateY(-4px);
 }
 </style>
