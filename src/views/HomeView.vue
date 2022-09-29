@@ -11,7 +11,11 @@
         <a href="https://www.themoviedb.org/documentation/api">TMDB</a>
       </p>
     </div>
-    <ListMovies title="popular hoje" :getListMovies="getPopularMovies" />
+    <ListMovies
+      title="popular hoje"
+      :getListMovies="getPopularMovies"
+      class="list-movies"
+    />
   </div>
 </template>
 
@@ -38,7 +42,9 @@ export default {
   z-index: 2;
   align-items: center;
 }
-
+.list-movies {
+  margin-top: 6rem;
+}
 .entrada h1 {
   font-size: 3.5rem;
   line-height: 3.7rem;

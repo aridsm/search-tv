@@ -1,6 +1,5 @@
 <template>
   <section class="container">
-    {{ loading }}
     <div class="movie">
       <div class="img-container">
         <img

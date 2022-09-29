@@ -1,5 +1,5 @@
 <template>
-  <section class="section">
+  <section>
     <h2 class="title">{{ title }}</h2>
     <div class="slider-container">
       <swiper
@@ -76,9 +76,6 @@ export default {
 </script>
 
 <style scoped>
-.section {
-  margin-top: 6rem;
-}
 .slider-container {
   margin-left: -2rem;
   padding: 2rem;

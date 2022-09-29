@@ -55,17 +55,17 @@ export default {
   margin-left: 4px;
 }
 .vote {
-  font-weight: 800;
   color: var(--cor-3);
   margin-left: 0.5rem;
   display: inline-block;
+  font-size: 0.8rem;
   transform: translateY(-4px);
 }
 
 .contagem {
-  font-size: 1rem;
   font-size: 0.8rem;
   display: block;
   margin-top: 0.2rem;
+  color: var(--cor-4);
 }
 </style>

@@ -113,7 +113,7 @@ label {
 
 .v-enter-active,
 .v-leave-active {
-  transition: 0.2s; /* MISSING RULE */
+  transition: 0.2s;
 }
 
 ::-webkit-scrollbar {
