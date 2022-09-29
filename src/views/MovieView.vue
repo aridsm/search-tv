@@ -1,5 +1,6 @@
 <template>
   <section class="container">
+    {{ loading }}
     <div class="movie">
       <div class="img-container">
         <img
@@ -12,7 +13,10 @@
       <div class="movie-infos">
         <h1>{{ movieData.title }}</h1>
         <h2>{{ movieData.tagline }}</h2>
-        <StarVotings :rawVote="movieData.vote_average" />
+        <StarVotings
+          :rawVote="movieData.vote_average"
+          :voteCount="movieData.vote_count"
+        />
         <ul class="categories">
           <li v-for="genre in movieData.genres" :key="genre.id">
             {{ genre.name }}

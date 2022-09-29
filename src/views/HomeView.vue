@@ -6,18 +6,26 @@
         filme!
       </h1>
       <SearchField class="form" />
-      <p class="dados">Dados da API <a href="/">TMDB</a></p>
+      <p class="dados">
+        Dados da API
+        <a href="https://www.themoviedb.org/documentation/api">TMDB</a>
+      </p>
     </div>
-    <ListTopRatings />
+    <ListMovies title="popular hoje" :getListMovies="getPopularMovies" />
   </div>
 </template>
 
 <script>
 import SearchField from "@/components/SearchField.vue";
-import ListTopRatings from "@/components/ListTopRatings.vue";
+import ListMovies from "@/components/ListMovies.vue";
+import { getPopularMovies } from "@/urlsAPI";
+
 export default {
   name: "HomeView",
-  components: { SearchField, ListTopRatings },
+  components: { SearchField, ListMovies },
+  setup() {
+    return { getPopularMovies };
+  },
 };
 </script>
 

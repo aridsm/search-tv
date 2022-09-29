@@ -10,12 +10,13 @@
     <span class="vote">
       {{ voteData.vote }}
     </span>
+    <span class="contagem"> {{ voteCount }} votos </span>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["rawVote"],
+  props: ["rawVote", "voteCount"],
   computed: {
     voteData() {
       const vote = (this.rawVote / 2).toFixed(2);
@@ -59,5 +60,12 @@ export default {
   margin-left: 0.5rem;
   display: inline-block;
   transform: translateY(-4px);
+}
+
+.contagem {
+  font-size: 1rem;
+  font-size: 0.8rem;
+  display: block;
+  margin-top: 0.2rem;
 }
 </style>
