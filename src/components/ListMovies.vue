@@ -1,7 +1,8 @@
 <template>
   <section>
     <h2 class="title">{{ title }}</h2>
-    <div class="slider-container">
+    <Loading v-if="loading" />
+    <div v-else class="slider-container">
       <swiper
         :slides-per-view="5"
         :space-between="15"
@@ -9,7 +10,6 @@
         grab-cursor
         v-if="listMovies && listMovies.length"
         class="list-movies"
-        :preload-images="true"
       >
         <ButtonsSlider class="btns-slide" />
 
@@ -44,16 +44,17 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import ButtonsSlider from "./ButtonsSlider.vue";
 import StarVotings from "./StarVotings.vue";
+import Loading from "./Loading.vue";
 
 export default {
   name: "ListMovies",
-  components: { Swiper, SwiperSlide, ButtonsSlider, StarVotings },
+  components: { Swiper, SwiperSlide, ButtonsSlider, StarVotings, Loading },
   props: ["title", "getListMovies"],
   data() {
     return {
       listMovies: [],
       currPage: 1,
-      loading: false,
+      loading: true,
     };
   },
 
@@ -61,6 +62,7 @@ export default {
     fetchData() {
       axios.get(this.getListMovies(this.currPage)).then((r) => {
         this.listMovies = [...this.listMovies, ...r.data.results];
+        this.loading = false;
       });
     },
 
@@ -111,7 +113,7 @@ export default {
   width: 100%;
 }
 .item-movie h3 {
-  font-weight: 800;
+  font-weight: 900;
   font-size: 1rem;
   margin-top: 0.5rem;
 }

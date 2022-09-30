@@ -27,6 +27,10 @@ import SearchField from "./SearchField.vue";
 export default {
   name: "Header",
   components: { SearchField },
+  setup() {
+    const store = inject("store");
+    return { store };
+  },
   data() {
     return {
       menuShown: false,
@@ -65,7 +69,7 @@ export default {
   border-radius: 5px;
   display: grid;
   place-items: center;
-  font-weight: 800;
+  font-weight: 900;
   font-size: 1.3rem;
   color: var(--cor-1);
 }
@@ -84,8 +88,6 @@ export default {
   background-size: 1.8rem;
   background-position: center;
   padding: 1rem;
-  border: none;
-  cursor: pointer;
   margin-left: 2rem;
   border: 2px solid transparent;
   border-radius: 5px;

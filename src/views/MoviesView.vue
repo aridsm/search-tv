@@ -108,13 +108,10 @@ h1 {
 .list-genres button {
   width: 100%;
   background: var(--cor-2);
-  border: none;
   color: var(--cor-4);
   padding: 0.5rem;
   border-radius: 5px;
   transition: 0.2s;
-  font-size: inherit;
-  cursor: pointer;
 }
 .list-genres button:hover,
 .active button {
@@ -127,12 +124,7 @@ h1 {
 }
 .btn-filtrar {
   transition: 0.2s;
-  cursor: pointer;
-  font-size: inherit;
-  font-family: inherit;
   color: var(--cor-4);
-  border: none;
-  background: transparent;
 }
 
 .btn-filtrar:hover {

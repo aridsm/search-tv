@@ -8,14 +8,18 @@
 <script>
 import HeaderVue from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
-
+import store from "./global/store";
+import { provide } from "vue";
 export default {
   name: "App",
   components: { HeaderVue, Footer },
+  setup() {
+    provide("store", store);
+  },
 };
 </script>
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,900;1,400&display=swap");
 
 * {
   box-sizing: border-box;
@@ -35,7 +39,7 @@ export default {
 body {
   background: var(--cor-1);
   color: var(--cor-5);
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-size: 15px;
 }
 
@@ -63,11 +67,18 @@ label {
   position: absolute;
   visibility: hidden;
 }
-
+button {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
 .title {
   font-size: 1.2rem;
   text-transform: uppercase;
-  border-left: 15px solid #ffed8d;
+  border-left: 15px solid var(--cor-3);
   padding-left: 0.5rem;
 }
 
@@ -98,13 +109,22 @@ label {
   padding: 0 2rem;
   height: 2.5rem;
   background: var(--cor-3);
-  font-weight: 800;
+  font-weight: 900;
   color: var(--cor-1);
   border-radius: 50px;
   display: grid;
   place-items: center;
+  transition: 0.2s;
 }
 
+.btn-padrao:hover {
+  background: #efdc70;
+}
+
+.btn-padrao:active {
+  background: #fff2a9;
+  transform: scale(0.95);
+}
 .v-enter-from,
 .v-leave-to {
   opacity: 0;

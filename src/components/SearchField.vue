@@ -169,7 +169,7 @@ ul li + li {
   margin-left: 1rem;
 }
 .movie-infos p {
-  font-weight: 800;
+  font-weight: 900;
 }
 .movie-infos span {
   margin-top: 0.5rem;

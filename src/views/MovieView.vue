@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <div class="movie">
+    <section class="movie">
       <div class="img-container">
         <img
           v-if="movieData.poster_path"
@@ -11,7 +11,7 @@
       </div>
       <div class="movie-infos">
         <h1>{{ movieData.title }}</h1>
-        <h2>{{ movieData.tagline }}</h2>
+        <p>{{ movieData.tagline }}</p>
         <StarVotings
           :rawVote="movieData.vote_average"
           :voteCount="movieData.vote_count"
@@ -25,22 +25,28 @@
           {{ movieData.overview || "Não há descrição para este filme" }}
         </p>
       </div>
-    </div>
+    </section>
+    <ListPeople :listCredits="movieCast" title="Cast" />
+    <ListPeople :listCredits="movieCrew" title="Crew" />
   </section>
 </template>
 
 <script>
-import { getMovieById } from "@/urlsAPI";
+import { getMovieById, getMovieCredits } from "@/urlsAPI";
 import axios from "axios";
 import StarVotings from "@/components/StarVotings.vue";
 import NoImage from "@/components/NoImage.vue";
+import ListPeople from "../components/ListPeople.vue";
 
 export default {
   name: "MovieView",
   props: ["movieId"],
+  components: { StarVotings, NoImage, ListPeople },
   data() {
     return {
       movieData: [],
+      movieCast: [],
+      movieCrew: [],
     };
   },
   methods: {
@@ -49,19 +55,27 @@ export default {
         this.movieData = r.data;
       });
     },
+    fetchCredits() {
+      axios.get(getMovieCredits(this.movieId)).then((r) => {
+        this.movieCast = r.data.cast.splice(0, 10);
+        this.movieCrew = r.data.crew.splice(0, 10);
+      });
+    },
   },
   created() {
     this.fetchData();
+    this.fetchCredits();
   },
-  components: { StarVotings, NoImage },
 };
 </script>
 
 <style scoped>
 .movie {
   display: flex;
+  background: var(--cor-2);
+  padding: 1rem;
+  border-radius: 5px;
 }
-
 .movie-infos {
   margin-left: 2rem;
   flex: 4;
@@ -70,17 +84,18 @@ export default {
 h1 {
   font-size: 2rem;
 }
-h2 {
+.movie-infos > p {
   font-size: 1rem;
   font-weight: 400;
+  font-style: italic;
   color: var(--cor-4);
   margin-bottom: 0.5rem;
 }
 .img-container {
   flex: 1;
-  padding: 1rem;
-  background: var(--cor-2);
+  padding: 0.5rem;
   border-radius: 5px;
+  background: var(--cor-6);
   min-height: 22rem;
 }
 
