@@ -25,6 +25,7 @@ const routes = [
     name: "movies",
     component: lazyLoad("MoviesView"),
   },
+  { path: "/account", name: "account", component: lazyLoad("AccountView") },
 ];
 
 const router = createRouter({

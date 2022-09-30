@@ -8,6 +8,7 @@
         type="text"
         id="user"
         class="input-style"
+        placeholder="user123"
         v-model="store.state.user"
       />
 
@@ -15,6 +16,7 @@
       <input
         type="password"
         id="password"
+        placeholder="*********"
         class="input-style"
         v-model="store.state.password"
       />

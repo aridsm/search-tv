@@ -1,5 +1,7 @@
 <template>
-  <div class="loading"></div>
+  <div class="loading-container">
+    <div class="loading"></div>
+  </div>
 </template>
 
 <script>
@@ -15,10 +17,11 @@ export default {
   height: 3rem;
   border: 5px solid var(--cor-2);
   border-top-color: var(--cor-3);
-  margin: 1rem;
   animation: rotate 1s infinite forwards;
 }
-
+.loading-container {
+  padding: 2rem;
+}
 @keyframes rotate {
   0% {
     transform: rotate(0);

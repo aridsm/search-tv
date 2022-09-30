@@ -5,7 +5,12 @@
 
       <SearchField class="form" />
 
-      <router-link to="/login" class="login btn-padrao">Login</router-link>
+      <router-link
+        to="/login"
+        class="login btn-padrao"
+        v-if="!store.state.isLoggedIn"
+        >Login</router-link
+      >
       <button
         :class="['menu-btn', menuShown ? 'menu-active' : '']"
         aria-label="menu"
@@ -23,6 +28,7 @@
 </template>
 
 <script>
+import { inject } from "vue";
 import SearchField from "./SearchField.vue";
 export default {
   name: "Header",
@@ -53,7 +59,7 @@ export default {
   z-index: 9;
   width: 100%;
   height: 5rem;
-  border-bottom: 1px solid var(--cor-2);
+  border-bottom: 1px solid var(--cor-6);
 }
 
 .header .container {
@@ -76,11 +82,9 @@ export default {
 
 .form {
   margin-left: 2rem;
+  margin-right: auto;
 }
 
-.login {
-  margin-left: auto;
-}
 .menu-btn {
   width: 2rem;
   height: 2rem;

@@ -28,12 +28,12 @@ export default {
 }
 
 :root {
-  --cor-1: #1f1e34;
-  --cor-2: #2b2a42;
+  --cor-1: #1b1937;
+  --cor-2: #211f3f;
   --cor-3: #ffed8d;
   --cor-4: #95a2b9;
   --cor-5: #e5defb;
-  --cor-6: #32314b;
+  --cor-6: #2a294d;
 }
 
 body {
@@ -90,7 +90,6 @@ button {
   height: 2.5rem;
   padding: 0 1rem;
   font-family: inherit;
-  font-size: 0.8rem;
   color: inherit;
   transition: 0.2s;
 }

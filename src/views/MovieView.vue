@@ -1,6 +1,7 @@
 <template>
   <section class="container">
-    <section class="movie">
+    <Loading v-if="loadingMovie" />
+    <section v-else class="movie">
       <div class="img-container">
         <img
           v-if="movieData.poster_path"
@@ -11,7 +12,7 @@
       </div>
       <div class="movie-infos">
         <h1>{{ movieData.title }}</h1>
-        <p>{{ movieData.tagline }}</p>
+        <p class="tagline">{{ movieData.tagline }}</p>
         <StarVotings
           :rawVote="movieData.vote_average"
           :voteCount="movieData.vote_count"
@@ -26,8 +27,11 @@
         </p>
       </div>
     </section>
-    <ListPeople :listCredits="movieCast" title="Cast" />
-    <ListPeople :listCredits="movieCrew" title="Crew" />
+    <Loading v-if="loadingCredits" />
+    <ListPeople v-else :listCredits="movieCast" title="Cast" />
+
+    <Loading v-if="loadingCredits" />
+    <ListPeople v-else :listCredits="movieCrew" title="Crew" />
   </section>
 </template>
 
@@ -37,28 +41,35 @@ import axios from "axios";
 import StarVotings from "@/components/StarVotings.vue";
 import NoImage from "@/components/NoImage.vue";
 import ListPeople from "../components/ListPeople.vue";
+import Loading from "@/components/Loading.vue";
 
 export default {
   name: "MovieView",
   props: ["movieId"],
-  components: { StarVotings, NoImage, ListPeople },
+  components: { StarVotings, NoImage, ListPeople, Loading },
   data() {
     return {
       movieData: [],
+      loadingMovie: false,
+      loadingCredits: false,
       movieCast: [],
       movieCrew: [],
     };
   },
   methods: {
     fetchData() {
+      this.loadingMovie = true;
       axios.get(getMovieById(this.movieId)).then((r) => {
         this.movieData = r.data;
+        this.loadingMovie = false;
       });
     },
     fetchCredits() {
+      this.loadingCredits = true;
       axios.get(getMovieCredits(this.movieId)).then((r) => {
         this.movieCast = r.data.cast.splice(0, 10);
         this.movieCrew = r.data.crew.splice(0, 10);
+        this.loadingCredits = false;
       });
     },
   },
@@ -84,7 +95,7 @@ export default {
 h1 {
   font-size: 2rem;
 }
-.movie-infos > p {
+.tagline {
   font-size: 1rem;
   font-weight: 400;
   font-style: italic;

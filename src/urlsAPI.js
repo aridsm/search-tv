@@ -30,3 +30,11 @@ export const getToken = () => {
 export const postLogin = () => {
   return `${base}authentication/token/validate_with_login?api_key=${api_key}`;
 };
+
+export const postAuthenticate = () => {
+  return `${base}authentication/session/new?api_key=${api_key}`;
+};
+
+export const getUserDetails = (session_id) => {
+  return `${base}account?api_key=${api_key}&session_id=${session_id}`;
+};
