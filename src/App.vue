@@ -51,8 +51,8 @@ ul {
 }
 
 main {
-  padding-top: 11rem;
-  padding-bottom: 6rem;
+  padding-top: 10rem;
+  padding-bottom: 5rem;
   min-height: 100vh;
 }
 a {
@@ -79,7 +79,7 @@ button {
   cursor: pointer;
 }
 .title {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   text-transform: uppercase;
   border-left: 15px solid var(--cor-3);
   padding-left: 0.5rem;

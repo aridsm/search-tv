@@ -4,6 +4,7 @@ import {
   getToken,
   getUserDetails,
   postAuthenticate,
+  postFavorite,
   postLogin,
 } from "@/urlsAPI";
 import axios from "axios";
@@ -18,6 +19,7 @@ const state = reactive({
   user: "",
   password: "",
   userDetails: null,
+  isLoggedIn: false,
 });
 
 const methods = {
@@ -61,6 +63,7 @@ const methods = {
       .get(getUserDetails(session_id))
       .then((r) => {
         state.userDetails = r.data;
+        state.isLoggedIn = true;
       })
       .catch((r) => console.log(r));
   },
@@ -74,6 +77,26 @@ const methods = {
         router.push("/");
       })
       .catch((r) => console.log(r));
+  },
+  markMovieAsFavorite(movie_id, isFavorited) {
+    axios
+      .post(
+        postFavorite(state.userDetails.id, state.session_id),
+        {
+          media_type: "movie",
+          media_id: movie_id,
+          favorite: !isFavorited,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json;charset=utf-8",
+          },
+        }
+      )
+      .then((r) => {})
+      .catch((error) => {
+        console.log(error);
+      });
   },
 };
 

@@ -97,7 +97,7 @@ export default {
 <style scoped>
 h1 {
   margin-bottom: 3rem;
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 .list-genres {
   display: grid;

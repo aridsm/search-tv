@@ -173,7 +173,7 @@ ul li + li {
 }
 .movie-infos span {
   margin-top: 0.5rem;
-  font-size: 0.8rem;
+  font-size: 1rem;
   display: block;
   color: var(--cor-4);
 }

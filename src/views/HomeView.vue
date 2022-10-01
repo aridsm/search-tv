@@ -54,7 +54,7 @@ export default {
 
 .dados {
   margin-top: 1rem;
-  font-size: 0.8rem;
+  font-size: 1rem;
   color: var(--cor-4);
 }
 

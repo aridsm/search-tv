@@ -2,8 +2,8 @@
   <section class="list">
     <h2>{{ title }}</h2>
     <swiper
-      :slides-per-view="6"
-      :space-between="15"
+      :slides-per-view="4"
+      :space-between="20"
       grab-cursor
       v-if="listCredits && listCredits.length"
     >
@@ -17,8 +17,8 @@
           <NoImage v-else />
         </div>
 
-        <h2>{{ person.name }}</h2>
-        <p>{{ person.character || person.job }}</p>
+        <h3>{{ person.name }}</h3>
+        <p class="as">como {{ person.character || person.job }}</p>
       </swiper-slide>
     </swiper>
   </section>
@@ -37,10 +37,7 @@ export default {
 
 <style scoped>
 .list {
-  background: var(--cor-2);
-  padding: 1rem;
-  border-radius: 5px;
-  margin-top: 1rem;
+  grid-column: 1;
 }
 .img-person {
   width: 100%;
@@ -53,5 +50,21 @@ export default {
   height: 100%;
   object-fit: cover;
   border-radius: 10px;
+}
+
+h2 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: 800;
+  margin-top: 0.5rem;
+}
+
+.as {
+  font-style: italic;
+  color: var(--cor-4);
 }
 </style>

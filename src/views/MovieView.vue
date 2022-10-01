@@ -1,52 +1,111 @@
 <template>
   <section class="container">
-    <Loading v-if="loadingMovie" />
-    <section v-else class="movie">
-      <div class="img-container">
-        <img
-          v-if="movieData.poster_path"
-          :src="`https://image.tmdb.org/t/p/w500/${movieData.poster_path}`"
-          :alt="movieData.title"
-        />
-        <NoImage v-else />
-      </div>
-      <div class="movie-infos">
-        <h1>{{ movieData.title }}</h1>
-        <p class="tagline">{{ movieData.tagline }}</p>
-        <StarVotings
-          :rawVote="movieData.vote_average"
-          :voteCount="movieData.vote_count"
-        />
-        <ul class="categories">
-          <li v-for="genre in movieData.genres" :key="genre.id">
-            {{ genre.name }}
+    <div class="section">
+      <Loading v-if="loadingMovie" />
+      <section v-else class="movie">
+        <div class="img-container">
+          <img
+            v-if="movieData.poster_path"
+            :src="`https://image.tmdb.org/t/p/w500/${movieData.poster_path}`"
+            :alt="movieData.title"
+          />
+          <NoImage v-else />
+        </div>
+        <div class="movie-infos">
+          <div class="flex">
+            <h1>{{ movieData.title }}</h1>
+
+            <button
+              :class="['favorite', { favorited: movieStatus?.favorite }]"
+              v-if="store.state.isLoggedIn"
+              @click="markAsFavorite"
+            >
+              {{ movieStatus?.favorite ? "Favoritado" : "Favoritar" }}
+            </button>
+          </div>
+          <p class="tagline">{{ movieData.tagline }}</p>
+          <StarVotings
+            :rawVote="movieData.vote_average"
+            :voteCount="movieData.vote_count"
+          />
+          <ul class="categories">
+            <li v-for="genre in movieData.genres" :key="genre.id">
+              {{ genre.name }}
+            </li>
+          </ul>
+          <p class="overview">
+            {{ movieData.overview || "Não há descrição para este filme" }}
+          </p>
+        </div>
+      </section>
+      <section class="vote">
+        <h2>Qual seu voto para este filme?</h2>
+        <div>{{ movieStatus }}</div>
+      </section>
+      <section class="more-data">
+        <ul>
+          <li>
+            <h2>Título original</h2>
+            <p>{{ movieData.original_title }}</p>
+          </li>
+          <li>
+            <h2>Língua original</h2>
+            <p>{{ movieData.original_language }}</p>
+          </li>
+          <li>
+            <h2>Despesas</h2>
+            <p>{{ movieData.budget }}</p>
+          </li>
+          <li>
+            <h2>Lucro</h2>
+            <p>{{ movieData.revenue }}</p>
+          </li>
+          <li>
+            <h2>Data de lançamento</h2>
+            <p>{{ movieData.release_date }}</p>
           </li>
         </ul>
-        <p class="overview">
-          {{ movieData.overview || "Não há descrição para este filme" }}
-        </p>
-      </div>
-    </section>
-    <Loading v-if="loadingCredits" />
-    <ListPeople v-else :listCredits="movieCast" title="Cast" />
+      </section>
+      <Loading v-if="loadingCredits" />
+      <ListPeople
+        v-else
+        :listCredits="movieCast"
+        title="Elenco"
+        class="list-people"
+      />
 
-    <Loading v-if="loadingCredits" />
-    <ListPeople v-else :listCredits="movieCrew" title="Crew" />
+      <Loading v-if="loadingCredits" />
+      <ListPeople
+        v-else
+        :listCredits="movieCrew"
+        title="Equipe técnica"
+        class="list-people"
+      />
+    </div>
   </section>
 </template>
 
 <script>
-import { getMovieById, getMovieCredits } from "@/urlsAPI";
+import {
+  getAccountMovieDetails,
+  getMovieById,
+  getMovieCredits,
+} from "@/urlsAPI";
 import axios from "axios";
 import StarVotings from "@/components/StarVotings.vue";
 import NoImage from "@/components/NoImage.vue";
 import ListPeople from "../components/ListPeople.vue";
 import Loading from "@/components/Loading.vue";
+import { inject } from "vue";
 
 export default {
   name: "MovieView",
   props: ["movieId"],
   components: { StarVotings, NoImage, ListPeople, Loading },
+  setup() {
+    const store = inject("store");
+    return { store };
+  },
   data() {
     return {
       movieData: [],
@@ -54,11 +113,13 @@ export default {
       loadingCredits: false,
       movieCast: [],
       movieCrew: [],
+      movieStatus: null,
     };
   },
   methods: {
     fetchData() {
       this.loadingMovie = true;
+      const that = this;
       axios.get(getMovieById(this.movieId)).then((r) => {
         this.movieData = r.data;
         this.loadingMovie = false;
@@ -68,30 +129,60 @@ export default {
       this.loadingCredits = true;
       axios.get(getMovieCredits(this.movieId)).then((r) => {
         this.movieCast = r.data.cast.splice(0, 10);
-        this.movieCrew = r.data.crew.splice(0, 10);
+        this.movieCrew = r.data.crew.splice(0, 6);
         this.loadingCredits = false;
       });
+    },
+    markAsFavorite() {
+      const isMovieFavorited = this.movieStatus.favorite;
+      this.store.methods.markMovieAsFavorite(this.movieId, isMovieFavorited);
+      this.movieStatus.favorite = !isMovieFavorited;
+    },
+    getMovieDetails() {
+      axios
+        .get(getAccountMovieDetails(this.movieId, this.store.state.session_id))
+        .then((r) => {
+          this.movieStatus = r.data;
+        })
+        .catch((r) => console.log(r));
     },
   },
   created() {
     this.fetchData();
     this.fetchCredits();
+    this.getMovieDetails();
   },
 };
 </script>
 
 <style scoped>
-.movie {
-  display: flex;
-  background: var(--cor-2);
-  padding: 1rem;
-  border-radius: 5px;
-}
-.movie-infos {
-  margin-left: 2rem;
-  flex: 4;
+.section {
+  display: grid;
+  grid-template-columns: calc(77% - 2rem) 23%;
+  grid-gap: 1.5rem;
+  max-width: 100%;
 }
 
+.movie,
+.more-data,
+.vote,
+.list-people {
+  background: var(--cor-2);
+  padding: 1.5rem;
+  border-radius: 5px;
+}
+.movie {
+  display: flex;
+}
+.movie-infos {
+  margin-left: 1.5rem;
+  flex: 4;
+}
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 h1 {
   font-size: 2rem;
 }
@@ -103,11 +194,11 @@ h1 {
   margin-bottom: 0.5rem;
 }
 .img-container {
-  flex: 1;
+  width: 250px;
   padding: 0.5rem;
   border-radius: 5px;
   background: var(--cor-6);
-  min-height: 22rem;
+  height: 23rem;
 }
 
 .img-container > * {
@@ -121,6 +212,25 @@ h1 {
   display: flex;
   color: var(--cor-4);
 }
+.favorite {
+  color: var(--cor-4);
+  transition: 0.2s;
+}
+.favorite:hover,
+.favorited {
+  color: rgb(255, 136, 241);
+}
+.favorite::after {
+  content: "☆";
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  font-size: 1.3rem;
+  margin-left: 0.3rem;
+}
+.favorited::after {
+  content: "★";
+}
 
 .categories li + li {
   border-left: 1px solid var(--cor-4);
@@ -131,5 +241,21 @@ h1 {
 .overview {
   line-height: 1.3rem;
   font-size: 1rem;
+}
+
+.more-data {
+  grid-row: 2;
+  grid-column: 2;
+}
+
+.more-data h2 {
+  font-size: 1rem;
+}
+.more-data p {
+  color: var(--cor-4);
+  margin-top: 0.5rem;
+}
+.more-data li + li {
+  margin-top: 1rem;
 }
 </style>
