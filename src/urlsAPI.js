@@ -38,3 +38,7 @@ export const postAuthenticate = () => {
 export const getUserDetails = (session_id) => {
   return `${base}account?api_key=${api_key}&session_id=${session_id}`;
 };
+
+export const deleteSession = (session_id) => {
+  return `${base}authentication/session?api_key=${api_key}`;
+};

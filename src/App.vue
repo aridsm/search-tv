@@ -16,6 +16,9 @@ export default {
   setup() {
     provide("store", store);
   },
+  created() {
+    store.methods.getAccountDetails();
+  },
 };
 </script>
 <style>

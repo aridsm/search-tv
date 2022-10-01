@@ -1,5 +1,6 @@
 import router from "@/router";
 import {
+  deleteSession,
   getToken,
   getUserDetails,
   postAuthenticate,
@@ -8,25 +9,22 @@ import {
 import axios from "axios";
 import { reactive } from "vue";
 
+function getTokenFromLocalStorage() {
+  return localStorage.getItem("session_id");
+}
+
 const state = reactive({
-  token: "",
-  isLoggedIn: false,
+  session_id: getTokenFromLocalStorage(),
   user: "",
   password: "",
-  userDetails: {},
+  userDetails: null,
 });
 
 const methods = {
   getNewToken() {
     const that = this;
     axios.get(getToken()).then((r) => {
-      const newToken = r.data.request_token;
-      state.token = newToken;
-
-      that.submitForm(newToken);
-      if (!localStorage.getItem("token")) {
-        localStorage.setItem("token", newToken);
-      }
+      that.submitForm(r.data.request_token);
     });
   },
   submitForm(token) {
@@ -39,7 +37,6 @@ const methods = {
       })
       .then((r) => {
         that.authenticate(token);
-
         router.push("/account");
       })
       .catch((error) => {
@@ -53,16 +50,29 @@ const methods = {
         request_token: token,
       })
       .then((r) => {
-        console.log(r.data);
-        state.isLoggedIn = true;
+        window.localStorage.setItem("session_id", r.data.session_id);
         that.getAccountDetails(r.data.session_id);
       })
       .catch((err) => console.log(err));
   },
-  getAccountDetails(session_id) {
+  getAccountDetails(id) {
+    const session_id = id || state.session_id;
     axios
       .get(getUserDetails(session_id))
-      .then((r) => (state.userDetails = r.data))
+      .then((r) => {
+        state.userDetails = r.data;
+      })
+      .catch((r) => console.log(r));
+  },
+  logout() {
+    axios
+      .delete(deleteSession(), { data: { session_id: state.session_id } })
+      .then((r) => {
+        window.localStorage.removeItem("session_id");
+        state.session_id = "";
+        state.userDetails = "";
+        router.push("/");
+      })
       .catch((r) => console.log(r));
   },
 };
