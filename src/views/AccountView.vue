@@ -1,19 +1,19 @@
 <template>
   <section class="container">
-    <div class="account-details" v-if="store.state.userDetails">
+    <div class="account-details" v-if="loginStore.userDetails">
       <div class="avatar">
         <img
-          :src="`https://image.tmdb.org/t/p/w500/${store.state.userDetails.avatar.tmdb.avatar_path}`"
-          :alt="store.state.userDetails.username"
+          :src="`https://image.tmdb.org/t/p/w500/${loginStore.userDetails.avatar.tmdb.avatar_path}`"
+          :alt="loginStore.userDetails.username"
         />
       </div>
       <div class="infos">
-        <p class="username">{{ store.state.userDetails.username }}</p>
+        <p class="username">{{ loginStore.userDetails.username }}</p>
         <h1 class="title">Sua conta</h1>
-        <p v-if="store.state.userDetails.name" class="name">
-          Olá, {{ store.state.userDetails.name }}!
+        <p v-if="loginStore.userDetails.name" class="name">
+          Olá, {{ loginStore.userDetails.name }}!
         </p>
-        <button class="btn-padrao" @click="store.methods.logout">
+        <button class="btn-padrao" @click="loginStore.logout">
           Sair
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -35,28 +35,27 @@
         </button>
       </div>
     </div>
-    {{ movies }}
     <ListMovies
       title="Seus favoritos"
       class="list-movies"
       :getListMovies="
-        getFavoriteMovies(store.state.userDetails?.id, store.state.session_id)
+        getFavoriteMovies(loginStore.userDetails?.id, loginStore.session_id)
       "
     />
   </section>
 </template>
 
 <script>
-import { inject } from "vue";
 import Loading from "@/components/Loading.vue";
-import { getFavoriteMovies } from "@/urlsAPI";
 import ListMovies from "@/components/ListMovies.vue";
+import { useLoginStore } from "@/store/login";
+import { getFavoriteMovies } from "@/urlsAPI";
 
 export default {
   name: "AccountView",
   setup() {
-    const store = inject("store");
-    return { store, getFavoriteMovies };
+    const loginStore = useLoginStore();
+    return { loginStore, getFavoriteMovies };
   },
   data() {
     return {

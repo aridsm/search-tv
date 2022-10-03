@@ -115,7 +115,7 @@ export default {
 
 .form {
   position: relative;
-  max-width: 30em;
+  max-width: 30rem;
   width: 100%;
 }
 
@@ -124,11 +124,11 @@ export default {
   background: url("../assets/search.svg");
   position: absolute;
   display: block;
-  right: 1em;
-  top: 0.7em;
-  width: 1em;
-  height: 1em;
-  background-size: 1em;
+  right: 1rem;
+  top: 0.7rem;
+  width: 1rem;
+  height: 1rem;
+  background-size: 1rem;
   background-position: center;
   z-index: 9;
 }
@@ -137,28 +137,28 @@ export default {
   background: var(--cor-2);
   position: absolute;
   width: 100%;
-  max-height: 20em;
-  top: 3em;
+  max-height: 20rem;
+  top: 3rem;
   border-radius: 5px;
-  padding: 1em;
+  padding: 1rem;
   overflow: auto;
 }
 
 .item-movie {
-  padding: 0.5em;
+  padding: 0.5rem;
   border-radius: 5px;
   background: var(--cor-6);
   display: flex;
 }
 
 ul li + li {
-  margin-top: 0.5em;
+  margin-top: 0.5rem;
 }
 
 .img-container {
-  min-width: 4em;
-  max-width: 4em;
-  height: 4em;
+  min-width: 4rem;
+  max-width: 4rem;
+  height: 4rem;
 }
 .img-container > * {
   width: 100%;
@@ -167,14 +167,14 @@ ul li + li {
 }
 
 .movie-infos {
-  margin-left: 1em;
+  margin-left: 1rem;
 }
 .movie-infos p {
   font-weight: 900;
 }
 .movie-infos span {
   margin-top: 0.5em;
-  font-size: 1em;
+  font-size: 1rem;
   display: block;
   color: var(--cor-4);
 }

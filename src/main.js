@@ -1,7 +1,7 @@
 import { createApp } from "vue";
+import { createPinia } from "pinia";
 import App from "./App.vue";
 import router from "./router";
-import store from "./store";
 
 const ousideClickDirective = {
   mounted(el, binding) {
@@ -14,8 +14,10 @@ const ousideClickDirective = {
   },
 };
 
+const pinia = createPinia();
+
 createApp(App)
   .directive("outside-click", ousideClickDirective)
-  .use(store)
+  .use(pinia)
   .use(router)
   .mount("#app");

@@ -23,23 +23,23 @@ export const getMoviesByGenre = (genreId) => (page) => {
   return `${base}discover/movie?api_key=${api_key}&language=pt-BR&page=${page}&with_genres=${genreId}`;
 };
 
-export const getToken = () => {
+export const GET_TOKEN = () => {
   return `${base}authentication/token/new?api_key=${api_key}`;
 };
 
-export const postLogin = () => {
+export const POST_LOGIN = () => {
   return `${base}authentication/token/validate_with_login?api_key=${api_key}`;
 };
 
-export const postAuthenticate = () => {
+export const POST_AUTHENTICATE = () => {
   return `${base}authentication/session/new?api_key=${api_key}`;
 };
 
-export const getUserDetails = (session_id) => {
+export const GET_USER_DETAILS = (session_id) => {
   return `${base}account?api_key=${api_key}&session_id=${session_id}`;
 };
 
-export const deleteSession = () => {
+export const DELETE_SESSION = () => {
   return `${base}authentication/session?api_key=${api_key}`;
 };
 

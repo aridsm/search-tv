@@ -4,14 +4,14 @@
     <p class="txt">
       Entre com seu nome de usuário e senha do TMDB ou como guest.
     </p>
-    <form @submit.prevent="store.methods.getNewToken">
+    <form @submit.prevent="loginStore.submitForm(username, password)">
       <label for="user">Usuário</label>
       <input
         type="text"
         id="user"
         class="input-style"
         placeholder="user123"
-        v-model="store.state.user"
+        v-model="username"
       />
 
       <label for="password">Senha</label>
@@ -20,7 +20,7 @@
         id="password"
         placeholder="*********"
         class="input-style"
-        v-model="store.state.password"
+        v-model="password"
       />
 
       <button class="btn-padrao btn-entrar">Entrar</button>
@@ -38,15 +38,19 @@
 </template>
 
 <script>
-import { inject } from "vue";
+import { useLoginStore } from "@/store/login";
+
 export default {
   name: "LoginView",
   setup() {
-    const store = inject("store");
-    return { store };
+    const loginStore = useLoginStore();
+    return { loginStore };
   },
   data() {
-    return {};
+    return {
+      username: "",
+      password: "",
+    };
   },
   methods: {},
 };

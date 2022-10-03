@@ -63,6 +63,7 @@ export default {
       listMovies: [],
       currPage: 1,
       loading: true,
+      slidesPerView: 0,
     };
   },
 
@@ -78,9 +79,23 @@ export default {
       this.currPage++;
       this.fetchData();
     },
+
+    slidesPerViewHandler() {
+      if (window.innerWidth > 1000) this.slidesPerView = 5;
+      else if (window.innerWidth < 1000) this.slidesPerView = 4;
+      else if (window.innerWidth < 800) this.slidesPerView = 3;
+      else if (window.innerWidth < 600) this.slidesPerView = 2;
+      console.log("resize..");
+    },
   },
   created() {
     this.fetchData();
+  },
+  mounted() {
+    window.addEventListener("resize", this.slidesPerViewHandler);
+  },
+  unmounted() {
+    window.removeEventListener("resize", this.slidesPerViewHandler);
   },
 };
 </script>
@@ -88,7 +103,7 @@ export default {
 <style scoped>
 .slider-container {
   margin-left: -2em;
-  padding: 2em;
+  padding: 2rem 1rem;
   overflow: hidden;
   height: 450px;
 }
@@ -114,7 +129,7 @@ export default {
 .item-movie:hover {
   background: var(--cor-6);
   box-shadow: 0 0 0 1px rgb(96, 68, 238);
-  transform: scale(1.05) translateY(-1rem);
+  transform: scale(1.03) translateY(-1rem);
 }
 
 .img {

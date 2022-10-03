@@ -10,14 +10,17 @@ import HeaderVue from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
 import store from "./global/store";
 import { provide } from "vue";
+import { useLoginStore } from "./store/login";
 export default {
   name: "App",
   components: { HeaderVue, Footer },
   setup() {
     provide("store", store);
+    const loginStore = useLoginStore();
+    return { loginStore };
   },
   created() {
-    if (store.state.session_id) store.methods.getAccountDetails();
+    if (this.loginStore.session_id) this.loginStore.getAccountDetails();
   },
 };
 </script>
@@ -51,7 +54,7 @@ ul {
 }
 
 main {
-  padding-top: 9rem;
+  padding-top: 10rem;
   padding-bottom: 4rem;
   min-height: 100vh;
 }
@@ -157,6 +160,10 @@ button {
 @media (max-width: 700px) {
   body {
     font-size: 13px;
+  }
+  .btn-padrao {
+    padding: 0 1rem;
+    height: 2rem;
   }
 }
 </style>
