@@ -1,7 +1,9 @@
 <template>
   <div class="login">
     <h1 class="title">Login</h1>
-    <p>Entre com seu nome de usuário e senha do TMDB ou como guest.</p>
+    <p class="txt">
+      Entre com seu nome de usuário e senha do TMDB ou como guest.
+    </p>
     <form @submit.prevent="store.methods.getNewToken">
       <label for="user">Usuário</label>
       <input
@@ -21,7 +23,7 @@
         v-model="store.state.password"
       />
 
-      <button class="btn-padrao">Entrar</button>
+      <button class="btn-padrao btn-entrar">Entrar</button>
     </form>
 
     <p class="no-account">
@@ -29,7 +31,9 @@
       com uma sessão local logo abaixo.
     </p>
 
-    <button class="btn-padrao">Entrar com uma sessão local</button>
+    <button class="btn-padrao btn-sessao-local">
+      Entrar com uma sessão local
+    </button>
   </div>
 </template>
 
@@ -53,6 +57,11 @@ label {
   position: relative;
   visibility: visible;
   display: block;
+  margin-bottom: 0.5em;
+}
+.txt {
+  margin-bottom: 2em;
+  margin-top: 0.5em;
 }
 .btn-padrao {
   border: none;
@@ -60,15 +69,37 @@ label {
 input {
   width: 100%;
 }
+
+#user {
+  margin-bottom: 1.5em;
+}
 .login {
-  padding: 0 2rem;
+  padding: 0 2em;
   max-width: 600px;
   width: 100%;
   margin: 0 auto;
 }
-
+.no-account {
+  margin: 1.5rem 0;
+}
 .no-account a {
   color: var(--cor-3);
   border-bottom: 1px dashed currentColor;
+}
+
+.btn-entrar {
+  margin-top: 1.5em;
+  margin-left: auto;
+}
+
+.btn-sessao-local {
+  margin: 0 auto;
+}
+
+@media (max-width: 500px) {
+  .btn-entrar,
+  .btn-sessao-local {
+    width: 100%;
+  }
 }
 </style>

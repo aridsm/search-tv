@@ -45,10 +45,18 @@ import "swiper/css";
 import ButtonsSlider from "./ButtonsSlider.vue";
 import StarVotings from "./StarVotings.vue";
 import Loading from "./Loading.vue";
+import FavoriteMovie from "./FavoriteMovie.vue";
 
 export default {
   name: "ListMovies",
-  components: { Swiper, SwiperSlide, ButtonsSlider, StarVotings, Loading },
+  components: {
+    Swiper,
+    SwiperSlide,
+    ButtonsSlider,
+    StarVotings,
+    Loading,
+    FavoriteMovie,
+  },
   props: ["title", "getListMovies"],
   data() {
     return {
@@ -79,8 +87,8 @@ export default {
 
 <style scoped>
 .slider-container {
-  margin-left: -2rem;
-  padding: 2rem;
+  margin-left: -2em;
+  padding: 2em;
   overflow: hidden;
   height: 450px;
 }
@@ -97,7 +105,7 @@ export default {
 }
 .item-movie {
   background: var(--cor-2);
-  padding: 0.6rem;
+  padding: 0.6em;
   border-radius: 5px;
   transition: 0.2s;
   max-width: 250px;
@@ -114,14 +122,14 @@ export default {
 }
 .item-movie h3 {
   font-weight: 900;
-  font-size: 1rem;
-  margin-top: 0.5rem;
+  font-size: 1em;
+  margin-top: 0.5em;
 }
 .infos-vote {
   display: none;
-  margin-top: 0.5rem;
+  margin-top: 0.5em;
 }
 .item-movie:hover .infos-vote {
-  display: block;
+  display: flex;
 }
 </style>

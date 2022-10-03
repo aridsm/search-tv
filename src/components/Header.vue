@@ -85,29 +85,29 @@ export default {
 
 .logo {
   background: var(--cor-3);
-  width: 4rem;
+  min-width: 4rem;
   height: 2.5rem;
   border-radius: 5px;
   display: grid;
   place-items: center;
   font-weight: 900;
-  font-size: 1.3rem;
+  font-size: 1.3em;
   color: var(--cor-1);
 }
 
 .form {
-  margin-left: 2rem;
+  margin-left: 1.5rem;
   margin-right: auto;
 }
 
 .menu-btn {
-  width: 2rem;
-  height: 2rem;
+  width: 2em;
+  height: 2em;
   background: url("../assets/list.svg");
   background-size: 1.8rem;
   background-position: center;
   padding: 1rem;
-  margin-left: 2rem;
+  margin-left: 1.5rem;
   border: 2px solid transparent;
   border-radius: 5px;
 }
@@ -118,6 +118,7 @@ export default {
 
 .btn-account {
   display: flex;
+  margin-left: 1.5rem;
 }
 .btn-account svg {
   margin-left: 5px;
@@ -129,7 +130,7 @@ export default {
   text-align: right;
   border-radius: 5px;
   top: 4rem;
-  right: 2rem;
+  right: 1.5rem;
 }
 
 .nav a {

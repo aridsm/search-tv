@@ -17,7 +17,7 @@ export default {
     provide("store", store);
   },
   created() {
-    store.methods.getAccountDetails();
+    if (store.state.session_id) store.methods.getAccountDetails();
   },
 };
 </script>
@@ -51,8 +51,8 @@ ul {
 }
 
 main {
-  padding-top: 10rem;
-  padding-bottom: 5rem;
+  padding-top: 9rem;
+  padding-bottom: 4rem;
   min-height: 100vh;
 }
 a {
@@ -60,7 +60,7 @@ a {
   color: inherit;
 }
 .container {
-  padding: 0 2rem;
+  padding: 0 1.5rem;
   max-width: 1250px;
   width: 100%;
   margin: 0 auto;
@@ -79,7 +79,7 @@ button {
   cursor: pointer;
 }
 .title {
-  font-size: 1.3rem;
+  font-size: 1.3em;
   text-transform: uppercase;
   border-left: 15px solid var(--cor-3);
   padding-left: 0.5rem;
@@ -108,7 +108,7 @@ button {
 }
 
 .btn-padrao {
-  padding: 0 2rem;
+  padding: 0 1.5rem;
   height: 2.5rem;
   background: var(--cor-3);
   font-weight: 900;
@@ -152,5 +152,11 @@ button {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--cor-5);
+}
+
+@media (max-width: 700px) {
+  body {
+    font-size: 13px;
+  }
 }
 </style>

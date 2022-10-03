@@ -52,8 +52,8 @@ export default {
 .btn-prev {
   z-index: 9;
   top: 160px;
-  width: 2rem;
-  height: 4rem;
+  width: 2em;
+  height: 4em;
   border-radius: 5px;
   background: var(--cor-3);
   position: absolute;
@@ -64,14 +64,14 @@ export default {
 .btn-next svg,
 .btn-prev svg {
   fill: currentColor;
-  width: 1.3rem;
-  height: 1.3rem;
+  width: 1.3em;
+  height: 1.3em;
 }
 .btn-prev {
-  left: 1rem;
+  left: 1em;
 }
 .btn-next {
-  right: 1rem;
+  right: 1em;
 }
 .btn-next:hover,
 .btn-prev:hover {

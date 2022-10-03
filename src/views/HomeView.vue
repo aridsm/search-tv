@@ -46,15 +46,15 @@ export default {
   margin-top: 6rem;
 }
 .entrada h1 {
-  font-size: 3.5rem;
-  line-height: 3.7rem;
+  font-size: 3.5em;
+  line-height: 3.5rem;
   margin-bottom: 2rem;
   letter-spacing: 0.5px;
 }
 
 .dados {
   margin-top: 1rem;
-  font-size: 1rem;
+  font-size: 1em;
   color: var(--cor-4);
 }
 
@@ -65,8 +65,7 @@ export default {
 .dados a:hover {
   border-bottom: 1px dashed var(--cor-3);
 }
-
 .form {
-  min-width: 30rem;
+  max-width: 30rem;
 }
 </style>

@@ -13,7 +13,7 @@ export default {
   background: var(--cor-6);
   color: var(--cor-4);
   font-weight: 900;
-  font-size: 1.6rem;
+  font-size: 1.6em;
   display: grid;
   place-items: center;
 }

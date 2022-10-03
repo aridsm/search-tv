@@ -51,6 +51,6 @@ export const getAccountMovieDetails = (movie_id, session_id) => {
   return `${base}movie/${movie_id}/account_states?api_key=${api_key}&session_id=${session_id}`;
 };
 
-export const getFavoriteMovies = (account_id, session_id) => {
-  return `${base}account/${account_id}/favorite/movies?api_key=${api_key}&session_id=${session_id}`;
+export const getFavoriteMovies = (account_id, session_id) => (page) => {
+  return `${base}account/${account_id}/favorite/movies?api_key=${api_key}&session_id=${session_id}&page=${page}`;
 };

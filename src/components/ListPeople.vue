@@ -41,7 +41,7 @@ export default {
 }
 .img-person {
   width: 100%;
-  height: 16rem;
+  height: 16em;
   overflow: hidden;
 }
 
@@ -53,14 +53,14 @@ export default {
 }
 
 h2 {
-  font-size: 1.6rem;
-  margin-bottom: 1rem;
+  font-size: 1.6em;
+  margin-bottom: 1em;
 }
 
 h3 {
-  font-size: 1rem;
+  font-size: 1em;
   font-weight: 800;
-  margin-top: 0.5rem;
+  margin-top: 0.5em;
 }
 
 .as {

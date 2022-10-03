@@ -96,20 +96,20 @@ export default {
 
 <style scoped>
 h1 {
-  margin-bottom: 3rem;
-  font-size: 2rem;
+  margin-bottom: 3em;
+  font-size: 2em;
 }
 .list-genres {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, auto));
-  grid-gap: 0.5rem;
-  margin-top: 1rem;
+  grid-gap: 0.5em;
+  margin-top: 1em;
 }
 .list-genres button {
   width: 100%;
   background: var(--cor-2);
   color: var(--cor-4);
-  padding: 0.5rem;
+  padding: 0.5em;
   border-radius: 5px;
   transition: 0.2s;
 }
@@ -120,7 +120,7 @@ h1 {
   background: var(--cor-6);
 }
 .list-movies {
-  margin-top: 3rem;
+  margin-top: 3em;
 }
 .btn-filtrar {
   transition: 0.2s;
@@ -133,8 +133,8 @@ h1 {
 
 .arrow {
   display: inline-block;
-  width: 0.8rem;
-  height: 0.8rem;
+  width: 0.8em;
+  height: 0.8em;
   fill: currentColor;
   margin-bottom: -1.5px;
   transition: 0.2s;

@@ -13,7 +13,7 @@ export default {
 <style>
 .footer {
   text-align: center;
-  padding: 2rem;
+  padding: 2em;
   background: var(--cor-2);
 }
 </style>

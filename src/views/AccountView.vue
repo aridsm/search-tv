@@ -35,20 +35,35 @@
         </button>
       </div>
     </div>
+    {{ movies }}
+    <ListMovies
+      title="Seus favoritos"
+      class="list-movies"
+      :getListMovies="
+        getFavoriteMovies(store.state.userDetails?.id, store.state.session_id)
+      "
+    />
   </section>
 </template>
 
 <script>
 import { inject } from "vue";
 import Loading from "@/components/Loading.vue";
+import { getFavoriteMovies } from "@/urlsAPI";
+import ListMovies from "@/components/ListMovies.vue";
 
 export default {
   name: "AccountView",
   setup() {
     const store = inject("store");
-    return { store };
+    return { store, getFavoriteMovies };
   },
-  components: { Loading },
+  data() {
+    return {
+      movies: null,
+    };
+  },
+  components: { Loading, ListMovies },
 };
 </script>
 
@@ -71,7 +86,7 @@ export default {
 }
 
 .infos {
-  margin-left: 3rem;
+  margin-left: 1.5rem;
   display: flex;
   flex-direction: column;
 }
@@ -95,5 +110,9 @@ export default {
   width: 18px;
   height: 18px;
   margin-left: 0.5rem;
+}
+
+.list-movies {
+  margin-top: 5rem;
 }
 </style>

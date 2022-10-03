@@ -1,6 +1,7 @@
 import router from "@/router";
 import {
   deleteSession,
+  getFavoriteMovies,
   getToken,
   getUserDetails,
   postAuthenticate,
@@ -72,8 +73,9 @@ const methods = {
       .delete(deleteSession(), { data: { session_id: state.session_id } })
       .then((r) => {
         window.localStorage.removeItem("session_id");
-        state.session_id = "";
-        state.userDetails = "";
+        state.session_id = null;
+        state.userDetails = null;
+        state.isLoggedIn = false;
         router.push("/");
       })
       .catch((r) => console.log(r));

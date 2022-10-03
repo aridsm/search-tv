@@ -44,28 +44,29 @@ export default {
 </script>
 
 <style scoped>
+.vote-container {
+  display: flex;
+  font-size: 0.8em;
+}
 .stars {
   display: inline-block;
 }
 
 .stars img {
-  width: 16px;
+  width: 14px;
 }
 .stars img + img {
-  margin-left: 4px;
+  margin-left: 3px;
 }
 .vote {
   color: var(--cor-3);
-  margin-left: 0.5rem;
+  margin-left: 0.5em;
   display: inline-block;
-  font-size: 0.8rem;
-  transform: translateY(-4px);
 }
 
 .contagem {
-  font-size: 0.8rem;
   display: block;
-  margin-top: 0.2rem;
+  margin-left: auto;
   color: var(--cor-4);
 }
 </style>
