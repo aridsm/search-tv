@@ -163,7 +163,6 @@ h1 {
 .tagline {
   font-size: 1em;
   font-weight: 400;
-  font-style: italic;
   color: var(--cor-4);
   margin-bottom: 0.5rem;
 }
@@ -186,14 +185,7 @@ h1 {
   display: flex;
   color: var(--cor-4);
 }
-.favorite {
-  color: var(--cor-4);
-  transition: 0.2s;
-}
-.favorite:hover,
-.favorited {
-  color: rgb(255, 136, 241);
-}
+
 .favorite::after {
   content: "☆";
   display: inline-block;

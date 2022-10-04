@@ -59,8 +59,8 @@ export default {
   margin-left: 3px;
 }
 .vote {
-  color: var(--cor-3);
-  margin-left: 0.5em;
+  color: var(--cor-7);
+  margin-left: 0.5rem;
   display: inline-block;
 }
 

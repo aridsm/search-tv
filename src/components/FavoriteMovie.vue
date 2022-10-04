@@ -1,11 +1,13 @@
 <template>
+  <div v-if="loading" class="loading">...</div>
   <button
     :class="['favorite', { favorited: isMovieFavorited }]"
-    v-if="loginStore.isLoggedIn"
-    @click="markAsFavorite"
+    v-if="!loading && loginStore.isLoggedIn"
+    @click.stop.prevent="markAsFavorite"
   >
-    <Loading v-if="loading" class="loading" />
-    <div v-else>{{ isMovieFavorited ? "Favoritado" : "Favoritar" }}</div>
+    <div class="favorite-text">
+      {{ isMovieFavorited ? "Favoritado" : "Favoritar" }}
+    </div>
   </button>
 </template>
 
@@ -59,9 +61,14 @@ export default {
   color: var(--cor-4);
   transition: 0.2s;
 }
-.favorite:hover,
+.favorite-text {
+  display: inline-block;
+}
+.favorite:hover {
+  color: var(--cor-5);
+}
 .favorited {
-  color: rgb(255, 136, 241);
+  color: var(--cor-7);
 }
 .favorite::after {
   content: "☆";

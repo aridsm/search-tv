@@ -2,37 +2,40 @@
   <section>
     <h2 class="title">{{ title }}</h2>
     <Loading v-if="loading" />
-    <swiper
-      :breakpoints="breakpoints"
-      @reachEnd="fetchNewData"
-      grab-cursor
-      v-if="listMovies && listMovies.length"
-      class="list-movies"
-    >
-      <ButtonsSlider class="btns-slide" />
-
-      <swiper-slide
-        v-for="movie in listMovies"
-        :key="movie.id"
-        class="item-movie"
+    <div class="container-movies">
+      <swiper
+        :breakpoints="breakpoints"
+        @reachEnd="fetchNewData"
+        grab-cursor
+        v-if="listMovies && listMovies.length"
+        class="movies"
       >
-        <router-link :to="`/movies/${movie.id}`">
-          <img
-            :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
-            :alt="movie.title"
-            class="img"
-          />
-          <h3>
-            {{ movie.title }}
-          </h3>
-          <StarVotings
-            :rawVote="movie.vote_average"
-            :voteCount="movie.vote_count"
-            class="infos-vote"
-          />
-        </router-link>
-      </swiper-slide>
-    </swiper>
+        <ButtonsSlider class="btns-slide" />
+
+        <swiper-slide
+          v-for="movie in listMovies"
+          :key="movie.id"
+          class="item-movie"
+        >
+          <router-link :to="`/movies/${movie.id}`">
+            <img
+              :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
+              :alt="movie.title"
+              class="img"
+            />
+            <h3>
+              {{ movie.title }}
+            </h3>
+            <FavoriteMovie :movieId="movie.id" />
+            <StarVotings
+              :rawVote="movie.vote_average"
+              :voteCount="movie.vote_count"
+              class="infos-vote"
+            />
+          </router-link>
+        </swiper-slide>
+      </swiper>
+    </div>
   </section>
 </template>
 <script>
@@ -109,14 +112,23 @@ export default {
 </script>
 
 <style scoped>
-.list-movies {
+.movies {
   padding: 2px;
   position: relative;
+  overflow: visible;
+  margin-left: -1.9rem;
+}
+
+.container-movies {
+  overflow: hidden;
+  padding: 2rem;
+  height: 440px;
+  margin-top: 1rem;
 }
 .btns-slide {
   opacity: 0;
 }
-.list-movies:hover .btns-slide {
+.movies:hover .btns-slide {
   opacity: 1;
 }
 .item-movie {

@@ -64,7 +64,6 @@ h3 {
 }
 
 .as {
-  font-style: italic;
   color: var(--cor-4);
 }
 </style>

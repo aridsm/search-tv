@@ -10,7 +10,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .loading {
   border-radius: 50%;
   width: 3em;

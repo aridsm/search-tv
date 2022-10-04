@@ -70,7 +70,6 @@ export default {
 .header {
   display: flex;
   align-items: center;
-  background: var(--cor-1);
   position: fixed;
   z-index: 9;
   width: 100%;

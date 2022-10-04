@@ -94,7 +94,6 @@ export default {
 }
 
 .username {
-  font-style: italic;
   color: var(--cor-4);
   margin-bottom: 0.5rem;
 }

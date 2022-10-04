@@ -10,8 +10,8 @@
     </div>
     <ListMovies
       title="popular hoje"
-      :getListMovies="getPopularMovies"
       class="list-movies"
+      :getListMovies="getPopularMovies"
     />
   </div>
 </template>
@@ -38,9 +38,6 @@ export default {
   z-index: 2;
   align-items: flex-start;
 }
-.list-movies {
-  margin-top: 5rem;
-}
 .entrada h1 {
   font-size: 3.5em;
   line-height: 3.5rem;
@@ -66,5 +63,9 @@ export default {
 }
 .form {
   max-width: 30rem;
+}
+
+.list-movies {
+  margin-top: 4rem;
 }
 </style>

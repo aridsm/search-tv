@@ -55,7 +55,7 @@ export default {
   width: 2em;
   height: 4em;
   border-radius: 5px;
-  background: var(--cor-3);
+  background: linear-gradient(180deg, #55d4e6 0%, var(--cor-3) 100%);
   position: absolute;
   transition: 0.2s;
   box-shadow: 0 0 50px 0 var(--cor-1);

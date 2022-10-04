@@ -32,11 +32,12 @@ export default {
 
 :root {
   --cor-1: #12102e;
-  --cor-2: #18173a;
+  --cor-2: #16153c;
   --cor-3: #5280d9;
   --cor-4: #95a2b9;
   --cor-5: #e5defb;
-  --cor-6: #2a294d;
+  --cor-6: #1e1c47;
+  --cor-7: #ffeb7c;
 }
 
 body {
@@ -58,6 +59,19 @@ main {
   padding-top: 10rem;
   padding-bottom: 4rem;
   min-height: 100vh;
+}
+
+main::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 13rem;
+  height: 13rem;
+  border-radius: 50%;
+  top: 0;
+  left: -5rem;
+  background: #5280d9;
+  filter: blur(15rem);
 }
 a {
   text-decoration: none;
@@ -85,10 +99,18 @@ button {
 .title {
   font-size: 1.3em;
   text-transform: uppercase;
-  border-left: 15px solid var(--cor-3);
   padding-left: 0.5rem;
 }
-
+.title::before {
+  content: "";
+  display: inline-block;
+  position: relative;
+  background: var(--cor-3);
+  width: 2rem;
+  height: 3px;
+  margin-right: 0.5rem;
+  top: -0.3rem;
+}
 .input-style {
   background: var(--cor-2);
   outline: none;
