@@ -14,7 +14,7 @@
         <div class="movie-infos">
           <div class="flex">
             <h1>{{ movieData.title }}</h1>
-            <FavoriteMovie :movieId="movieId" :movieStatus="movieStatus" />
+            <FavoriteMovie :movieId="movieId" />
           </div>
           <p class="tagline">{{ movieData.tagline }}</p>
           <StarVotings
@@ -33,7 +33,7 @@
       </section>
       <section class="vote">
         <h2>Qual seu voto para este filme?</h2>
-        <div>{{ movieStatus }}</div>
+        <div>{{ movieAccountStatus }}</div>
       </section>
       <section class="more-data">
         <ul>
@@ -79,26 +79,22 @@
 </template>
 
 <script>
-import {
-  getAccountMovieDetails,
-  getMovieById,
-  getMovieCredits,
-} from "@/urlsAPI";
+import { getMovieById, getMovieCredits } from "@/urlsAPI";
 import axios from "axios";
 import StarVotings from "@/components/StarVotings.vue";
 import NoImage from "@/components/NoImage.vue";
 import ListPeople from "../components/ListPeople.vue";
 import Loading from "@/components/Loading.vue";
-import { inject } from "vue";
 import FavoriteMovie from "../components/FavoriteMovie.vue";
+import { useLoginStore } from "@/store/login";
 
 export default {
   name: "MovieView",
   props: ["movieId"],
   components: { StarVotings, NoImage, ListPeople, Loading, FavoriteMovie },
   setup() {
-    const store = inject("store");
-    return { store };
+    const loginStore = useLoginStore();
+    return { loginStore };
   },
   data() {
     return {
@@ -107,7 +103,6 @@ export default {
       loadingCredits: false,
       movieCast: [],
       movieCrew: [],
-      movieStatus: null,
     };
   },
   methods: {
@@ -126,19 +121,10 @@ export default {
         this.loadingCredits = false;
       });
     },
-    getMovieDetails() {
-      axios
-        .get(getAccountMovieDetails(this.movieId, this.store.state.session_id))
-        .then((r) => {
-          this.movieStatus = r.data;
-        })
-        .catch((r) => console.log(r));
-    },
   },
   created() {
     this.fetchData();
     this.fetchCredits();
-    this.getMovieDetails();
   },
 };
 </script>
@@ -147,7 +133,7 @@ export default {
 .section {
   display: grid;
   grid-template-columns: calc(77% - 2rem) 23%;
-  grid-gap: 1.5em;
+  grid-gap: 1.5rem;
   max-width: 100%;
 }
 
@@ -156,14 +142,14 @@ export default {
 .vote,
 .list-people {
   background: var(--cor-2);
-  padding: 1.5em;
+  padding: 1.5rem;
   border-radius: 5px;
 }
 .movie {
   display: flex;
 }
 .movie-infos {
-  margin-left: 1.5em;
+  margin-left: 1.5rem;
   flex: 4;
 }
 .flex {
@@ -179,14 +165,14 @@ h1 {
   font-weight: 400;
   font-style: italic;
   color: var(--cor-4);
-  margin-bottom: 0.5em;
+  margin-bottom: 0.5rem;
 }
 .img-container {
   width: 250px;
-  padding: 0.5em;
+  padding: 0.5rem;
   border-radius: 5px;
   background: var(--cor-6);
-  height: 23em;
+  height: 23rem;
 }
 
 .img-container > * {
@@ -211,10 +197,10 @@ h1 {
 .favorite::after {
   content: "☆";
   display: inline-block;
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   font-size: 1.3em;
-  margin-left: 0.3em;
+  margin-left: 0.3rem;
 }
 .favorited::after {
   content: "★";
@@ -222,8 +208,8 @@ h1 {
 
 .categories li + li {
   border-left: 1px solid var(--cor-4);
-  padding-left: 0.5em;
-  margin-left: 0.5em;
+  padding-left: 0.5rem;
+  margin-left: 0.5rem;
 }
 
 .overview {
@@ -241,9 +227,9 @@ h1 {
 }
 .more-data p {
   color: var(--cor-4);
-  margin-top: 0.5em;
+  margin-top: 0.5rem;
 }
 .more-data li + li {
-  margin-top: 1em;
+  margin-top: 1rem;
 }
 </style>

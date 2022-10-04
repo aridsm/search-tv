@@ -8,11 +8,11 @@
       <router-link
         to="/login"
         class="login btn-padrao"
-        v-if="!store.state.userDetails"
+        v-if="!loginStore.userDetails"
         >Login</router-link
       >
       <router-link v-else to="/account" class="btn-padrao btn-account"
-        >{{ store.state.userDetails.username }}
+        >{{ loginStore.userDetails.username }}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -43,14 +43,15 @@
 </template>
 
 <script>
+import { useLoginStore } from "@/store/login";
 import { inject } from "vue";
 import SearchField from "./SearchField.vue";
 export default {
   name: "Header",
   components: { SearchField },
   setup() {
-    const store = inject("store");
-    return { store };
+    const loginStore = useLoginStore();
+    return { loginStore };
   },
   data() {
     return {
@@ -74,7 +75,7 @@ export default {
   z-index: 9;
   width: 100%;
   height: 5rem;
-  border-bottom: 1px solid var(--cor-6);
+  border-bottom: 1px solid rgba(82, 127, 217, 0.2);
 }
 
 .header .container {
@@ -84,7 +85,7 @@ export default {
 }
 
 .logo {
-  background: var(--cor-3);
+  background: linear-gradient(180deg, #55d4e6 0%, var(--cor-3) 100%);
   min-width: 4rem;
   height: 2.5rem;
   border-radius: 5px;

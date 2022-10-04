@@ -8,14 +8,11 @@
 <script>
 import HeaderVue from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
-import store from "./global/store";
-import { provide } from "vue";
 import { useLoginStore } from "./store/login";
 export default {
   name: "App",
   components: { HeaderVue, Footer },
   setup() {
-    provide("store", store);
     const loginStore = useLoginStore();
     return { loginStore };
   },
@@ -25,7 +22,7 @@ export default {
 };
 </script>
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,900;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap");
 
 * {
   box-sizing: border-box;
@@ -34,18 +31,22 @@ export default {
 }
 
 :root {
-  --cor-1: #1b1937;
-  --cor-2: #211f3f;
-  --cor-3: #ffed8d;
+  --cor-1: #12102e;
+  --cor-2: #18173a;
+  --cor-3: #5280d9;
   --cor-4: #95a2b9;
   --cor-5: #e5defb;
   --cor-6: #2a294d;
 }
 
 body {
-  background: var(--cor-1);
+  background: radial-gradient(
+    100% 100% at 50% 0%,
+    var(--cor-1) 0%,
+    #100d2d 100%
+  );
   color: var(--cor-5);
-  font-family: "Lato", sans-serif;
+  font-family: "Ubuntu", sans-serif;
   font-size: 15px;
 }
 
@@ -92,17 +93,17 @@ button {
   background: var(--cor-2);
   outline: none;
   border: none;
-  border-radius: 5px;
-  height: 2.5rem;
+  border-radius: 2rem;
+  height: 2.7rem;
   padding: 0 1rem;
   font-family: inherit;
   color: inherit;
   transition: 0.2s;
+  box-shadow: 0 0 0 1px rgba(82, 127, 217, 0.2);
 }
 
 .input-style::placeholder {
   color: var(--cor-4);
-  font-style: italic;
 }
 
 .input-style:hover,
@@ -113,21 +114,20 @@ button {
 .btn-padrao {
   padding: 0 1.5rem;
   height: 2.5rem;
-  background: var(--cor-3);
+  background: linear-gradient(180deg, #55d4e6 0%, var(--cor-3) 100%);
   font-weight: 900;
   color: var(--cor-1);
   border-radius: 50px;
   display: grid;
   place-items: center;
-  transition: 0.2s;
+  transition: 0.1s;
 }
 
 .btn-padrao:hover {
-  background: #efdc70;
+  color: #243c6d;
 }
 
 .btn-padrao:active {
-  background: #fff2a9;
   transform: scale(0.95);
 }
 .v-enter-from,
@@ -151,6 +151,7 @@ button {
 
 ::-webkit-scrollbar-thumb {
   background: var(--cor-3);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {

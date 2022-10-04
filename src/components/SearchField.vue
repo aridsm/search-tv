@@ -142,8 +142,11 @@ export default {
   border-radius: 5px;
   padding: 1rem;
   overflow: auto;
+  box-shadow: 0 0 0 1px rgba(82, 127, 217, 0.2);
 }
-
+.results::-webkit-scrollbar-track {
+  background: transparent;
+}
 .item-movie {
   padding: 0.5rem;
   border-radius: 5px;

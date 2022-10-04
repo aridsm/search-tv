@@ -1,30 +1,56 @@
 <template>
   <button
-    :class="['favorite', { favorited: movieStatus?.favorite }]"
-    v-if="store.state.isLoggedIn"
+    :class="['favorite', { favorited: isMovieFavorited }]"
+    v-if="loginStore.isLoggedIn"
     @click="markAsFavorite"
   >
-    {{ movieStatus?.favorite ? "Favoritado" : "Favoritar" }}
+    <Loading v-if="loading" class="loading" />
+    <div v-else>{{ isMovieFavorited ? "Favoritado" : "Favoritar" }}</div>
   </button>
 </template>
 
 <script>
-import { inject } from "vue";
+import { useLoginStore } from "@/store/login";
+import Loading from "./Loading.vue";
 
 export default {
   name: "FavoriteMovie",
-  props: ["movieId", "movieStatus"],
+  props: ["movieId"],
   setup() {
-    const store = inject("store");
-    return { store };
+    const loginStore = useLoginStore();
+    return { loginStore };
+  },
+  data() {
+    return {
+      isMovieFavorited: "",
+      loading: false,
+    };
   },
   methods: {
-    markAsFavorite() {
-      const isMovieFavorited = this.movieStatus.favorite;
-      this.store.methods.markMovieAsFavorite(this.movieId, isMovieFavorited);
-      this.movieStatus.favorite = !isMovieFavorited;
+    async getMovieDetails() {
+      this.loading = true;
+      const movieAccountStatus = await this.loginStore.getMovieDetails(
+        this.movieId
+      );
+      this.loading = false;
+      this.isMovieFavorited = movieAccountStatus.favorite;
+    },
+    async markAsFavorite() {
+      this.loading = true;
+      const markWasSuccessfull = await this.loginStore.markMovieAsFavorite(
+        this.movieId,
+        this.isMovieFavorited
+      );
+      this.loading = false;
+      if (markWasSuccessfull) {
+        this.isMovieFavorited = !this.isMovieFavorited;
+      }
     },
   },
+  created() {
+    this.getMovieDetails();
+  },
+  components: { Loading },
 };
 </script>
 
@@ -47,5 +73,9 @@ export default {
 }
 .favorited::after {
   content: "★";
+}
+
+.loading {
+  padding: 0;
 }
 </style>

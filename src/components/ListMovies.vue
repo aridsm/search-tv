@@ -2,40 +2,37 @@
   <section>
     <h2 class="title">{{ title }}</h2>
     <Loading v-if="loading" />
-    <div v-else class="slider-container">
-      <swiper
-        :slides-per-view="5"
-        :space-between="15"
-        @reachEnd="fetchNewData"
-        grab-cursor
-        v-if="listMovies && listMovies.length"
-        class="list-movies"
-      >
-        <ButtonsSlider class="btns-slide" />
+    <swiper
+      :breakpoints="breakpoints"
+      @reachEnd="fetchNewData"
+      grab-cursor
+      v-if="listMovies && listMovies.length"
+      class="list-movies"
+    >
+      <ButtonsSlider class="btns-slide" />
 
-        <swiper-slide
-          v-for="movie in listMovies"
-          :key="movie.id"
-          class="item-movie"
-        >
-          <router-link :to="`/movies/${movie.id}`">
-            <img
-              :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
-              :alt="movie.title"
-              class="img"
-            />
-            <h3>
-              {{ movie.title }}
-            </h3>
-            <StarVotings
-              :rawVote="movie.vote_average"
-              :voteCount="movie.vote_count"
-              class="infos-vote"
-            />
-          </router-link>
-        </swiper-slide>
-      </swiper>
-    </div>
+      <swiper-slide
+        v-for="movie in listMovies"
+        :key="movie.id"
+        class="item-movie"
+      >
+        <router-link :to="`/movies/${movie.id}`">
+          <img
+            :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
+            :alt="movie.title"
+            class="img"
+          />
+          <h3>
+            {{ movie.title }}
+          </h3>
+          <StarVotings
+            :rawVote="movie.vote_average"
+            :voteCount="movie.vote_count"
+            class="infos-vote"
+          />
+        </router-link>
+      </swiper-slide>
+    </swiper>
   </section>
 </template>
 <script>
@@ -63,7 +60,32 @@ export default {
       listMovies: [],
       currPage: 1,
       loading: true,
-      slidesPerView: 0,
+      breakpoints: {
+        1700: {
+          slidesPerView: 6,
+          spaceBetween: 15,
+        },
+        1100: {
+          slidesPerView: 5,
+          spaceBetween: 15,
+        },
+        900: {
+          slidesPerView: 4,
+          spaceBetween: 15,
+        },
+        550: {
+          slidesPerView: 3,
+          spaceBetween: 15,
+        },
+        400: {
+          slidesPerView: 2,
+          spaceBetween: 15,
+        },
+        1: {
+          slidesPerView: 1,
+          spaceBetween: 15,
+        },
+      },
     };
   },
 
@@ -79,37 +101,16 @@ export default {
       this.currPage++;
       this.fetchData();
     },
-
-    slidesPerViewHandler() {
-      if (window.innerWidth > 1000) this.slidesPerView = 5;
-      else if (window.innerWidth < 1000) this.slidesPerView = 4;
-      else if (window.innerWidth < 800) this.slidesPerView = 3;
-      else if (window.innerWidth < 600) this.slidesPerView = 2;
-      console.log("resize..");
-    },
   },
   created() {
     this.fetchData();
-  },
-  mounted() {
-    window.addEventListener("resize", this.slidesPerViewHandler);
-  },
-  unmounted() {
-    window.removeEventListener("resize", this.slidesPerViewHandler);
   },
 };
 </script>
 
 <style scoped>
-.slider-container {
-  margin-left: -2em;
-  padding: 2rem 1rem;
-  overflow: hidden;
-  height: 450px;
-}
 .list-movies {
   padding: 2px;
-  overflow: visible;
   position: relative;
 }
 .btns-slide {
@@ -123,12 +124,11 @@ export default {
   padding: 0.6em;
   border-radius: 5px;
   transition: 0.2s;
-  max-width: 250px;
 }
 
 .item-movie:hover {
   background: var(--cor-6);
-  box-shadow: 0 0 0 1px rgb(96, 68, 238);
+  box-shadow: 0 0 0 1px var(--cor-3);
   transform: scale(1.03) translateY(-1rem);
 }
 
@@ -146,5 +146,11 @@ export default {
 }
 .item-movie:hover .infos-vote {
   display: flex;
+}
+
+@media (max-width: 400px) {
+  .item-movie {
+    max-width: initial;
+  }
 }
 </style>

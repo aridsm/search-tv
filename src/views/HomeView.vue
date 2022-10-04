@@ -1,15 +1,12 @@
 <template>
   <div class="container">
     <div class="entrada">
-      <h1>
-        Procure por um <br />
-        filme!
-      </h1>
-      <SearchField class="form" />
       <p class="dados">
         Dados da API
         <a href="https://www.themoviedb.org/documentation/api">TMDB</a>
       </p>
+      <h1><span>Procure</span> por um filme!</h1>
+      <SearchField class="form" />
     </div>
     <ListMovies
       title="popular hoje"
@@ -35,25 +32,27 @@ export default {
 
 <style scoped>
 .entrada {
-  text-align: center;
   display: flex;
   flex-direction: column;
   position: relative;
   z-index: 2;
-  align-items: center;
+  align-items: flex-start;
 }
 .list-movies {
-  margin-top: 6rem;
+  margin-top: 5rem;
 }
 .entrada h1 {
   font-size: 3.5em;
   line-height: 3.5rem;
-  margin-bottom: 2rem;
-  letter-spacing: 0.5px;
+  margin-bottom: 1.5rem;
 }
-
+.entrada h1 span {
+  background: linear-gradient(180deg, #55d4e6 0%, var(--cor-3) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 .dados {
-  margin-top: 1rem;
   font-size: 1em;
   color: var(--cor-4);
 }

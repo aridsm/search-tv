@@ -43,11 +43,11 @@ export const DELETE_SESSION = () => {
   return `${base}authentication/session?api_key=${api_key}`;
 };
 
-export const postFavorite = (account_id, session_id) => {
+export const POST_FAVORITE = (account_id, session_id) => {
   return `${base}account/${account_id}/favorite?api_key=${api_key}&session_id=${session_id}`;
 };
 
-export const getAccountMovieDetails = (movie_id, session_id) => {
+export const GET_ACCOUNT_MOVIE_DETAILS = (movie_id, session_id) => {
   return `${base}movie/${movie_id}/account_states?api_key=${api_key}&session_id=${session_id}`;
 };
 

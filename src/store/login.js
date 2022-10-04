@@ -1,9 +1,11 @@
 import router from "@/router";
 import {
   DELETE_SESSION,
+  GET_ACCOUNT_MOVIE_DETAILS,
   GET_TOKEN,
   GET_USER_DETAILS,
   POST_AUTHENTICATE,
+  POST_FAVORITE,
   POST_LOGIN,
 } from "@/urlsAPI";
 import axios from "axios";
@@ -16,7 +18,6 @@ function getTokenFromLocalStorage() {
 export const useLoginStore = defineStore("login", {
   state: () => {
     return {
-      token: "",
       session_id: getTokenFromLocalStorage(),
       userDetails: null,
       isLoggedIn: false,
@@ -41,7 +42,6 @@ export const useLoginStore = defineStore("login", {
         })
         .then((r) => {
           console.log("ok");
-          router.push("/account");
           that.authenticate(token);
         })
         .catch((error) => {
@@ -57,12 +57,15 @@ export const useLoginStore = defineStore("login", {
         .then((r) => {
           window.localStorage.setItem("session_id", r.data.session_id);
           console.log("autenticado");
+          this.session_id = r.data.session_id;
           that.getAccountDetails(r.data.session_id);
+          router.push("/account");
         })
         .catch((err) => console.log(err));
     },
     getAccountDetails(id) {
       const session_id = id || this.session_id;
+      console.log(session_id);
       axios
         .get(GET_USER_DETAILS(session_id))
         .then((r) => {
@@ -84,25 +87,35 @@ export const useLoginStore = defineStore("login", {
         })
         .catch((r) => console.log(r));
     },
-  },
-  markMovieAsFavorite(movie_id, isFavorited) {
-    axios
-      .post(
-        postFavorite(state.userDetails.id, state.session_id),
-        {
-          media_type: "movie",
-          media_id: movie_id,
-          favorite: !isFavorited,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json;charset=utf-8",
+    async getMovieDetails(movie_id) {
+      return await axios
+        .get(GET_ACCOUNT_MOVIE_DETAILS(movie_id, this.session_id))
+        .then((r) => {
+          return r.data;
+        })
+        .catch((r) => console.log(r));
+    },
+    async markMovieAsFavorite(movie_id, isFavorited) {
+      return await axios
+        .post(
+          POST_FAVORITE(this.userDetails.id, this.session_id),
+          {
+            media_type: "movie",
+            media_id: movie_id,
+            favorite: !isFavorited,
           },
-        }
-      )
-      .then((r) => {})
-      .catch((error) => {
-        console.log(error);
-      });
+          {
+            headers: {
+              "Content-Type": "application/json;charset=utf-8",
+            },
+          }
+        )
+        .then((r) => {
+          return r.data.success;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
 });

@@ -116,7 +116,7 @@ h1 {
 .list-genres button:hover,
 .active button {
   color: var(--cor-5);
-  box-shadow: 0 0 0 1px rgb(96, 68, 238);
+  box-shadow: 0 0 0 1px var(--cor-3);
   background: var(--cor-6);
 }
 .list-movies {
