@@ -2,7 +2,7 @@
   <section class="container">
     <div class="section">
       <Loading v-if="loadingMovie" />
-      <section v-else class="movie">
+      <section v-else :class="['movie', { stretch: !loginStore.isLoggedIn }]">
         <div class="img-container">
           <img
             v-if="movieData.poster_path"
@@ -31,7 +31,7 @@
           </p>
         </div>
       </section>
-      <section class="vote">
+      <section v-if="loginStore.isLoggedIn" class="vote">
         <h2>Qual seu voto para este filme?</h2>
         <div>{{ movieAccountStatus }}</div>
       </section>
@@ -145,8 +145,12 @@ export default {
   padding: 1.5rem;
   border-radius: 5px;
 }
+
 .movie {
   display: flex;
+}
+.stretch {
+  grid-column: 1 / -1;
 }
 .movie-infos {
   margin-left: 1.5rem;

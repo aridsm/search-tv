@@ -32,7 +32,7 @@ export default {
 
 :root {
   --cor-1: #12102e;
-  --cor-2: #16153c;
+  --cor-2: #131236;
   --cor-3: #5280d9;
   --cor-4: #95a2b9;
   --cor-5: #e5defb;
@@ -60,19 +60,6 @@ main {
   padding-bottom: 4rem;
   min-height: 100vh;
 }
-
-main::before {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 13rem;
-  height: 13rem;
-  border-radius: 50%;
-  top: 0;
-  left: -5rem;
-  background: #5280d9;
-  filter: blur(15rem);
-}
 a {
   text-decoration: none;
   color: inherit;
@@ -99,7 +86,6 @@ button {
 .title {
   font-size: 1.3em;
   text-transform: uppercase;
-  padding-left: 0.5rem;
 }
 .title::before {
   content: "";
@@ -134,7 +120,7 @@ button {
 }
 
 .btn-padrao {
-  padding: 0 1.5rem;
+  padding: 0 2rem;
   height: 2.5rem;
   background: linear-gradient(180deg, #55d4e6 0%, var(--cor-3) 100%);
   font-weight: 900;

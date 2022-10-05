@@ -12,27 +12,8 @@
       >
         <ButtonsSlider class="btns-slide" />
 
-        <swiper-slide
-          v-for="movie in listMovies"
-          :key="movie.id"
-          class="item-movie"
-        >
-          <router-link :to="`/movies/${movie.id}`">
-            <img
-              :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
-              :alt="movie.title"
-              class="img"
-            />
-            <h3>
-              {{ movie.title }}
-            </h3>
-            <FavoriteMovie :movieId="movie.id" />
-            <StarVotings
-              :rawVote="movie.vote_average"
-              :voteCount="movie.vote_count"
-              class="infos-vote"
-            />
-          </router-link>
+        <swiper-slide v-for="movie in listMovies" :key="movie.id">
+          <MovieItem :movie="movie" />
         </swiper-slide>
       </swiper>
     </div>
@@ -45,7 +26,7 @@ import "swiper/css";
 import ButtonsSlider from "./ButtonsSlider.vue";
 import StarVotings from "./StarVotings.vue";
 import Loading from "./Loading.vue";
-import FavoriteMovie from "./FavoriteMovie.vue";
+import MovieItem from "./MovieItem.vue";
 
 export default {
   name: "ListMovies",
@@ -55,7 +36,7 @@ export default {
     ButtonsSlider,
     StarVotings,
     Loading,
-    FavoriteMovie,
+    MovieItem,
   },
   props: ["title", "getListMovies"],
   data() {
@@ -130,34 +111,6 @@ export default {
 }
 .movies:hover .btns-slide {
   opacity: 1;
-}
-.item-movie {
-  background: var(--cor-2);
-  padding: 0.6em;
-  border-radius: 5px;
-  transition: 0.2s;
-}
-
-.item-movie:hover {
-  background: var(--cor-6);
-  box-shadow: 0 0 0 1px var(--cor-3);
-  transform: scale(1.03) translateY(-1rem);
-}
-
-.img {
-  width: 100%;
-}
-.item-movie h3 {
-  font-weight: 900;
-  font-size: 1em;
-  margin-top: 0.5em;
-}
-.infos-vote {
-  display: none;
-  margin-top: 0.5em;
-}
-.item-movie:hover .infos-vote {
-  display: flex;
 }
 
 @media (max-width: 400px) {

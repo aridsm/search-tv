@@ -1,9 +1,7 @@
 <template>
   <div class="login">
     <h1 class="title">Login</h1>
-    <p class="txt">
-      Entre com seu nome de usuário e senha do TMDB ou como guest.
-    </p>
+    <p class="txt">Entre com seu nome de usuário e senha do TMDB.</p>
     <form @submit.prevent="loginStore.submitForm(username, password)">
       <label for="user">Usuário</label>
       <input
@@ -22,18 +20,16 @@
         class="input-style"
         v-model="password"
       />
-
+      <p v-if="loginStore.loginError" class="erro">
+        {{ loginStore.loginError }}
+      </p>
       <button class="btn-padrao btn-entrar">Entrar</button>
     </form>
 
     <p class="no-account">
-      Não possui conta? Você pode se registrar <a href="/">aqui</a> ou entrar
-      com uma sessão local logo abaixo.
+      Não possui conta? Você pode se registrar
+      <a href="https://www.themoviedb.org/signup">aqui</a>
     </p>
-
-    <button class="btn-padrao btn-sessao-local">
-      Entrar com uma sessão local
-    </button>
   </div>
 </template>
 
@@ -98,7 +94,10 @@ input {
 .btn-sessao-local {
   margin: 0 auto;
 }
-
+.erro {
+  color: rgb(255, 100, 100);
+  margin-top: 1rem;
+}
 @media (max-width: 500px) {
   .btn-entrar,
   .btn-sessao-local {

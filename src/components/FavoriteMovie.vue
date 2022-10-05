@@ -1,14 +1,16 @@
 <template>
-  <div v-if="loading" class="loading">...</div>
-  <button
-    :class="['favorite', { favorited: isMovieFavorited }]"
-    v-if="!loading && loginStore.isLoggedIn"
-    @click.stop.prevent="markAsFavorite"
-  >
-    <div class="favorite-text">
-      {{ isMovieFavorited ? "Favoritado" : "Favoritar" }}
-    </div>
-  </button>
+  <div>
+    <div v-if="loading" class="loading">...</div>
+    <button
+      :class="['favorite', { favorited: isMovieFavorited }]"
+      v-if="!loading && loginStore.isLoggedIn"
+      @click.stop.prevent="markAsFavorite"
+    >
+      <div class="favorite-text">
+        {{ isMovieFavorited ? "Favoritado" : "Favoritar" }}
+      </div>
+    </button>
+  </div>
 </template>
 
 <script>

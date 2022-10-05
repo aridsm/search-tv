@@ -21,6 +21,7 @@ export const useLoginStore = defineStore("login", {
       session_id: getTokenFromLocalStorage(),
       userDetails: null,
       isLoggedIn: false,
+      loginError: null,
     };
   },
 
@@ -33,7 +34,6 @@ export const useLoginStore = defineStore("login", {
     async submitForm(username, password) {
       const that = this;
       const token = await this.getNewToken();
-      console.log("toke" + token);
       axios
         .post(POST_LOGIN(), {
           username,
@@ -41,11 +41,14 @@ export const useLoginStore = defineStore("login", {
           request_token: token,
         })
         .then((r) => {
-          console.log("ok");
           that.authenticate(token);
         })
         .catch((error) => {
-          console.log(error);
+          const error_code = error.response.data.status_code;
+          if (error_code === 30)
+            this.loginError = "Senha e/ou usuário inválidos.";
+          if (error_code === 26)
+            this.loginError = "Você deve inserir um nome de usuário e senha.";
         });
     },
     authenticate(token) {
@@ -56,12 +59,14 @@ export const useLoginStore = defineStore("login", {
         })
         .then((r) => {
           window.localStorage.setItem("session_id", r.data.session_id);
-          console.log("autenticado");
           this.session_id = r.data.session_id;
+          this.loginError = null;
           that.getAccountDetails(r.data.session_id);
           router.push("/account");
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+        });
     },
     getAccountDetails(id) {
       const session_id = id || this.session_id;
@@ -69,7 +74,6 @@ export const useLoginStore = defineStore("login", {
       axios
         .get(GET_USER_DETAILS(session_id))
         .then((r) => {
-          console.log("pegou dados");
           this.userDetails = r.data;
           this.isLoggedIn = true;
         })

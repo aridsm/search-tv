@@ -109,7 +109,7 @@ export default {
 }
 #search {
   background: var(--cor-2);
-  padding-right: 2em;
+  padding-right: 2rem;
   width: 100%;
 }
 
@@ -150,8 +150,12 @@ export default {
 .item-movie {
   padding: 0.5rem;
   border-radius: 5px;
-  background: var(--cor-6);
   display: flex;
+  transition: 0.2s;
+}
+
+.item-movie:hover {
+  background: var(--cor-6);
 }
 
 ul li + li {

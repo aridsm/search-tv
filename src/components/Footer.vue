@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    Projeto feito por <a href="/">Ariane Morelato</a>
+    Projeto feito por <a href="https://github.com/aridsm">Ariane Morelato</a>
   </footer>
 </template>
 

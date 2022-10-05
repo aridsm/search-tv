@@ -75,6 +75,7 @@ export default {
   width: 100%;
   height: 5rem;
   border-bottom: 1px solid rgba(82, 127, 217, 0.2);
+  background: var(--cor-1);
 }
 
 .header .container {
@@ -131,12 +132,15 @@ export default {
   border-radius: 5px;
   top: 4rem;
   right: 1.5rem;
+  border: 1px solid rgba(82, 127, 217, 0.2);
 }
 
 .nav a {
   display: block;
 }
-
+.nav a:hover {
+  color: var(--cor-3);
+}
 .nav a + a {
   margin-top: 1rem;
 }
