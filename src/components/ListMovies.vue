@@ -93,19 +93,23 @@ export default {
 </script>
 
 <style scoped>
+section {
+  position: relative;
+}
 .movies {
   padding: 2px;
   position: relative;
   overflow: visible;
-  margin-left: -1.9rem;
+  margin-left: -1.8rem;
 }
 
 .container-movies {
   overflow: hidden;
   padding: 2rem;
-  height: 440px;
-  margin-top: 1rem;
+  height: 460px;
+  margin-top: 0rem;
 }
+
 .btns-slide {
   opacity: 0;
 }

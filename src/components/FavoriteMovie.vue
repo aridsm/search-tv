@@ -20,6 +20,7 @@ import Loading from "./Loading.vue";
 export default {
   name: "FavoriteMovie",
   props: ["movieId"],
+  emits: ["send-favorite-status"],
   setup() {
     const loginStore = useLoginStore();
     return { loginStore };
@@ -38,6 +39,7 @@ export default {
       );
       this.loading = false;
       this.isMovieFavorited = movieAccountStatus.favorite;
+      this.$emit("send-favorite-status", this.isMovieFavorited);
     },
     async markAsFavorite() {
       this.loading = true;
@@ -49,6 +51,7 @@ export default {
       if (markWasSuccessfull) {
         this.isMovieFavorited = !this.isMovieFavorited;
       }
+      this.$emit("send-favorite-status", this.isMovieFavorited);
     },
   },
   created() {

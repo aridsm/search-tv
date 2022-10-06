@@ -8,7 +8,7 @@
         id="search"
         autocomplete="off"
         v-model="searchQuery"
-        placeholder="E.x: Piratas do Caribe"
+        placeholder="E.x: Avatar"
         class="input-style"
         @input="getSearchResults"
       />
@@ -181,7 +181,6 @@ ul li + li {
 }
 .movie-infos span {
   margin-top: 0.5em;
-  font-size: 1rem;
   display: block;
   color: var(--cor-4);
 }

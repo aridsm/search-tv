@@ -39,8 +39,7 @@ export default {
   align-items: flex-start;
 }
 .entrada h1 {
-  font-size: 3.5em;
-  line-height: 3.5rem;
+  font-size: 3.2em;
   margin-bottom: 1.5rem;
 }
 .entrada h1 span {

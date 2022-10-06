@@ -32,7 +32,7 @@ export default {
 
 :root {
   --cor-1: #12102e;
-  --cor-2: #131236;
+  --cor-2: #151438;
   --cor-3: #5280d9;
   --cor-4: #95a2b9;
   --cor-5: #e5defb;
@@ -48,7 +48,7 @@ body {
   );
   color: var(--cor-5);
   font-family: "Ubuntu", sans-serif;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 ul {
@@ -84,7 +84,7 @@ button {
   cursor: pointer;
 }
 .title {
-  font-size: 1.3em;
+  font-size: 1.1em;
   text-transform: uppercase;
 }
 .title::before {
@@ -92,7 +92,7 @@ button {
   display: inline-block;
   position: relative;
   background: var(--cor-3);
-  width: 2rem;
+  width: 1.5rem;
   height: 3px;
   margin-right: 0.5rem;
   top: -0.3rem;
@@ -102,7 +102,7 @@ button {
   outline: none;
   border: none;
   border-radius: 2rem;
-  height: 2.7rem;
+  height: 2.5rem;
   padding: 0 1rem;
   font-family: inherit;
   color: inherit;

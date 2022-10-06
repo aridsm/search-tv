@@ -6,7 +6,7 @@
         :alt="movie.title"
         class="img"
       />
-      <h3>{{ movie.title }} {{ isMovieFavorited }}</h3>
+      <h3>{{ movie.title }}</h3>
       <FavoriteMovie
         :movieId="movie.id"
         class="favorite-movie"
@@ -28,6 +28,16 @@ export default {
   name: "MovieItem",
   components: { FavoriteMovie, StarVotings },
   props: ["movie"],
+  data() {
+    return {
+      isMovieFavorited: null,
+    };
+  },
+  methods: {
+    getFavoriteStatus(value) {
+      this.isMovieFavorited = value;
+    },
+  },
 };
 </script>
 
@@ -58,9 +68,22 @@ export default {
   transition: 0.2s;
 }
 
+.item-movie .img {
+  filter: saturate(70%) brightness(70%);
+}
+
+.item-movie.movie-favorited {
+  background: var(--cor-6);
+  box-shadow: 0 0 0 1px var(--cor-3);
+}
 .item-movie:hover {
   background: var(--cor-6);
   box-shadow: 0 0 0 1px var(--cor-3);
   transform: scale(1.03) translateY(-1rem);
+}
+
+.item-movie:hover .img,
+.item-movie.movie-favorited .img {
+  filter: initial;
 }
 </style>
