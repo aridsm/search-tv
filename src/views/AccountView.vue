@@ -3,12 +3,16 @@
     <div class="account-details" v-if="loginStore.userDetails">
       <div class="avatar">
         <img
+          v-if="loginStore.userDetails.avatar.tmdb.avatar_path"
           :src="`https://image.tmdb.org/t/p/w500/${loginStore.userDetails.avatar.tmdb.avatar_path}`"
           :alt="loginStore.userDetails.username"
         />
+        <NoImage v-else />
       </div>
       <div class="infos">
-        <p class="username">{{ loginStore.userDetails.username }}</p>
+        <p class="username" v-if="loginStore.userDetails.username">
+          {{ loginStore.userDetails.username }}
+        </p>
         <h1 class="title">Sua conta</h1>
         <p v-if="loginStore.userDetails.name" class="name">
           Olá, {{ loginStore.userDetails.name }}!
@@ -50,6 +54,7 @@ import Loading from "@/components/Loading.vue";
 import ListMovies from "@/components/ListMovies.vue";
 import { useLoginStore } from "@/store/login";
 import { getFavoriteMovies } from "@/urlsAPI";
+import NoImage from "@/components/NoImage.vue";
 
 export default {
   name: "AccountView",
@@ -62,7 +67,7 @@ export default {
       movies: null,
     };
   },
-  components: { Loading, ListMovies },
+  components: { Loading, ListMovies, NoImage },
 };
 </script>
 

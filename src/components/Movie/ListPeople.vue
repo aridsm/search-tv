@@ -27,7 +27,7 @@
 <script>
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/vue";
-import NoImage from "./NoImage.vue";
+import NoImage from "../NoImage.vue";
 export default {
   name: "ListPeople",
   props: ["listCredits", "title"],
@@ -41,7 +41,7 @@ export default {
 }
 .img-person {
   width: 100%;
-  height: 16rem;
+  height: 17rem;
   overflow: hidden;
 }
 
