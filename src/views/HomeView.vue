@@ -6,7 +6,7 @@
         <a href="https://www.themoviedb.org/documentation/api">TMDB</a>
       </p>
       <h1><span>Procure</span> por um filme!</h1>
-      <SearchField class="form" />
+      <SearchField />
     </div>
     <ListMovies
       title="popular hoje"
@@ -36,7 +36,6 @@ export default {
   flex-direction: column;
   position: relative;
   z-index: 2;
-  align-items: flex-start;
 }
 .entrada h1 {
   font-size: 3.2em;
@@ -59,9 +58,6 @@ export default {
 
 .dados a:hover {
   border-bottom: 1px dashed var(--cor-3);
-}
-.form {
-  max-width: 30rem;
 }
 
 .list-movies {

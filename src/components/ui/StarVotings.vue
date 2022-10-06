@@ -4,7 +4,7 @@
       <img
         v-for="(star, index) in voteData.starsImages"
         :key="index"
-        :src="require(`../assets/${star}`)"
+        :src="require(`../../assets/${star}`)"
       />
     </div>
     <span class="vote">

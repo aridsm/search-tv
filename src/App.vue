@@ -31,21 +31,17 @@ export default {
 }
 
 :root {
-  --cor-1: #12102e;
-  --cor-2: #151438;
+  --cor-1: #1a1638;
+  --cor-2: #1e1a40;
   --cor-3: #5280d9;
-  --cor-4: #95a2b9;
-  --cor-5: #e5defb;
-  --cor-6: #1e1c47;
+  --cor-4: #9597b9;
+  --cor-5: #e0defb;
+  --cor-6: #221e46;
   --cor-7: #ffeb7c;
 }
 
 body {
-  background: radial-gradient(
-    100% 100% at 50% 0%,
-    var(--cor-1) 0%,
-    #100d2d 100%
-  );
+  background: var(--cor-1);
   color: var(--cor-5);
   font-family: "Ubuntu", sans-serif;
   font-size: 14px;
@@ -107,7 +103,7 @@ button {
   font-family: inherit;
   color: inherit;
   transition: 0.2s;
-  box-shadow: 0 0 0 1px rgba(82, 127, 217, 0.2);
+  box-shadow: 0 0 0 1px #2d285b;
 }
 
 .input-style::placeholder {
@@ -132,7 +128,7 @@ button {
 }
 
 .btn-padrao:hover {
-  color: #243c6d;
+  color: #25246d;
 }
 
 .btn-padrao:active {
@@ -172,6 +168,9 @@ button {
   }
   .btn-padrao {
     padding: 0 1rem;
+    height: 2rem;
+  }
+  .input-style {
     height: 2rem;
   }
 }

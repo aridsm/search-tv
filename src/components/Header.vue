@@ -44,7 +44,6 @@
 
 <script>
 import { useLoginStore } from "@/store/login";
-import { inject } from "vue";
 import SearchField from "./ui/SearchField.vue";
 export default {
   name: "Header",
@@ -74,8 +73,7 @@ export default {
   z-index: 9;
   width: 100%;
   height: 5rem;
-  border-bottom: 1px solid rgba(82, 127, 217, 0.2);
-  background: var(--cor-1);
+  background: var(--cor-2);
 }
 
 .header .container {
@@ -143,5 +141,11 @@ export default {
 }
 .nav a + a {
   margin-top: 1rem;
+}
+
+@media (max-width: 700px) {
+  .form {
+    max-width: 20rem;
+  }
 }
 </style>

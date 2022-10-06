@@ -108,20 +108,19 @@ export default {
   position: relative;
 }
 #search {
-  background: var(--cor-2);
   padding-right: 2rem;
   width: 100%;
 }
 
 .form {
   position: relative;
-  max-width: 30rem;
+  max-width: 25rem;
   width: 100%;
 }
 
 .form::after {
   content: "";
-  background: url("../assets/search.svg");
+  background: url("../../assets/search.svg");
   position: absolute;
   display: block;
   right: 1rem;
@@ -142,7 +141,7 @@ export default {
   border-radius: 5px;
   padding: 1rem;
   overflow: auto;
-  box-shadow: 0 0 0 1px rgba(82, 127, 217, 0.2);
+  box-shadow: 0 0 0 1px rgba(82, 127, 217, 0.3);
 }
 .results::-webkit-scrollbar-track {
   background: transparent;
