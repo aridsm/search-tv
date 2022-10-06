@@ -22,8 +22,8 @@
 </template>
 
 <script>
-import FavoriteMovie from "./FavoriteMovie.vue";
-import StarVotings from "./StarVotings.vue";
+import FavoriteMovie from "../ui/FavoriteMovie.vue";
+import StarVotings from "../ui/StarVotings.vue";
 export default {
   name: "MovieItem",
   components: { FavoriteMovie, StarVotings },

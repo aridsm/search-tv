@@ -50,11 +50,11 @@
 </template>
 
 <script>
-import Loading from "@/components/Loading.vue";
-import ListMovies from "@/components/ListMovies.vue";
+import Loading from "@/components/ui/Loading.vue";
+import ListMovies from "@/components/ListMovies/ListMovies.vue";
 import { useLoginStore } from "@/store/login";
 import { getFavoriteMovies } from "@/urlsAPI";
-import NoImage from "@/components/NoImage.vue";
+import NoImage from "@/components/ui/NoImage.vue";
 
 export default {
   name: "AccountView",

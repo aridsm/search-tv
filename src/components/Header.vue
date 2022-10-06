@@ -45,7 +45,7 @@
 <script>
 import { useLoginStore } from "@/store/login";
 import { inject } from "vue";
-import SearchField from "./SearchField.vue";
+import SearchField from "./ui/SearchField.vue";
 export default {
   name: "Header",
   components: { SearchField },

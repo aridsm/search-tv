@@ -38,7 +38,7 @@
 <script>
 import axios from "axios";
 import { getGenres, getMoviesByGenre } from "@/urlsAPI";
-import ListMovies from "@/components/ListMovies.vue";
+import ListMovies from "@/components/ListMovies/ListMovies.vue";
 
 export default {
   name: "MoviesView",

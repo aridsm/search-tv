@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import SearchField from "@/components/SearchField.vue";
-import ListMovies from "@/components/ListMovies.vue";
+import SearchField from "@/components/ui/SearchField.vue";
+import ListMovies from "@/components/ListMovies/ListMovies.vue";
 import { getPopularMovies } from "@/urlsAPI";
 
 export default {

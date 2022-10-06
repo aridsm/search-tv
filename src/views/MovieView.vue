@@ -27,7 +27,7 @@
 import { getMovieById, getMovieCredits } from "@/urlsAPI";
 import axios from "axios";
 import ListPeople from "../components/Movie/ListPeople.vue";
-import Loading from "@/components/Loading.vue";
+import Loading from "@/components/ui/Loading.vue";
 import { useLoginStore } from "@/store/login";
 import MovieInfos from "@/components/Movie/MovieInfos.vue";
 import OtherData from "@/components/Movie/OtherData.vue";

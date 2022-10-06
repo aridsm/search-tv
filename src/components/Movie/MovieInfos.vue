@@ -31,9 +31,9 @@
 </template>
 
 <script>
-import StarVotings from "../StarVotings.vue";
-import FavoriteMovie from "../FavoriteMovie.vue";
-import NoImage from "../NoImage.vue";
+import StarVotings from "../ui/StarVotings.vue";
+import FavoriteMovie from "../ui/FavoriteMovie.vue";
+import NoImage from "../ui/NoImage.vue";
 export default {
   props: ["movieData"],
   components: { StarVotings, FavoriteMovie, NoImage },

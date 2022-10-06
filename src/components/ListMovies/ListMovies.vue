@@ -23,10 +23,10 @@
 import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
-import ButtonsSlider from "./ButtonsSlider.vue";
-import StarVotings from "./StarVotings.vue";
-import Loading from "./Loading.vue";
-import MovieItem from "./MovieItem.vue";
+import ButtonsSlider from "../ui/ButtonsSlider.vue";
+import StarVotings from "../ui/StarVotings.vue";
+import Loading from "../ui/Loading.vue";
+import MovieItem from "../ListMovies/MovieItem.vue";
 
 export default {
   name: "ListMovies",

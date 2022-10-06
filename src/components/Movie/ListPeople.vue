@@ -27,7 +27,7 @@
 <script>
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/vue";
-import NoImage from "../NoImage.vue";
+import NoImage from "../ui/NoImage.vue";
 export default {
   name: "ListPeople",
   props: ["listCredits", "title"],
