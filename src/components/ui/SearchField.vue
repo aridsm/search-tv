@@ -183,4 +183,12 @@ ul li + li {
   display: block;
   color: var(--cor-4);
 }
+
+@media (max-width: 700px) {
+  .form::after {
+    height: 0.7rem;
+    width: 0.7rem;
+    background-size: 0.7rem;
+  }
+}
 </style>

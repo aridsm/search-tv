@@ -57,17 +57,17 @@ export default {
           slidesPerView: 4,
           spaceBetween: 15,
         },
-        550: {
+        600: {
           slidesPerView: 3,
           spaceBetween: 15,
         },
-        400: {
+        360: {
           slidesPerView: 2,
-          spaceBetween: 15,
+          spaceBetween: 10,
         },
         1: {
           slidesPerView: 1,
-          spaceBetween: 15,
+          spaceBetween: 10,
         },
       },
     };
@@ -97,16 +97,18 @@ section {
   position: relative;
 }
 .movies {
-  padding: 2px;
   position: relative;
   overflow: visible;
-  margin-left: -1.8rem;
+  margin-left: -2rem;
+  height: min-content;
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  padding: 1px;
 }
 
 .container-movies {
   overflow: hidden;
   padding: 2rem;
-  height: 460px;
   margin-top: 0rem;
 }
 

@@ -93,4 +93,15 @@ export default {
   padding: 1.5rem;
   border-radius: 5px;
 }
+
+@media (max-width: 1000px) {
+  .section {
+    grid-gap: 1rem;
+  }
+  .movie,
+  .more-data,
+  .list-people {
+    grid-column: 1 / -1;
+  }
+}
 </style>

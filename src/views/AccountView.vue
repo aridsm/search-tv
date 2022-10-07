@@ -118,4 +118,16 @@ export default {
 .list-movies {
   margin-top: 5rem;
 }
+
+@media (max-width: 500px) {
+  .account-details {
+    flex-direction: column;
+    width: 14rem;
+    margin: 0 auto;
+  }
+  .infos {
+    margin-top: 1.5rem;
+    margin-left: 0;
+  }
+}
 </style>

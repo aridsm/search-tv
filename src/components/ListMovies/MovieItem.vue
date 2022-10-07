@@ -1,5 +1,5 @@
 <template>
-  <div :class="['item-movie', { 'movie-favorited': isMovieFavorited }]">
+  <div class="item-movie">
     <router-link :to="`/movies/${movie.id}`">
       <img
         :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
@@ -7,11 +7,7 @@
         class="img"
       />
       <h3>{{ movie.title }}</h3>
-      <FavoriteMovie
-        :movieId="movie.id"
-        class="favorite-movie"
-        @send-favorite-status="getFavoriteStatus"
-      />
+      <FavoriteMovie :movieId="movie.id" class="favorite-movie" />
       <StarVotings
         :rawVote="movie.vote_average"
         :voteCount="movie.vote_count"
@@ -28,16 +24,6 @@ export default {
   name: "MovieItem",
   components: { FavoriteMovie, StarVotings },
   props: ["movie"],
-  data() {
-    return {
-      isMovieFavorited: null,
-    };
-  },
-  methods: {
-    getFavoriteStatus(value) {
-      this.isMovieFavorited = value;
-    },
-  },
 };
 </script>
 
@@ -72,18 +58,31 @@ export default {
   filter: saturate(70%) brightness(70%);
 }
 
-.item-movie.movie-favorited {
-  background: var(--cor-6);
-  box-shadow: 0 0 0 1px var(--cor-3);
-}
 .item-movie:hover {
   background: var(--cor-6);
   box-shadow: 0 0 0 1px var(--cor-3);
-  transform: scale(1.03) translateY(-1rem);
+  transform: translateY(-1rem);
 }
 
-.item-movie:hover .img,
-.item-movie.movie-favorited .img {
+.item-movie:hover .img {
   filter: initial;
+}
+
+@media (max-width: 1050px) {
+  .item-movie .img {
+    filter: initial;
+  }
+  .item-movie {
+    background: var(--cor-6);
+  }
+}
+
+@media (max-width: 1050px) {
+  .item-movie .infos-vote {
+    display: flex;
+  }
+  .item-movie:hover {
+    transform: initial;
+  }
 }
 </style>

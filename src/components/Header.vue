@@ -12,7 +12,7 @@
         >Login</router-link
       >
       <router-link v-else to="/account" class="btn-padrao btn-account"
-        >{{ loginStore.userDetails.username }}
+        ><span>{{ loginStore.userDetails.username }}</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -112,15 +112,15 @@ export default {
 }
 
 .menu-active {
-  border: 2px solid var(--cor-4);
+  border: 2px solid var(--cor-3);
 }
 
 .btn-account {
   display: flex;
   margin-left: 1.5rem;
 }
-.btn-account svg {
-  margin-left: 5px;
+.btn-account span {
+  margin-right: 5px;
 }
 .nav {
   position: absolute;
@@ -146,6 +146,25 @@ export default {
 @media (max-width: 700px) {
   .form {
     max-width: 20rem;
+  }
+  .logo {
+    height: 2rem;
+    min-width: 3rem;
+  }
+
+  .btn-account,
+  .menu-btn,
+  .form {
+    margin-left: 0.7rem;
+  }
+  .header {
+    height: 4rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .btn-account span {
+    display: none;
   }
 }
 </style>

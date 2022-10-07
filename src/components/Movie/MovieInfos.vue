@@ -91,4 +91,22 @@ h1 {
   line-height: 1.3em;
   font-size: 1em;
 }
+
+@media (max-width: 750px) {
+  .movie {
+    flex-direction: column;
+  }
+  .movie-infos {
+    margin-left: 0;
+    margin-top: 1.5rem;
+  }
+
+  .img-container {
+    width: 200px;
+    height: 19rem;
+    margin: 0 auto;
+    padding: 0.5rem;
+    background: var(--cor-6);
+  }
+}
 </style>

@@ -47,4 +47,10 @@ export default {
 .more-data li + li {
   margin-top: 1rem;
 }
+
+@media (max-width: 1000px) {
+  .more-data {
+    grid-row: 4;
+  }
+}
 </style>

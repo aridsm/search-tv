@@ -2,8 +2,7 @@
   <section class="list">
     <h2>{{ title }}</h2>
     <swiper
-      :slides-per-view="4"
-      :space-between="20"
+      :breakpoints="breakpoints"
       grab-cursor
       v-if="listCredits && listCredits.length"
     >
@@ -32,6 +31,28 @@ export default {
   name: "ListPeople",
   props: ["listCredits", "title"],
   components: { Swiper, SwiperSlide, NoImage },
+  data() {
+    return {
+      breakpoints: {
+        750: {
+          slidesPerView: 4,
+          spaceBetween: 15,
+        },
+        600: {
+          slidesPerView: 3,
+          spaceBetween: 15,
+        },
+        360: {
+          slidesPerView: 2,
+          spaceBetween: 10,
+        },
+        1: {
+          slidesPerView: 1,
+          spaceBetween: 10,
+        },
+      },
+    };
+  },
 };
 </script>
 
@@ -41,7 +62,7 @@ export default {
 }
 .img-person {
   width: 100%;
-  height: 17rem;
+  height: 16rem;
   overflow: hidden;
 }
 

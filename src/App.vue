@@ -97,7 +97,7 @@ button {
   background: var(--cor-2);
   outline: none;
   border: none;
-  border-radius: 2rem;
+  border-radius: 5px;
   height: 2.5rem;
   padding: 0 1rem;
   font-family: inherit;
@@ -116,12 +116,12 @@ button {
 }
 
 .btn-padrao {
-  padding: 0 2rem;
+  padding: 0 1.5rem;
   height: 2.5rem;
   background: linear-gradient(180deg, #55d4e6 0%, var(--cor-3) 100%);
   font-weight: 900;
   color: var(--cor-1);
-  border-radius: 50px;
+  border-radius: 5px;
   display: grid;
   place-items: center;
   transition: 0.1s;
@@ -172,6 +172,14 @@ button {
   }
   .input-style {
     height: 2rem;
+  }
+  .container {
+    padding: 0 0.7rem;
+  }
+  main {
+    padding-top: 8rem;
+    padding-bottom: 2rem;
+    min-height: 100vh;
   }
 }
 </style>
