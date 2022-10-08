@@ -31,12 +31,12 @@ export default {
 }
 
 :root {
-  --cor-1: #1a1638;
-  --cor-2: #1e1a40;
-  --cor-3: #5280d9;
+  --cor-1: #231e44;
+  --cor-2: #27234e;
+  --cor-3: #3ab3d2;
   --cor-4: #9597b9;
   --cor-5: #e0defb;
-  --cor-6: #221e46;
+  --cor-6: #2e2958;
   --cor-7: #ffeb7c;
 }
 
@@ -52,8 +52,8 @@ ul {
 }
 
 main {
-  padding-top: 10rem;
-  padding-bottom: 4rem;
+  padding-top: 5rem;
+  padding-bottom: 2rem;
   min-height: 100vh;
 }
 a {
@@ -62,7 +62,7 @@ a {
 }
 .container {
   padding: 0 1.5rem;
-  max-width: 1250px;
+  max-width: 1100px;
   width: 100%;
   margin: 0 auto;
 }
@@ -103,7 +103,7 @@ button {
   font-family: inherit;
   color: inherit;
   transition: 0.2s;
-  box-shadow: 0 0 0 1px #2d285b;
+  box-shadow: 0 0 0 1px #323d74;
 }
 
 .input-style::placeholder {
@@ -118,17 +118,17 @@ button {
 .btn-padrao {
   padding: 0 1.5rem;
   height: 2.5rem;
-  background: linear-gradient(180deg, #55d4e6 0%, var(--cor-3) 100%);
+  background: linear-gradient(180deg, #55e6d3 0%, var(--cor-3) 100%);
   font-weight: 900;
   color: var(--cor-1);
   border-radius: 5px;
   display: grid;
   place-items: center;
-  transition: 0.1s;
+  transition: 0.2s;
 }
 
 .btn-padrao:hover {
-  color: #25246d;
+  color: #326474;
 }
 
 .btn-padrao:active {
@@ -168,18 +168,16 @@ button {
   }
   .btn-padrao {
     padding: 0 1rem;
-    height: 2rem;
+    height: 2.2rem;
   }
   .input-style {
-    height: 2rem;
+    height: 2.2rem;
   }
   .container {
     padding: 0 0.7rem;
   }
   main {
-    padding-top: 8rem;
-    padding-bottom: 2rem;
-    min-height: 100vh;
+    padding-top: 4rem;
   }
 }
 </style>

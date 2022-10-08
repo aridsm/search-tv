@@ -7,7 +7,11 @@
         class="img"
       />
       <h3>{{ movie.title }}</h3>
-      <FavoriteMovie :movieId="movie.id" class="favorite-movie" />
+      <FavoriteMovie
+        v-if="loginStore.isLoggedIn"
+        :movieId="movie.id"
+        class="favorite-movie"
+      />
       <StarVotings
         :rawVote="movie.vote_average"
         :voteCount="movie.vote_count"
@@ -18,12 +22,17 @@
 </template>
 
 <script>
+import { useLoginStore } from "@/store/login";
 import FavoriteMovie from "../ui/FavoriteMovie.vue";
 import StarVotings from "../ui/StarVotings.vue";
 export default {
   name: "MovieItem",
   components: { FavoriteMovie, StarVotings },
   props: ["movie"],
+  setup() {
+    const loginStore = useLoginStore();
+    return { loginStore };
+  },
 };
 </script>
 
@@ -34,18 +43,14 @@ export default {
 .item-movie h3 {
   font-weight: 900;
   font-size: 1em;
-  margin-top: 0.5em;
+  margin-top: 0.7em;
 }
 .infos-vote {
-  display: none;
-  margin-top: 0.5em;
-}
-.item-movie:hover .infos-vote {
-  display: flex;
+  margin-top: 0.7em;
 }
 .favorite-movie {
   font-size: 0.8rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.7rem;
 }
 .item-movie {
   background: var(--cor-2);
@@ -55,7 +60,7 @@ export default {
 }
 
 .item-movie .img {
-  filter: saturate(70%) brightness(70%);
+  filter: saturate(90%) brightness(90%);
 }
 
 .item-movie:hover {

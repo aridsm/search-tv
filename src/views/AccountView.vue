@@ -118,7 +118,9 @@ export default {
 .list-movies {
   margin-top: 5rem;
 }
-
+.container {
+  padding-top: 4rem;
+}
 @media (max-width: 500px) {
   .account-details {
     flex-direction: column;

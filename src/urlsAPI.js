@@ -52,5 +52,5 @@ export const GET_ACCOUNT_MOVIE_DETAILS = (movie_id, session_id) => {
 };
 
 export const getFavoriteMovies = (account_id, session_id) => (page) => {
-  return `${base}account/${account_id}/favorite/movies?api_key=${api_key}&session_id=${session_id}&page=${page}`;
+  return `${base}account/${account_id}/favorite/movies?api_key=${api_key}&session_id=${session_id}&page=${page}&language=pt-BR`;
 };

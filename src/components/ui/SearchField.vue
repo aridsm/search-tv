@@ -2,20 +2,24 @@
   <div class="container-search">
     <form class="form" @submit.prevent>
       <label for="search">Procure por um filme</label>
-      <input
-        type="search"
-        name="search"
-        id="search"
-        autocomplete="off"
-        v-model="searchQuery"
-        placeholder="E.x: Avatar"
-        class="input-style"
-        @input="getSearchResults"
-      />
+      <div class="input-search">
+        <input
+          type="search"
+          name="search"
+          id="search"
+          autocomplete="off"
+          v-model="searchQuery"
+          placeholder="E.x: Avatar"
+          class="input-style"
+          @input="(e) => (searchQuery = e.target.value)"
+          @keyup="getSearchResults"
+        />
+      </div>
     </form>
     <transition>
       <div
         class="results"
+        :class="classResults"
         v-outside-click="cleanSearchQuery"
         v-if="searchQuery.length"
       >
@@ -48,9 +52,15 @@ import axios from "axios";
 import { toRaw } from "@vue/reactivity";
 import { getSearchMovies } from "@/urlsAPI";
 import NoImage from "./NoImage.vue";
+import { useDate } from "@/composable/formatDate";
 
 export default {
   name: "SearchField",
+  props: ["classResults"],
+  setup() {
+    const { formatDate } = useDate();
+    return { formatDate };
+  },
   data() {
     return {
       searchQuery: "",
@@ -67,30 +77,6 @@ export default {
     },
     cleanSearchQuery() {
       this.searchQuery = "";
-    },
-    formatDate(date) {
-      const meses = [
-        "Jan",
-        "Fev",
-        "Mar",
-        "Abr",
-        "Mai",
-        "Jun",
-        "Jul",
-        "Ago",
-        "Set",
-        "Out",
-        "Nov",
-        "Dez",
-      ];
-      let newData = new Date(date);
-      let formatedDate =
-        newData.getDate() +
-        " " +
-        meses[newData.getMonth()] +
-        " " +
-        newData.getFullYear();
-      return formatedDate;
     },
   },
   computed: {
@@ -111,14 +97,16 @@ export default {
   padding-right: 2rem;
   width: 100%;
 }
-
+.input-search {
+  position: relative;
+}
 .form {
   position: relative;
   max-width: 25rem;
   width: 100%;
 }
 
-.form::after {
+.input-search::after {
   content: "";
   background: url("../../assets/search.svg");
   position: absolute;
@@ -139,10 +127,11 @@ export default {
   max-height: 20rem;
   top: 3rem;
   border-radius: 5px;
-  padding: 1rem;
+  padding: 0.5rem;
   overflow: auto;
   box-shadow: 0 0 0 1px rgba(82, 127, 217, 0.3);
 }
+
 .results::-webkit-scrollbar-track {
   background: transparent;
 }
@@ -162,9 +151,9 @@ ul li + li {
 }
 
 .img-container {
-  min-width: 4rem;
-  max-width: 4rem;
-  height: 4rem;
+  min-width: 3.5rem;
+  max-width: 3.5rem;
+  height: 3.5rem;
 }
 .img-container > * {
   width: 100%;
@@ -173,7 +162,7 @@ ul li + li {
 }
 
 .movie-infos {
-  margin-left: 1rem;
+  margin-left: 0.7rem;
 }
 .movie-infos p {
   font-weight: 900;
@@ -185,10 +174,17 @@ ul li + li {
 }
 
 @media (max-width: 700px) {
-  .form::after {
+  .input-search::after {
     height: 0.7rem;
     width: 0.7rem;
     background-size: 0.7rem;
+  }
+  .form {
+    position: static;
+  }
+  .stretch {
+    width: calc(100vw - 1.4rem);
+    left: 0.7rem;
   }
 }
 </style>

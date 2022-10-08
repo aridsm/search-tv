@@ -5,7 +5,9 @@
         v-for="(star, index) in voteData.starsImages"
         :key="index"
         :src="require(`../../assets/${star}`)"
+        class="stars-img"
       />
+      <img :src="require(`../../assets/star-fill.svg`)" class="star-fill" />
     </div>
     <span class="vote">
       {{ voteData.vote }}
@@ -53,20 +55,32 @@ export default {
 }
 
 .stars img {
-  width: 14px;
+  width: 13px;
 }
 .stars img + img {
-  margin-left: 3px;
+  margin-left: 2px;
 }
 .vote {
   color: var(--cor-7);
   margin-left: 0.5rem;
   display: inline-block;
 }
+.star-fill {
+  display: none;
+}
 
 .contagem {
   display: block;
   margin-left: auto;
   color: var(--cor-4);
+}
+
+@media (max-width: 900px) {
+  .stars-img {
+    display: none;
+  }
+  .star-fill {
+    display: block;
+  }
 }
 </style>

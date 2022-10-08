@@ -11,7 +11,7 @@
     <div class="movie-infos">
       <div class="flex">
         <h1>{{ movieData.title }}</h1>
-        <FavoriteMovie :movieId="movieData.id" />
+        <FavoriteMovie v-if="loginStore.isLoggedIn" :movieId="movieData.id" />
       </div>
       <p class="tagline">{{ movieData.tagline }}</p>
       <StarVotings
@@ -34,9 +34,14 @@
 import StarVotings from "../ui/StarVotings.vue";
 import FavoriteMovie from "../ui/FavoriteMovie.vue";
 import NoImage from "../ui/NoImage.vue";
+import { useLoginStore } from "@/store/login";
 export default {
   props: ["movieData"],
   components: { StarVotings, FavoriteMovie, NoImage },
+  setup() {
+    const loginStore = useLoginStore();
+    return { loginStore };
+  },
 };
 </script>
 
@@ -78,13 +83,14 @@ h1 {
 .categories {
   margin: 0.5rem 0 2rem 0;
   display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
   color: var(--cor-4);
 }
 
 .categories li + li {
   border-left: 1px solid var(--cor-4);
   padding-left: 0.5rem;
-  margin-left: 0.5rem;
 }
 
 .overview {
@@ -107,6 +113,14 @@ h1 {
     margin: 0 auto;
     padding: 0.5rem;
     background: var(--cor-6);
+    border-radius: 5px;
+  }
+  .flex {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .tagline {
+    margin-top: 0.5rem;
   }
 }
 </style>

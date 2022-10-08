@@ -9,25 +9,39 @@
         <h2>Língua original</h2>
         <p>{{ movieData.original_language }}</p>
       </li>
-      <li>
+      <li v-if="movieData.budget > 0">
         <h2>Despesas</h2>
-        <p>{{ movieData.budget }}</p>
+        <p>{{ formatMoney(movieData.budget) }}</p>
       </li>
-      <li>
+      <li v-if="movieData.revenue > 0">
         <h2>Lucro</h2>
-        <p>{{ movieData.revenue }}</p>
+        <p>{{ formatMoney(movieData.revenue) }}</p>
       </li>
       <li>
         <h2>Data de lançamento</h2>
-        <p>{{ movieData.release_date }}</p>
+        <p>{{ formatDate(movieData.release_date) }}</p>
       </li>
     </ul>
   </section>
 </template>
 
 <script>
+import { useDate } from "@/composable/formatDate";
+
 export default {
   props: ["movieData"],
+  setup() {
+    const { formatDate } = useDate();
+    return { formatDate };
+  },
+  methods: {
+    formatMoney(value) {
+      return value.toLocaleString("en-US", {
+        style: "currency",
+        currency: "USD",
+      });
+    },
+  },
 };
 </script>
 

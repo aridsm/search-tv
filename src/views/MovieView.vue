@@ -75,6 +75,12 @@ export default {
     this.fetchData();
     this.fetchCredits();
   },
+  watch: {
+    movieId() {
+      this.fetchData();
+      this.fetchCredits();
+    },
+  },
 };
 </script>
 
@@ -85,7 +91,9 @@ export default {
   grid-gap: 1.5rem;
   max-width: 100%;
 }
-
+.container {
+  padding-top: 4rem;
+}
 .movie,
 .more-data,
 .list-people {
@@ -97,11 +105,17 @@ export default {
 @media (max-width: 1000px) {
   .section {
     grid-gap: 1rem;
+    grid-template-columns: 100%;
   }
   .movie,
   .more-data,
   .list-people {
     grid-column: 1 / -1;
+    padding: 1rem;
+  }
+
+  .container {
+    padding-top: 1rem;
   }
 }
 </style>

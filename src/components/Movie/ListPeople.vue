@@ -1,25 +1,33 @@
 <template>
   <section class="list">
     <h2>{{ title }}</h2>
-    <swiper
-      :breakpoints="breakpoints"
-      grab-cursor
-      v-if="listCredits && listCredits.length"
-    >
-      <swiper-slide v-for="person in listCredits" :key="person.id">
-        <div class="img-person">
-          <img
-            v-if="person.profile_path"
-            :src="`https://image.tmdb.org/t/p/w500/${person.profile_path}`"
-            :alt="person.name"
-          />
-          <NoImage v-else />
-        </div>
-
-        <h3>{{ person.name }}</h3>
-        <p class="as">como {{ person.character || person.job }}</p>
-      </swiper-slide>
-    </swiper>
+    <div class="container-swiper">
+      <swiper
+        class="swiper"
+        :breakpoints="breakpoints"
+        grab-cursor
+        v-if="listCredits && listCredits.length"
+      >
+        <swiper-slide
+          v-for="person in listCredits"
+          :key="person.id"
+          class="item-person"
+        >
+          <div class="img-person">
+            <img
+              v-if="person.profile_path"
+              :src="`https://image.tmdb.org/t/p/w500/${person.profile_path}`"
+              :alt="person.name"
+            />
+            <NoImage v-else />
+          </div>
+          <div class="person-infos">
+            <h3>{{ person.name }}</h3>
+            <p class="as">como {{ person.character || person.job }}</p>
+          </div>
+        </swiper-slide>
+      </swiper>
+    </div>
   </section>
 </template>
 
@@ -38,7 +46,7 @@ export default {
           slidesPerView: 4,
           spaceBetween: 15,
         },
-        600: {
+        550: {
           slidesPerView: 3,
           spaceBetween: 15,
         },
@@ -57,12 +65,31 @@ export default {
 </script>
 
 <style scoped>
+.swiper {
+  overflow: visible;
+  display: flex;
+}
+
+.container-swiper {
+  padding-right: 2rem;
+  overflow: hidden;
+}
 .list {
   grid-column: 1;
 }
+
+.item-person {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+
+.person-infos {
+  height: 5.5rem;
+}
 .img-person {
   width: 100%;
-  height: 16rem;
+  height: 100%;
   overflow: hidden;
 }
 
@@ -76,6 +103,8 @@ export default {
 h2 {
   font-size: 1.6em;
   margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 h3 {

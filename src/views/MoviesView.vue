@@ -19,7 +19,7 @@
         <li
           v-for="genre in moviesGenres"
           :key="genre.id"
-          :class="{ active: isGenreAlreadyInList(genre.id) }"
+          :class="isGenreAlreadyInList(genre.id) ? 'active' : 'inactive'"
         >
           <button @click="addGenreToFilter(genre)">{{ genre.name }}</button>
         </li>
@@ -96,7 +96,7 @@ export default {
 
 <style scoped>
 h1 {
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
   font-size: 2em;
 }
 .list-genres {
@@ -113,7 +113,7 @@ h1 {
   border-radius: 5px;
   transition: 0.2s;
 }
-.list-genres button:hover,
+.inactive button:hover,
 .active button {
   color: var(--cor-5);
   box-shadow: 0 0 0 1px var(--cor-3);
@@ -152,6 +152,9 @@ h1 {
 
 .height-enter-active,
 .height-leave-active {
-  transition: 0.2s; /* MISSING RULE */
+  transition: 0.2s;
+}
+.container {
+  padding-top: 4rem;
 }
 </style>

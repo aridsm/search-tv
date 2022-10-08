@@ -69,11 +69,8 @@ export default {
 .favorite-text {
   display: inline-block;
 }
-.favorite:hover {
-  color: var(--cor-5);
-}
 .favorited {
-  color: var(--cor-7);
+  color: rgb(255, 123, 202);
 }
 .favorite::after {
   content: "☆";

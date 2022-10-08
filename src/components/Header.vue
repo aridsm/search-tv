@@ -3,7 +3,7 @@
     <div class="container">
       <router-link class="logo" to="/">TV</router-link>
 
-      <SearchField class="form" />
+      <SearchField class="form" classResults="stretch" />
 
       <router-link
         to="/login"
@@ -74,6 +74,7 @@ export default {
   width: 100%;
   height: 5rem;
   background: var(--cor-2);
+  box-shadow: 0 0 10px 0 var(--cor-1);
 }
 
 .header .container {
@@ -83,7 +84,7 @@ export default {
 }
 
 .logo {
-  background: linear-gradient(180deg, #55d4e6 0%, var(--cor-3) 100%);
+  background: linear-gradient(180deg, #55e6d3 0%, var(--cor-3) 100%);
   min-width: 4rem;
   height: 2.5rem;
   border-radius: 5px;
@@ -148,17 +149,22 @@ export default {
     max-width: 20rem;
   }
   .logo {
-    height: 2rem;
+    height: 2.2rem;
     min-width: 3rem;
   }
 
   .btn-account,
   .menu-btn,
+  .login,
   .form {
     margin-left: 0.7rem;
   }
   .header {
     height: 4rem;
+  }
+  .nav {
+    top: 3.5rem;
+    right: 0.7rem;
   }
 }
 

@@ -70,7 +70,6 @@ export const useLoginStore = defineStore("login", {
     },
     getAccountDetails(id) {
       const session_id = id || this.session_id;
-      console.log(session_id);
       axios
         .get(GET_USER_DETAILS(session_id))
         .then((r) => {

@@ -2,6 +2,9 @@
   <section>
     <h2 class="title">{{ title }}</h2>
     <Loading v-if="loading" />
+    <p v-else-if="!loading && listMovies.length === 0" class="sem-filmes">
+      Sem filmes para mostrar.
+    </p>
     <div class="container-movies">
       <swiper
         :breakpoints="breakpoints"
@@ -45,10 +48,6 @@ export default {
       currPage: 1,
       loading: true,
       breakpoints: {
-        1700: {
-          slidesPerView: 6,
-          spaceBetween: 15,
-        },
         1100: {
           slidesPerView: 5,
           spaceBetween: 15,
@@ -111,7 +110,9 @@ section {
   padding: 2rem;
   margin-top: 0rem;
 }
-
+.sem-filmes {
+  margin-top: 1rem;
+}
 .btns-slide {
   opacity: 0;
 }
