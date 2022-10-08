@@ -7,7 +7,7 @@
           :src="`https://image.tmdb.org/t/p/w500/${loginStore.userDetails.avatar.tmdb.avatar_path}`"
           :alt="loginStore.userDetails.username"
         />
-        <NoImage v-else />
+        <NoImage v-else img="person" />
       </div>
       <div class="infos">
         <p class="username" v-if="loginStore.userDetails.username">
@@ -73,9 +73,10 @@ export default {
 
 <style scoped>
 .avatar {
-  width: 14rem;
-  height: 14rem;
+  max-width: 14rem;
+  max-height: 14rem;
   border-radius: 5px;
+  flex: 1;
   overflow: hidden;
 }
 
@@ -93,6 +94,7 @@ export default {
   margin-left: 1.5rem;
   display: flex;
   flex-direction: column;
+  flex: 2;
 }
 .name {
   margin: 0.5rem 0;
@@ -121,15 +123,12 @@ export default {
 .container {
   padding-top: 4rem;
 }
-@media (max-width: 500px) {
-  .account-details {
-    flex-direction: column;
-    width: 14rem;
-    margin: 0 auto;
+@media (max-width: 550px) {
+  .avatar {
+    height: 8rem;
   }
   .infos {
-    margin-top: 1.5rem;
-    margin-left: 0;
+    margin-left: 1rem;
   }
 }
 </style>

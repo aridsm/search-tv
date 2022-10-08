@@ -73,7 +73,7 @@ input {
   margin-bottom: 1.5em;
 }
 .login {
-  padding: 0 2em;
+  padding: 4rem 2em 0 2rem;
   max-width: 600px;
   width: 100%;
   margin: 0 auto;
@@ -97,6 +97,14 @@ input {
 .erro {
   color: rgb(255, 100, 100);
   margin-top: 1rem;
+}
+@media (max-width: 700px) {
+  .login {
+    padding: 4rem 0.7rem 0 0.7rem;
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+  }
 }
 @media (max-width: 500px) {
   .btn-entrar,

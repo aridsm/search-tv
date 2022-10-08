@@ -32,7 +32,7 @@
                   :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
                   :alt="movie.title"
                 />
-                <NoImage v-else />
+                <NoImage v-else img="movie" />
               </div>
               <div class="movie-infos">
                 <p>{{ movie.title }}</p>

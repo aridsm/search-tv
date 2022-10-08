@@ -1,10 +1,13 @@
 <template>
-  <div class="no-item">?</div>
+  <div class="no-item">
+    <img :src="require(`../../assets/${img}.svg`)" />
+  </div>
 </template>
 
 <script>
 export default {
   name: "NoItem",
+  props: ["img"],
 };
 </script>
 

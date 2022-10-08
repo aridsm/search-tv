@@ -1,6 +1,10 @@
 <template>
   <div>
-    <button @click="swiper.slideNext()" class="btn-next">
+    <button
+      @click="swiper.slideNext()"
+      class="btn-next"
+      aria-label="Próximo slide"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
@@ -15,7 +19,11 @@
         />
       </svg>
     </button>
-    <button @click="swiper.slidePrev()" class="btn-prev">
+    <button
+      @click="swiper.slidePrev()"
+      class="btn-prev"
+      aria-label="Slide anterior"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"

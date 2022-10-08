@@ -6,7 +6,7 @@
         :src="`https://image.tmdb.org/t/p/w500/${movieData.poster_path}`"
         :alt="movieData.title"
       />
-      <NoImage v-else />
+      <NoImage v-else img="movie" />
     </div>
     <div class="movie-infos">
       <div class="flex">

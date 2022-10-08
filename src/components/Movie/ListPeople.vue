@@ -1,5 +1,5 @@
 <template>
-  <section class="list">
+  <section class="list" v-if="listCredits.length">
     <h2>{{ title }}</h2>
     <div class="container-swiper">
       <swiper
@@ -19,7 +19,7 @@
               :src="`https://image.tmdb.org/t/p/w500/${person.profile_path}`"
               :alt="person.name"
             />
-            <NoImage v-else />
+            <NoImage v-else img="person" />
           </div>
           <div class="person-infos">
             <h3>{{ person.name }}</h3>
@@ -91,6 +91,7 @@ export default {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  min-height: 12rem;
 }
 
 .img-person > * {
