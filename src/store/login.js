@@ -62,7 +62,6 @@ export const useLoginStore = defineStore("login", {
           this.session_id = r.data.session_id;
           this.loginError = null;
           that.getAccountDetails(r.data.session_id);
-          router.push("/account");
         })
         .catch((err) => {
           console.log(err);
@@ -73,8 +72,10 @@ export const useLoginStore = defineStore("login", {
       axios
         .get(GET_USER_DETAILS(session_id))
         .then((r) => {
-          this.userDetails = r.data;
           this.isLoggedIn = true;
+          this.userDetails = r.data;
+
+          router.push("/account");
         })
         .catch((r) => console.log(r));
     },
