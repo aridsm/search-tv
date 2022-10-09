@@ -74,8 +74,10 @@ export const useLoginStore = defineStore("login", {
         .then((r) => {
           this.isLoggedIn = true;
           this.userDetails = r.data;
-
-          router.push("/account");
+          const currentPath = router.currentRoute.value.fullPath;
+          if (currentPath === "/login") {
+            router.push("/account");
+          }
         })
         .catch((r) => console.log(r));
     },

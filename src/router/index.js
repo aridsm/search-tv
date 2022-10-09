@@ -14,6 +14,9 @@ const routes = [
     path: "/login",
     name: "login",
     component: lazyLoad("LoginView"),
+    meta: {
+      needsAuth: true,
+    },
   },
   {
     path: "/movies/:movieId",
@@ -40,6 +43,7 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+  base: process.env.BASE_URL,
   scrollBehavior() {
     return { top: 0 };
   },
@@ -47,21 +51,19 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const loginStore = useLoginStore();
-  if (to.meta.needsAuth) {
-    if (loginStore.isLoggedIn) {
-      next();
-    } else {
-      next("/login");
-    }
-  } else if (to.name === "login") {
+  if (to.fullPath === "/login") {
     if (loginStore.isLoggedIn) {
       next("/account");
-    } else {
-      next();
     }
-  } else {
-    next();
   }
+
+  if (to.fullPath === "/account") {
+    if (!loginStore.isLoggedIn) {
+      next("/login");
+    }
+  }
+
+  next();
 });
 
 export default router;
