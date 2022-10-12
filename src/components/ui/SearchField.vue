@@ -121,7 +121,7 @@ export default {
 }
 
 .results {
-  background: var(--cor-2);
+  background: var(--cor-1);
   position: absolute;
   width: 100%;
   max-height: 20rem;

@@ -1,6 +1,7 @@
 <template>
   <HeaderVue />
   <main>
+    <HeaderContent />
     <router-view></router-view>
   </main>
   <Footer />
@@ -9,9 +10,10 @@
 import HeaderVue from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
 import { useLoginStore } from "./store/login";
+import HeaderContent from "./components/HeaderContent.vue";
 export default {
   name: "App",
-  components: { HeaderVue, Footer },
+  components: { HeaderVue, Footer, HeaderContent },
   setup() {
     const loginStore = useLoginStore();
     return { loginStore };
@@ -31,20 +33,22 @@ export default {
 }
 
 :root {
-  --cor-1: #231e44;
-  --cor-2: #27234e;
-  --cor-3: #3ab3d2;
-  --cor-4: #9597b9;
+  --cor-1: #1c1d21;
+  --cor-2: #2a2b31;
+  --cor-3: #cc85e5;
+  --cor-4: #5c5e63;
   --cor-5: #e0defb;
-  --cor-6: #2e2958;
-  --cor-7: #ffeb7c;
+  --cor-6: #73206a;
+  --cor-7: #ffed8d;
+  --cor-8: rgba(89, 90, 96, 0.2);
+  --cor-9: #222428;
 }
 
 body {
   background: var(--cor-1);
-  color: var(--cor-5);
+  color: var(--cor-4);
   font-family: "Ubuntu", sans-serif;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 ul {
@@ -52,21 +56,20 @@ ul {
 }
 
 main {
-  padding-top: 5rem;
-  padding-bottom: 2rem;
+  margin-left: 16rem;
   min-height: 100vh;
+  padding-top: 1rem;
 }
 a {
   text-decoration: none;
   color: inherit;
 }
 .container {
-  padding: 0 1.5rem;
-  max-width: 1100px;
+  padding: 0 2rem;
+  max-width: 1050px;
   width: 100%;
   margin: 0 auto;
 }
-
 label {
   position: absolute;
   visibility: hidden;
@@ -80,30 +83,28 @@ button {
   cursor: pointer;
 }
 .title {
-  font-size: 1.1em;
   text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.8rem;
+  margin-bottom: 1.5rem;
 }
-.title::before {
-  content: "";
-  display: inline-block;
-  position: relative;
-  background: var(--cor-3);
-  width: 1.5rem;
-  height: 3px;
-  margin-right: 0.5rem;
-  top: -0.3rem;
+
+.container-style {
+  background: linear-gradient(0, var(--cor-1), var(--cor-9));
+  box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  border: 1px solid var(--cor-8);
 }
 .input-style {
-  background: var(--cor-2);
+  background: var(--cor-1);
   outline: none;
   border: none;
-  border-radius: 5px;
-  height: 2.5rem;
+  border-radius: 0.8rem;
+  height: 2.8rem;
   padding: 0 1rem;
   font-family: inherit;
   color: inherit;
   transition: 0.2s;
-  box-shadow: 0 0 0 1px #323d74;
 }
 
 .input-style::placeholder {
@@ -116,19 +117,19 @@ button {
 }
 
 .btn-padrao {
-  padding: 0 1.5rem;
+  padding: 0 1.2rem;
   height: 2.5rem;
-  background: linear-gradient(180deg, #55e6d3 0%, var(--cor-3) 100%);
+  background: var(--cor-3);
   font-weight: 900;
-  color: var(--cor-1);
-  border-radius: 5px;
+  color: var(--cor-6);
+  border-radius: 0.3rem;
   display: grid;
   place-items: center;
   transition: 0.2s;
 }
 
 .btn-padrao:hover {
-  color: #326474;
+  background: #d98ef4;
 }
 
 .btn-padrao:active {

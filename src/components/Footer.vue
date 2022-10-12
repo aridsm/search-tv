@@ -14,6 +14,5 @@ export default {
 .footer {
   text-align: center;
   padding: 2em;
-  background: var(--cor-2);
 }
 </style>

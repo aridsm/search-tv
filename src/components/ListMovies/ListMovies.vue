@@ -48,10 +48,6 @@ export default {
       currPage: 1,
       loading: true,
       breakpoints: {
-        1100: {
-          slidesPerView: 5,
-          spaceBetween: 15,
-        },
         900: {
           slidesPerView: 4,
           spaceBetween: 15,

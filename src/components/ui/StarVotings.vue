@@ -1,16 +1,8 @@
 <template>
   <div class="vote-container">
-    <div class="stars">
-      <img
-        v-for="(star, index) in voteData.starsImages"
-        :key="index"
-        :src="require(`../../assets/${star}`)"
-        class="stars-img"
-      />
-      <img :src="require(`../../assets/star-fill.svg`)" class="star-fill" />
-    </div>
+    <img src="../../assets/star-fill.svg" class="stars-img" />
     <span class="vote">
-      {{ voteData.vote }}
+      {{ voteData }}
     </span>
     <span class="contagem"> {{ voteCount }} votos </span>
   </div>
@@ -21,25 +13,7 @@ export default {
   props: ["rawVote", "voteCount"],
   computed: {
     voteData() {
-      const vote = (this.rawVote / 2).toFixed(2);
-      const roundedVote = Math.round(this.rawVote) / 2;
-
-      const starsImages = [];
-
-      const fillStars = Math.floor(roundedVote);
-      const halfStar = roundedVote % 1;
-      const emptyStar = 5 - Math.ceil(roundedVote);
-
-      for (let i = 0; i < fillStars; i++) {
-        starsImages.push("star-fill.svg");
-      }
-      if (halfStar) starsImages.push("star-half.svg");
-
-      for (let i = 0; i < emptyStar; i++) {
-        starsImages.push("star-empty.svg");
-      }
-
-      return { starsImages, vote };
+      return (this.rawVote / 2).toFixed(2);
     },
   },
 };
@@ -48,39 +22,29 @@ export default {
 <style scoped>
 .vote-container {
   display: flex;
+  align-items: center;
   font-size: 0.8em;
-}
-.stars {
-  display: inline-block;
-}
-
-.stars img {
-  width: 13px;
-}
-.stars img + img {
-  margin-left: 2px;
 }
 .vote {
   color: var(--cor-7);
-  margin-left: 0.5rem;
+  margin-left: 0.7rem;
   display: inline-block;
 }
-.star-fill {
-  display: none;
+.stars-img,
+.vote {
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.4));
 }
-
 .contagem {
   display: block;
-  margin-left: auto;
+  margin-left: 0.7rem;
+  border-left: 1px solid var(--cor-8);
+  padding-left: 0.7rem;
   color: var(--cor-4);
 }
 
 @media (max-width: 900px) {
   .stars-img {
     display: none;
-  }
-  .star-fill {
-    display: block;
   }
 }
 </style>

@@ -9,6 +9,10 @@ export const getPopularMovies = (page) => {
   return `${base}movie/popular?api_key=${api_key}&language=pt-BR&page=${page}`;
 };
 
+export const GET_MOVIE_VIDEOS = (movie_id) => {
+  return `${base}movie/${movie_id}/videos?api_key=${api_key}&language=pt-BR`;
+};
+
 export const getMovieById = (id) => {
   return `${base}movie/${id}?api_key=${api_key}&language=pt-BR`;
 };
