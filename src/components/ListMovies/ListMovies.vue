@@ -13,7 +13,7 @@
         v-if="listMovies && listMovies.length"
         class="movies"
       >
-        <ButtonsSlider class="btns-slide" />
+        <ButtonsSlider />
 
         <swiper-slide v-for="movie in listMovies" :key="movie.id">
           <MovieItem :movie="movie" />
@@ -50,7 +50,7 @@ export default {
       breakpoints: {
         900: {
           slidesPerView: 4,
-          spaceBetween: 15,
+          spaceBetween: 25,
         },
         600: {
           slidesPerView: 3,
@@ -103,17 +103,10 @@ section {
 
 .container-movies {
   overflow: hidden;
-  padding: 2rem;
-  margin-top: 0rem;
+  padding: 0.5rem 2rem;
 }
 .sem-filmes {
   margin-top: 1rem;
-}
-.btns-slide {
-  opacity: 0;
-}
-.movies:hover .btns-slide {
-  opacity: 1;
 }
 
 @media (max-width: 400px) {

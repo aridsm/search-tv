@@ -34,14 +34,13 @@ export default {
 
 :root {
   --cor-1: #1c1d21;
-  --cor-2: #2a2b31;
-  --cor-3: #cc85e5;
+  --cor-2: #222428;
+  --cor-3: rgb(111, 214, 255);
   --cor-4: #5c5e63;
   --cor-5: #e0defb;
-  --cor-6: #73206a;
+  --cor-6: rgb(35, 126, 136);
   --cor-7: #ffed8d;
   --cor-8: rgba(89, 90, 96, 0.2);
-  --cor-9: #222428;
 }
 
 body {
@@ -86,11 +85,11 @@ button {
   text-transform: uppercase;
   letter-spacing: 1px;
   font-size: 0.8rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .container-style {
-  background: linear-gradient(0, var(--cor-1), var(--cor-9));
+  background: linear-gradient(0, var(--cor-1), var(--cor-2));
   box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.2);
   border-radius: 0.5rem;
   border: 1px solid var(--cor-8);
@@ -147,20 +146,16 @@ button {
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 15px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--cor-2);
+  background: var(--cor-1);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--cor-3);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--cor-5);
+  background: var(--cor-2);
+  border-radius: 6px;
 }
 
 @media (max-width: 700px) {

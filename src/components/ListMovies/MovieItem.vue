@@ -53,24 +53,24 @@ export default {
   margin-bottom: 0.7rem;
 }
 .item-movie {
-  background: var(--cor-2);
-  padding: 0.6em;
-  border-radius: 5px;
   transition: 0.2s;
+}
+
+.item-movie:hover {
+  color: var(--cor-5);
 }
 
 .item-movie .img {
   filter: saturate(90%) brightness(90%);
-}
 
-.item-movie:hover {
-  background: var(--cor-6);
-  box-shadow: 0 0 0 1px var(--cor-3);
-  transform: translateY(-1rem);
+  border-radius: 0.8rem;
+  overflow: hidden;
+  transition: 0.2s;
 }
 
 .item-movie:hover .img {
   filter: initial;
+  transform: translateY(-0.5rem);
 }
 
 @media (max-width: 1050px) {

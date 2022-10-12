@@ -28,6 +28,6 @@ export default {
   margin-top: 2rem;
 }
 .list-movies {
-  margin-top: 4rem;
+  margin-top: 6rem;
 }
 </style>

@@ -13,8 +13,13 @@
         >Ver mais</router-link
       >
     </div>
-    <div class="video">
+    <div class="media">
       <Loading v-if="loadingVideo" />
+      <div v-else-if="!loadingVideo && !video" class="img">
+        <img
+          :src="`https://image.tmdb.org/t/p/w500/${bestMovie.backdrop_path}`"
+        />
+      </div>
       <iframe
         v-else
         width="100%"
@@ -92,7 +97,7 @@ h3 {
 .movie-infos p {
   line-height: 140%;
 }
-.video {
+.media {
   flex: 3;
   display: grid;
   place-items: center;
@@ -100,9 +105,16 @@ h3 {
   overflow: hidden;
 }
 
+.img,
+.img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .movie-link {
   display: block;
   margin-top: 1.5rem;
-  color: rgb(111, 214, 255);
+  color: var(--cor-3);
 }
 </style>
