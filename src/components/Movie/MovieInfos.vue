@@ -1,9 +1,9 @@
 <template>
-  <section class="movie">
+  <section class="movie container-style">
     <div class="img-container">
       <img
         v-if="movieData.poster_path"
-        :src="`https://image.tmdb.org/t/p/w500/${movieData.poster_path}`"
+        :src="`https://image.tmdb.org/t/p/w780/${movieData.poster_path}`"
         :alt="movieData.title"
       />
       <NoImage v-else img="movie" />
@@ -13,7 +13,8 @@
         <h1>{{ movieData.title }}</h1>
         <FavoriteMovie v-if="loginStore.isLoggedIn" :movieId="movieData.id" />
       </div>
-      <p class="tagline">{{ movieData.tagline }}</p>
+      <p v-if="movieData.tagline" class="tagline">{{ movieData.tagline }}</p>
+      <span class="runtime">{{ movieRuntime }}</span>
       <StarVotings
         :rawVote="movieData.vote_average"
         :voteCount="movieData.vote_count"
@@ -42,16 +43,30 @@ export default {
     const loginStore = useLoginStore();
     return { loginStore };
   },
+  computed: {
+    movieRuntime() {
+      const timeInMinutes = this.movieData.runtime;
+      const fullHours = Math.floor(timeInMinutes / 60);
+      const fullMinutes = timeInMinutes % 60;
+
+      const padNumber = (num) => {
+        return num.toString().padStart(2, "0");
+      };
+
+      return `${padNumber(fullHours)}h:${padNumber(fullMinutes)}min`;
+    },
+  },
 };
 </script>
 
 <style scoped>
 .movie {
   display: flex;
+  align-items: center;
   grid-column: 1 / -1;
 }
 .movie-infos {
-  margin-left: 1.5rem;
+  margin-left: 2rem;
   flex: 4;
 }
 .flex {
@@ -61,12 +76,21 @@ export default {
 }
 h1 {
   font-size: 2em;
+  color: var(--cor-5);
 }
-.tagline {
+
+h1,
+.tagline,
+.overview {
+  max-width: 500px;
+}
+.tagline,
+.runtime {
+  display: block;
   font-size: 1em;
   font-weight: 400;
   color: var(--cor-4);
-  margin-bottom: 0.5rem;
+  margin: 0.2rem 0 1rem 0;
 }
 .img-container {
   width: 250px;
@@ -81,7 +105,7 @@ h1 {
 }
 
 .categories {
-  margin: 0.5rem 0 2rem 0;
+  margin: 1rem 0 2rem 0;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -94,8 +118,8 @@ h1 {
 }
 
 .overview {
-  line-height: 1.3em;
   font-size: 1em;
+  line-height: 140%;
 }
 
 @media (max-width: 750px) {

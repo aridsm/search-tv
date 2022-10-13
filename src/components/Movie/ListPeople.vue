@@ -1,6 +1,6 @@
 <template>
-  <section class="list" v-if="listCredits.length">
-    <h2>{{ title }}</h2>
+  <section class="list container-style" v-if="listCredits.length">
+    <h2 class="title">{{ title }}</h2>
     <div class="container-swiper">
       <swiper
         class="swiper"
@@ -16,7 +16,7 @@
           <div class="img-person">
             <img
               v-if="person.profile_path"
-              :src="`https://image.tmdb.org/t/p/w500/${person.profile_path}`"
+              :src="`https://image.tmdb.org/t/p/w780/${person.profile_path}`"
               :alt="person.name"
             />
             <NoImage v-else img="person" />
@@ -42,10 +42,6 @@ export default {
   data() {
     return {
       breakpoints: {
-        750: {
-          slidesPerView: 4,
-          spaceBetween: 15,
-        },
         550: {
           slidesPerView: 3,
           spaceBetween: 15,
@@ -101,17 +97,12 @@ export default {
   border-radius: 10px;
 }
 
-h2 {
-  font-size: 1.6em;
-  margin-bottom: 1rem;
-  display: flex;
-  justify-content: space-between;
-}
-
 h3 {
   font-size: 1em;
-  font-weight: 800;
+  font-weight: 700;
   margin-top: 0.5rem;
+  margin-bottom: 0.2rem;
+  color: var(--cor-5);
 }
 
 .as {

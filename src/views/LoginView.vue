@@ -1,7 +1,7 @@
 <template>
   <div class="login">
-    <h1 class="title">Login</h1>
-    <p class="txt">Entre com seu nome de usuário e senha do TMDB.</p>
+    <h1>Login</h1>
+    <p class="txt title">Entre com seu nome de usuário e senha do TMDB.</p>
     <form @submit.prevent="loginStore.submitForm(username, password)">
       <label for="user">Usuário</label>
       <input
@@ -28,7 +28,7 @@
 
     <p class="no-account">
       Não possui conta? Você pode se registrar
-      <a href="https://www.themoviedb.org/signup">aqui</a>
+      <a href="https://www.themoviedb.org/signup" target="_blank">aqui</a>
     </p>
   </div>
 </template>
@@ -52,21 +52,19 @@ export default {
 </script>
 
 <style scoped>
-label {
-  position: relative;
-  visibility: visible;
-  display: block;
-  margin-bottom: 0.5em;
-}
 .txt {
-  margin-bottom: 2em;
-  margin-top: 0.5em;
+  margin: 1rem 0 2rem 0;
+}
+
+h1 {
+  color: var(--cor-5);
 }
 .btn-padrao {
   border: none;
 }
 input {
   width: 100%;
+  background: var(--cor-2);
 }
 
 #user {
@@ -91,9 +89,6 @@ input {
   margin-left: auto;
 }
 
-.btn-sessao-local {
-  margin: 0 auto;
-}
 .erro {
   color: rgb(255, 100, 100);
   margin-top: 1rem;
@@ -107,8 +102,7 @@ input {
   }
 }
 @media (max-width: 500px) {
-  .btn-entrar,
-  .btn-sessao-local {
+  .btn-entrar {
     width: 100%;
   }
 }

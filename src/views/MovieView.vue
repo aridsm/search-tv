@@ -3,7 +3,10 @@
     <div class="section">
       <Loading v-if="loadingMovie" />
       <MovieInfos v-else :movieData="movieData" />
+
+      <Loading v-if="loadingMovie" />
       <OtherData :movieData="movieData" />
+
       <Loading v-if="loadingCredits" />
       <ListPeople
         v-else
@@ -87,19 +90,18 @@ export default {
 <style scoped>
 .section {
   display: grid;
-  grid-template-columns: calc(77% - 2rem) 23%;
+  grid-template-columns: calc(73% - 2rem) 27%;
   grid-gap: 1.5rem;
   max-width: 100%;
 }
 .container {
-  padding-top: 4rem;
+  padding-top: 2rem;
 }
+
 .movie,
 .more-data,
 .list-people {
-  background: var(--cor-2);
   padding: 1.5rem;
-  border-radius: 5px;
 }
 
 @media (max-width: 1000px) {
@@ -111,7 +113,6 @@ export default {
   .more-data,
   .list-people {
     grid-column: 1 / -1;
-    padding: 1rem;
   }
 
   .container {

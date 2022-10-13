@@ -13,7 +13,7 @@ export default {
 
 <style scoped>
 .no-item {
-  background: var(--cor-6);
+  background: var(--cor-8);
   color: var(--cor-4);
   font-weight: 900;
   font-size: 1.6em;

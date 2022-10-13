@@ -4,7 +4,7 @@
       <div class="avatar">
         <img
           v-if="loginStore.userDetails.avatar.tmdb.avatar_path"
-          :src="`https://image.tmdb.org/t/p/w500/${loginStore.userDetails.avatar.tmdb.avatar_path}`"
+          :src="`https://image.tmdb.org/t/p/w780/${loginStore.userDetails.avatar.tmdb.avatar_path}`"
           :alt="loginStore.userDetails.username"
         />
         <NoImage v-else img="person" />

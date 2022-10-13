@@ -5,10 +5,12 @@ export const getSearchMovies = (query) => {
   return `${base}search/movie?api_key=${api_key}&language=pt-BR&page=1&include_adult=false&query=${query}`;
 };
 
-export const getPopularMovies = (page) => {
-  return `${base}movie/popular?api_key=${api_key}&language=pt-BR&page=${page}`;
+export const GET_TREND_MOVIES = (time_window) => (page) => {
+  return `${base}/trending/movie/${time_window}?api_key=${api_key}&language=pt-BR&page=${page}`;
 };
-
+export const GET_TOP_RATED_MOVIES = (page) => {
+  return `${base}movie/top_rated?api_key=${api_key}&language=pt-BR&page=${page}`;
+};
 export const GET_MOVIE_VIDEOS = (movie_id) => {
   return `${base}movie/${movie_id}/videos?api_key=${api_key}&language=pt-BR`;
 };

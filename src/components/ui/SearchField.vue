@@ -29,7 +29,7 @@
               <div class="img-container">
                 <img
                   v-if="movie.poster_path"
-                  :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
+                  :src="`https://image.tmdb.org/t/p/w780/${movie.poster_path}`"
                   :alt="movie.title"
                 />
                 <NoImage v-else img="movie" />

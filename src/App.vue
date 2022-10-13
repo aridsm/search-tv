@@ -34,9 +34,9 @@ export default {
 
 :root {
   --cor-1: #1c1d21;
-  --cor-2: #222428;
+  --cor-2: #232428;
   --cor-3: rgb(111, 214, 255);
-  --cor-4: #5c5e63;
+  --cor-4: #67696f;
   --cor-5: #e0defb;
   --cor-6: rgb(35, 126, 136);
   --cor-7: #ffed8d;
@@ -58,6 +58,7 @@ main {
   margin-left: 16rem;
   min-height: 100vh;
   padding-top: 1rem;
+  padding-bottom: 4rem;
 }
 a {
   text-decoration: none;
@@ -83,14 +84,15 @@ button {
 }
 .title {
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+  font-size: 0.7rem;
   margin-bottom: 1rem;
+  font-weight: 700;
+  color: var(--cor-4);
 }
 
 .container-style {
-  background: linear-gradient(0, var(--cor-1), var(--cor-2));
-  box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.2);
+  background: var(--cor-2);
   border-radius: 0.5rem;
   border: 1px solid var(--cor-8);
 }
@@ -102,7 +104,7 @@ button {
   height: 2.8rem;
   padding: 0 1rem;
   font-family: inherit;
-  color: inherit;
+  color: var(--cor-5);
   transition: 0.2s;
 }
 
@@ -128,7 +130,7 @@ button {
 }
 
 .btn-padrao:hover {
-  background: #d98ef4;
+  background: rgb(133, 220, 255);
 }
 
 .btn-padrao:active {

@@ -32,7 +32,7 @@ export default {
 }
 .stars-img,
 .vote {
-  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.4));
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.25));
 }
 .contagem {
   display: block;

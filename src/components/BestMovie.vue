@@ -17,7 +17,7 @@
       <Loading v-if="loadingVideo" />
       <div v-else-if="!loadingVideo && !video" class="img">
         <img
-          :src="`https://image.tmdb.org/t/p/w500/${bestMovie.backdrop_path}`"
+          :src="`https://image.tmdb.org/t/p/w780/${bestMovie.backdrop_path}`"
         />
       </div>
       <iframe
@@ -35,14 +35,14 @@
 </template>
 
 <script>
-import { GET_MOVIE_VIDEOS, getPopularMovies } from "@/urlsAPI";
+import { GET_MOVIE_VIDEOS, GET_TREND_MOVIES } from "@/urlsAPI";
 import axios from "axios";
 import Loading from "./ui/Loading.vue";
 import StarVotings from "./ui/StarVotings.vue";
 
 export default {
   setup() {
-    return { GET_MOVIE_VIDEOS, getPopularMovies };
+    return { GET_MOVIE_VIDEOS, GET_TREND_MOVIES };
   },
   data() {
     return {
@@ -60,7 +60,7 @@ export default {
       });
     },
     fetchData() {
-      axios.get(this.getPopularMovies(1)).then((r) => {
+      axios.get(this.GET_TREND_MOVIES("week")(1)).then((r) => {
         this.bestMovie = r.data.results[0];
         this.loadingMovie = false;
         this.fetchVideos();
