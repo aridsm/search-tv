@@ -11,7 +11,11 @@
     <div class="movie-infos">
       <div class="flex">
         <h1>{{ movieData.title }}</h1>
-        <FavoriteMovie v-if="loginStore.isLoggedIn" :movieId="movieData.id" />
+        <FavoriteMovie
+          v-if="loginStore.isLoggedIn"
+          :movieId="movieData.id"
+          :showText="true"
+        />
       </div>
       <p v-if="movieData.tagline" class="tagline">{{ movieData.tagline }}</p>
       <span class="runtime">{{ movieRuntime }}</span>
@@ -62,7 +66,6 @@ export default {
 <style scoped>
 .movie {
   display: flex;
-  align-items: center;
   grid-column: 1 / -1;
 }
 .movie-infos {
@@ -95,6 +98,10 @@ h1,
 .img-container {
   width: 250px;
   height: 23rem;
+}
+
+.tagline {
+  color: var(--cor-5);
 }
 
 .img-container > * {

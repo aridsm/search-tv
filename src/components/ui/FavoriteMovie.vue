@@ -5,10 +5,18 @@
       :class="['favorite', { favorited: isMovieFavorited }]"
       v-if="!loading && loginStore.isLoggedIn"
       @click.stop.prevent="markAsFavorite"
+      :title="isMovieFavorited ? 'Tirar dos favoritos' : 'Favoritar'"
     >
-      <div class="favorite-text">
+      <span v-if="showText">
         {{ isMovieFavorited ? "Favoritado" : "Favoritar" }}
-      </div>
+      </span>
+      <img
+        v-if="isMovieFavorited"
+        src="../../assets/heart-fill.svg"
+        alt=""
+        class="heart"
+      />
+      <img v-else src="../../assets/heart-empty.svg" alt="" class="heart" />
     </button>
   </div>
 </template>
@@ -19,7 +27,7 @@ import Loading from "./Loading.vue";
 
 export default {
   name: "FavoriteMovie",
-  props: ["movieId"],
+  props: ["movieId", "showText"],
   emits: ["send-favorite-status"],
   setup() {
     const loginStore = useLoginStore();
@@ -51,6 +59,7 @@ export default {
       if (markWasSuccessfull) {
         this.isMovieFavorited = !this.isMovieFavorited;
       }
+
       this.$emit("send-favorite-status", this.isMovieFavorited);
     },
   },
@@ -65,26 +74,19 @@ export default {
 .favorite {
   color: var(--cor-4);
   transition: 0.2s;
-}
-.favorite-text {
-  display: inline-block;
+  display: flex;
+  align-items: center;
 }
 .favorited {
-  color: rgb(255, 123, 202);
+  color: #ff7bb4;
 }
-.favorite::after {
-  content: "☆";
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  font-size: 1.3em;
-  margin-left: 0.3em;
-}
-.favorited::after {
-  content: "★";
-}
-
 .loading {
   padding: 0;
+}
+.favorite span {
+  margin-right: 0.5rem;
+}
+.heart {
+  width: 1.2rem;
 }
 </style>

@@ -1,6 +1,7 @@
 <template>
   <section class="container">
-    <div class="account-details" v-if="loginStore.userDetails">
+    <h1 class="title">Sua conta</h1>
+    <div class="account-details container-style" v-if="loginStore.userDetails">
       <div class="avatar">
         <img
           v-if="loginStore.userDetails.avatar.tmdb.avatar_path"
@@ -13,7 +14,6 @@
         <p class="username" v-if="loginStore.userDetails.username">
           {{ loginStore.userDetails.username }}
         </p>
-        <h1 class="title">Sua conta</h1>
         <p v-if="loginStore.userDetails.name" class="name">
           Olá, {{ loginStore.userDetails.name }}!
         </p>
@@ -73,36 +73,46 @@ export default {
 
 <style scoped>
 .avatar {
-  max-width: 14rem;
-  max-height: 14rem;
-  border-radius: 5px;
-  flex: 1;
+  height: 14rem;
+  width: 14rem;
+  border-radius: 50%;
   overflow: hidden;
+  margin-bottom: 1rem;
 }
 
 .avatar > * {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 .account-details {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.title,
+.account-details {
+  max-width: 30rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .infos {
-  margin-left: 1.5rem;
   display: flex;
   flex-direction: column;
-  flex: 2;
 }
 .name {
-  margin: 0.5rem 0;
+  margin-top: 0.2rem;
+  margin-bottom: 1rem;
 }
 
 .username {
-  color: var(--cor-4);
-  margin-bottom: 0.5rem;
+  color: var(--cor-5);
 }
 
 .btn-padrao {
@@ -118,17 +128,9 @@ export default {
 }
 
 .list-movies {
-  margin-top: 5rem;
+  margin-top: 6rem;
 }
 .container {
-  padding-top: 4rem;
-}
-@media (max-width: 550px) {
-  .avatar {
-    height: 8rem;
-  }
-  .infos {
-    margin-left: 1rem;
-  }
+  padding-top: 2rem;
 }
 </style>

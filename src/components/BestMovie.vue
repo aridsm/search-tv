@@ -91,7 +91,7 @@ export default {
 h3 {
   color: var(--cor-5);
   font-size: 1.6rem;
-  font-weight: 900;
+  font-weight: 700;
   margin: 1.5rem 0;
 }
 .movie-infos p {

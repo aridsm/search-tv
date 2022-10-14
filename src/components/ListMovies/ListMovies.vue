@@ -13,8 +13,6 @@
         v-if="listMovies && listMovies.length"
         class="movies"
       >
-        <ButtonsSlider />
-
         <swiper-slide v-for="movie in listMovies" :key="movie.id">
           <MovieItem :movie="movie" />
         </swiper-slide>
@@ -26,7 +24,6 @@
 import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
-import ButtonsSlider from "../ui/ButtonsSlider.vue";
 import StarVotings from "../ui/StarVotings.vue";
 import Loading from "../ui/Loading.vue";
 import MovieItem from "../ListMovies/MovieItem.vue";
@@ -36,7 +33,6 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
-    ButtonsSlider,
     StarVotings,
     Loading,
     MovieItem,

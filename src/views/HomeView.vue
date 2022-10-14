@@ -29,10 +29,11 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  margin-top: 2rem;
-}
 .list-movies {
   margin-top: 6rem;
+}
+
+.container {
+  padding-top: 2rem;
 }
 </style>

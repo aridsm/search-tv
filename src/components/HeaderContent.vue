@@ -1,18 +1,29 @@
 <template>
   <div class="header-entrada container">
     <router-link to="/" class="logo">TvSearch</router-link>
-    <router-link to="/login" class="entrar">Entrar</router-link>
+    <router-link to="/login" class="entrar" v-if="!loginStore.isLoggedIn"
+      >Entrar</router-link
+    >
     <a
       href="https://www.themoviedb.org/signup"
       class="btn-padrao"
       target="_blank"
+      v-if="!loginStore.isLoggedIn"
       >Cadastre-se</a
     >
+    <router-link to="/account" class="btn-padrao" v-else>Sua conta</router-link>
   </div>
 </template>
 
 <script>
-export default {};
+import { useLoginStore } from "@/store/login";
+
+export default {
+  setup() {
+    const loginStore = useLoginStore();
+    return { loginStore };
+  },
+};
 </script>
 
 <style scoped>

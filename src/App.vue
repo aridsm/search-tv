@@ -100,7 +100,7 @@ button {
   background: var(--cor-1);
   outline: none;
   border: none;
-  border-radius: 0.8rem;
+  border-radius: 0.3rem;
   height: 2.8rem;
   padding: 0 1rem;
   font-family: inherit;

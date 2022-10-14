@@ -94,16 +94,15 @@ export default {
   grid-gap: 1.5rem;
   max-width: 100%;
 }
-.container {
-  padding-top: 2rem;
-}
 
 .movie,
 .more-data,
 .list-people {
   padding: 1.5rem;
 }
-
+.container {
+  padding-top: 2rem;
+}
 @media (max-width: 1000px) {
   .section {
     grid-gap: 1rem;

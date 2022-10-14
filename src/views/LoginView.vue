@@ -71,7 +71,7 @@ input {
   margin-bottom: 1.5em;
 }
 .login {
-  padding: 4rem 2em 0 2rem;
+  padding: 2rem 2rem 0 2rem;
   max-width: 600px;
   width: 100%;
   margin: 0 auto;

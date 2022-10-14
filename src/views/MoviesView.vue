@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <h1>Todos os filmes</h1>
+    <h2>Todos os filmes</h2>
     <button class="btn-filtrar" @click="showListGenres">
       Filtrar por categoria
       <svg
@@ -95,9 +95,14 @@ export default {
 </script>
 
 <style scoped>
-h1 {
+h2 {
+  color: var(--cor-5);
+  font-size: 1.6rem;
+  font-weight: 700;
   margin-bottom: 1rem;
-  font-size: 2em;
+}
+.container {
+  padding-top: 2rem;
 }
 .list-genres {
   display: grid;
@@ -117,7 +122,6 @@ h1 {
 .active button {
   color: var(--cor-5);
   box-shadow: 0 0 0 1px var(--cor-3);
-  background: var(--cor-6);
 }
 .list-movies {
   margin-top: 3rem;
@@ -153,8 +157,5 @@ h1 {
 .height-enter-active,
 .height-leave-active {
   transition: 0.2s;
-}
-.container {
-  padding-top: 4rem;
 }
 </style>
