@@ -22,8 +22,6 @@
       </div>
       <iframe
         v-else
-        width="100%"
-        height="315"
         :src="`https://www.youtube.com/embed/${video.key}?controls=0`"
         title="YouTube video player"
         frameborder="0"
@@ -116,5 +114,29 @@ h3 {
   display: block;
   margin-top: 1.5rem;
   color: var(--cor-3);
+}
+
+iframe {
+  width: 100%;
+  height: 20rem;
+}
+
+@media (max-width: 1100px) {
+  .movie-infos {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .movie {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .movie-infos {
+    padding: 0;
+    margin-bottom: 2rem;
+  }
 }
 </style>

@@ -19,7 +19,6 @@
     <transition>
       <div
         class="results"
-        :class="classResults"
         v-outside-click="cleanSearchQuery"
         v-if="searchQuery.length"
       >
@@ -56,7 +55,6 @@ import { useDate } from "@/composable/formatDate";
 
 export default {
   name: "SearchField",
-  props: ["classResults"],
   setup() {
     const { formatDate } = useDate();
     return { formatDate };
@@ -92,6 +90,8 @@ export default {
 <style scoped>
 .container-search {
   position: relative;
+  padding: 0 1.5rem;
+  border: 1px solid red;
 }
 #search {
   padding-right: 2rem;
@@ -112,10 +112,10 @@ export default {
   position: absolute;
   display: block;
   right: 1rem;
-  top: 0.7rem;
-  width: 1rem;
-  height: 1rem;
-  background-size: 1rem;
+  top: 1rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  background-size: 0.8rem;
   background-position: center;
   z-index: 9;
 }
@@ -123,13 +123,14 @@ export default {
 .results {
   background: var(--cor-1);
   position: absolute;
-  width: 100%;
+  width: 20rem;
   max-height: 20rem;
-  top: 3rem;
+  top: 0;
+  right: -20rem;
   border-radius: 5px;
   padding: 0.5rem;
   overflow: auto;
-  box-shadow: 0 0 0 1px rgba(82, 127, 217, 0.3);
+  box-shadow: 0 0 0 1px var(--cor-8);
 }
 
 .results::-webkit-scrollbar-track {
@@ -143,11 +144,13 @@ export default {
 }
 
 .item-movie:hover {
-  background: var(--cor-6);
+  background: var(--cor-2);
 }
 
 ul li + li {
   margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--cor-8);
 }
 
 .img-container {
@@ -165,26 +168,31 @@ ul li + li {
   margin-left: 0.7rem;
 }
 .movie-infos p {
-  font-weight: 900;
+  font-weight: 700;
+  color: var(--cor-5);
 }
 .movie-infos span {
   margin-top: 0.5em;
   display: block;
   color: var(--cor-4);
 }
+@media (max-width: 1100px) {
+  .results {
+    background: var(--cor-1);
+    position: absolute;
+    width: 20rem;
+    max-height: 20rem;
+    top: 0;
+    right: -20rem;
+    border-radius: 5px;
+    padding: 0.5rem;
+    overflow: auto;
+    box-shadow: 0 0 0 1px var(--cor-8);
 
-@media (max-width: 700px) {
-  .input-search::after {
-    height: 0.7rem;
-    width: 0.7rem;
-    background-size: 0.7rem;
-  }
-  .form {
-    position: static;
-  }
-  .stretch {
-    width: calc(100vw - 1.4rem);
-    left: 0.7rem;
+    top: 4rem;
+    right: initial;
+    left: 0;
+    width: 100%;
   }
 }
 </style>

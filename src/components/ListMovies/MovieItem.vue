@@ -79,22 +79,9 @@ export default {
   filter: initial;
   transform: translateY(-0.5rem);
 }
-
-@media (max-width: 1050px) {
-  .item-movie .img {
-    filter: initial;
-  }
+@media (max-width: 1100px) {
   .item-movie {
-    background: var(--cor-6);
-  }
-}
-
-@media (max-width: 1050px) {
-  .item-movie .infos-vote {
-    display: flex;
-  }
-  .item-movie:hover {
-    transform: initial;
+    color: var(--cor-5);
   }
 }
 </style>

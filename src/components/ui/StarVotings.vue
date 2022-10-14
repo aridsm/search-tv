@@ -41,10 +41,4 @@ export default {
   padding-left: 0.7rem;
   color: var(--cor-4);
 }
-
-@media (max-width: 900px) {
-  .stars-img {
-    display: none;
-  }
-}
 </style>

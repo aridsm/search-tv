@@ -160,22 +160,13 @@ button {
   border-radius: 6px;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 1100px) {
   body {
     font-size: 13px;
   }
-  .btn-padrao {
-    padding: 0 1rem;
-    height: 2.2rem;
-  }
-  .input-style {
-    height: 2.2rem;
-  }
-  .container {
-    padding: 0 0.7rem;
-  }
   main {
-    padding-top: 4rem;
+    margin-left: 0;
+    padding-top: 5rem;
   }
 }
 </style>
