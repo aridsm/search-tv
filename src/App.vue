@@ -35,7 +35,7 @@ export default {
 :root {
   --cor-1: #1c1d21;
   --cor-2: #232428;
-  --cor-3: rgb(111, 214, 255);
+  --cor-3: #6fd6ff;
   --cor-4: #72747a;
   --cor-5: #eeedff;
   --cor-6: rgb(35, 126, 136);

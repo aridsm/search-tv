@@ -18,7 +18,9 @@
         >TMDB</a
       >
     </div>
-    <div class="by">Projeto feito por <a href="/">Ariane Morelato</a></div>
+    <div class="by">
+      Projeto feito por <a href="https://github.com/aridsm">Ariane Morelato</a>
+    </div>
   </header>
 </template>
 
