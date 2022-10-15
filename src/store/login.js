@@ -15,16 +15,17 @@ function getTokenFromLocalStorage() {
   return localStorage.getItem("session_id");
 }
 
-export const useLoginStore = defineStore("login", {
+export const useAccountStore = defineStore("login", {
   state: () => {
     return {
       session_id: getTokenFromLocalStorage(),
       userDetails: null,
-      isLoggedIn: false,
       loginError: null,
     };
   },
-
+  getters: {
+    isLoggedIn: (state) => state.userDetails && state.session_id,
+  },
   actions: {
     async getNewToken() {
       return await axios.get(GET_TOKEN()).then((r) => {
@@ -72,7 +73,6 @@ export const useLoginStore = defineStore("login", {
       axios
         .get(GET_USER_DETAILS(session_id))
         .then((r) => {
-          this.isLoggedIn = true;
           this.userDetails = r.data;
           const currentPath = router.currentRoute.value.fullPath;
           if (currentPath === "/login") {
@@ -88,8 +88,10 @@ export const useLoginStore = defineStore("login", {
           window.localStorage.removeItem("session_id");
           this.session_id = null;
           this.userDetails = null;
-          this.isLoggedIn = false;
-          router.push("/");
+          const currentPath = router.currentRoute.value.fullPath;
+          if (currentPath === "/account") {
+            router.push("/");
+          }
         })
         .catch((r) => console.log(r));
     },

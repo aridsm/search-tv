@@ -52,14 +52,14 @@
 <script>
 import Loading from "@/components/ui/Loading.vue";
 import ListMovies from "@/components/ListMovies/ListMovies.vue";
-import { useLoginStore } from "@/store/login";
+import { useAccountStore } from "@/store/login";
 import { getFavoriteMovies } from "@/urlsAPI";
 import NoImage from "@/components/ui/NoImage.vue";
 
 export default {
   name: "AccountView",
   setup() {
-    const loginStore = useLoginStore();
+    const loginStore = useAccountStore();
     return { loginStore, getFavoriteMovies };
   },
   data() {

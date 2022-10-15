@@ -1,6 +1,6 @@
 <template>
   <div class="vote-container">
-    <img src="../../assets/star-fill.svg" class="stars-img" />
+    <img src="../../assets/star-fill.svg" alt="" class="stars-img" />
     <span class="vote">
       {{ voteData }}
     </span>

@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { useLoginStore } from "@/store/login";
+import { useAccountStore } from "@/store/login";
 import Loading from "./Loading.vue";
 
 export default {
@@ -30,7 +30,7 @@ export default {
   props: ["movieId", "showText"],
   emits: ["send-favorite-status"],
   setup() {
-    const loginStore = useLoginStore();
+    const loginStore = useAccountStore();
     return { loginStore };
   },
   data() {

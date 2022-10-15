@@ -9,13 +9,13 @@
 <script>
 import HeaderVue from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
-import { useLoginStore } from "./store/login";
+import { useAccountStore } from "./store/login";
 import HeaderContent from "./components/HeaderContent.vue";
 export default {
   name: "App",
   components: { HeaderVue, Footer, HeaderContent },
   setup() {
-    const loginStore = useLoginStore();
+    const loginStore = useAccountStore();
     return { loginStore };
   },
   created() {
@@ -36,8 +36,8 @@ export default {
   --cor-1: #1c1d21;
   --cor-2: #232428;
   --cor-3: rgb(111, 214, 255);
-  --cor-4: #67696f;
-  --cor-5: #e0defb;
+  --cor-4: #72747a;
+  --cor-5: #eeedff;
   --cor-6: rgb(35, 126, 136);
   --cor-7: #ffed8d;
   --cor-8: rgba(89, 90, 96, 0.2);
@@ -73,6 +73,8 @@ a {
 label {
   position: absolute;
   visibility: hidden;
+  top: 0;
+  left: 0;
 }
 button {
   font-family: inherit;

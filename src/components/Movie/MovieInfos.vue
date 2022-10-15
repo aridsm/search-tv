@@ -39,12 +39,12 @@
 import StarVotings from "../ui/StarVotings.vue";
 import FavoriteMovie from "../ui/FavoriteMovie.vue";
 import NoImage from "../ui/NoImage.vue";
-import { useLoginStore } from "@/store/login";
+import { useAccountStore } from "@/store/login";
 export default {
   props: ["movieData"],
   components: { StarVotings, FavoriteMovie, NoImage },
   setup() {
-    const loginStore = useLoginStore();
+    const loginStore = useAccountStore();
     return { loginStore };
   },
   computed: {

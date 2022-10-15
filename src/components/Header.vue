@@ -28,7 +28,13 @@
           >Sua conta</router-link
         >
 
-        <button v-if="loginStore.isLoggedIn" class="sair">Sair</button>
+        <button
+          v-if="loginStore.isLoggedIn"
+          @click="loginStore.logout"
+          class="sair"
+        >
+          Sair
+        </button>
       </nav>
     </transition>
     <div class="api">
@@ -42,7 +48,7 @@
 </template>
 
 <script>
-import { useLoginStore } from "@/store/login";
+import { useAccountStore } from "@/store/login";
 export default {
   name: "Header",
   data() {
@@ -52,7 +58,7 @@ export default {
     };
   },
   setup() {
-    const loginStore = useLoginStore();
+    const loginStore = useAccountStore();
     return { loginStore };
   },
   computed: {
@@ -90,7 +96,7 @@ export default {
   display: flex;
   flex-direction: column;
   position: fixed;
-  z-index: 9;
+  z-index: 99;
   width: 14rem;
   height: calc(100% - 2rem);
   top: 1rem;

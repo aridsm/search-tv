@@ -18,6 +18,7 @@
       <div v-else-if="!loadingVideo && !video" class="img">
         <img
           :src="`https://image.tmdb.org/t/p/w500/${bestMovie.backdrop_path}`"
+          :alt="bestMovie.title"
         />
       </div>
       <iframe

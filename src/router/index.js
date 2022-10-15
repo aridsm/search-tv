@@ -3,7 +3,7 @@ function lazyLoad(view) {
   return () => import(`../views/${view}.vue`);
 }
 
-import { useLoginStore } from "@/store/login";
+import { useAccountStore } from "@/store/login";
 const routes = [
   {
     path: "/",
@@ -50,7 +50,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const loginStore = useLoginStore();
+  const loginStore = useAccountStore();
   if (to.fullPath === "/login") {
     if (loginStore.isLoggedIn) {
       next("/account");

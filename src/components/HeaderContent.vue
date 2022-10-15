@@ -16,12 +16,12 @@
 </template>
 
 <script>
-import { useLoginStore } from "@/store/login";
+import { useAccountStore } from "@/store/login";
 import SearchField from "./ui/SearchField.vue";
 
 export default {
   setup() {
-    const loginStore = useLoginStore();
+    const loginStore = useAccountStore();
     return { loginStore };
   },
   components: { SearchField },

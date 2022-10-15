@@ -34,12 +34,12 @@
 </template>
 
 <script>
-import { useLoginStore } from "@/store/login";
+import { useAccountStore } from "@/store/login";
 
 export default {
   name: "LoginView",
   setup() {
-    const loginStore = useLoginStore();
+    const loginStore = useAccountStore();
     return { loginStore };
   },
   data() {

@@ -1,6 +1,6 @@
 <template>
   <div class="no-item">
-    <img :src="require(`../../assets/${img}.svg`)" />
+    <img :src="require(`../../assets/${img}.svg`)" alt="" />
   </div>
 </template>
 

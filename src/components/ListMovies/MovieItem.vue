@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { useLoginStore } from "@/store/login";
+import { useAccountStore } from "@/store/login";
 import FavoriteMovie from "../ui/FavoriteMovie.vue";
 import StarVotings from "../ui/StarVotings.vue";
 export default {
@@ -33,7 +33,7 @@ export default {
   components: { FavoriteMovie, StarVotings },
   props: ["movie"],
   setup() {
-    const loginStore = useLoginStore();
+    const loginStore = useAccountStore();
     return { loginStore };
   },
 };
