@@ -101,8 +101,14 @@ export default {
   padding: 1.5rem;
 }
 .container {
-  padding-top: 2rem;
+  padding-top: 4rem;
 }
+@media (max-width: 1100px) {
+  .container {
+    padding-top: 2rem;
+  }
+}
+
 @media (max-width: 1000px) {
   .section {
     grid-gap: 1rem;

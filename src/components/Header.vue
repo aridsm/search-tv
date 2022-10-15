@@ -1,28 +1,36 @@
 <template>
   <header class="header container-style">
-    <SearchField />
+    <router-link to="/" class="logo">TvSearch</router-link>
 
-    <nav class="nav">
-      <router-link to="/">Home</router-link>
-      <router-link to="/movies">Todos os filmes</router-link>
-      <hr />
-      <a
-        v-if="!loginStore.isLoggedIn"
-        href="https://www.themoviedb.org/signup"
-        target="_blank"
-        >Cadastre-se</a
-      >
-      <router-link to="/login" v-if="!loginStore.isLoggedIn"
-        >Entrar</router-link
-      >
+    <button
+      class="menu-btn"
+      :class="{ active: showMenu }"
+      title="Abrir menu"
+      @click="toggleMenu"
+      v-outside-click="closeMenu"
+    ></button>
+    <transition>
+      <nav class="nav" v-if="showMenu">
+        <router-link to="/">Home</router-link>
+        <router-link to="/movies">Todos os filmes</router-link>
+        <hr />
+        <a
+          v-if="!loginStore.isLoggedIn"
+          href="https://www.themoviedb.org/signup"
+          target="_blank"
+          >Cadastre-se</a
+        >
+        <router-link to="/login" v-if="!loginStore.isLoggedIn"
+          >Entrar</router-link
+        >
 
-      <router-link to="/account" v-if="loginStore.isLoggedIn"
-        >Sua conta</router-link
-      >
+        <router-link to="/account" v-if="loginStore.isLoggedIn"
+          >Sua conta</router-link
+        >
 
-      <button v-if="loginStore.isLoggedIn" class="sair">Sair</button>
-    </nav>
-
+        <button v-if="loginStore.isLoggedIn" class="sair">Sair</button>
+      </nav>
+    </transition>
     <div class="api">
       Dados da API
       <a href="https://www.themoviedb.org/documentation/api" target="_blank"
@@ -35,13 +43,44 @@
 
 <script>
 import { useLoginStore } from "@/store/login";
-import SearchField from "./ui/SearchField.vue";
 export default {
   name: "Header",
-  components: { SearchField },
+  data() {
+    return {
+      menuIsOpen: false,
+      isMobile: false,
+    };
+  },
   setup() {
     const loginStore = useLoginStore();
     return { loginStore };
+  },
+  computed: {
+    showMenu() {
+      return (this.isMobile && this.menuIsOpen) || !this.isMobile;
+    },
+  },
+  methods: {
+    toggleMenu() {
+      this.menuIsOpen = !this.menuIsOpen;
+    },
+    closeMenu() {
+      this.menuIsOpen = false;
+    },
+    checkWindowWidth() {
+      if (window.innerWidth < 1100) {
+        this.isMobile = true;
+      } else {
+        this.isMobile = false;
+      }
+    },
+  },
+  mounted() {
+    window.addEventListener("resize", this.checkWindowWidth);
+    this.checkWindowWidth();
+  },
+  unmounted() {
+    window.removeEventListener("resize", this.checkWindowWidth);
   },
 };
 </script>
@@ -86,7 +125,10 @@ hr {
 .sair {
   margin-top: 1.5rem;
 }
-
+.api,
+.by {
+  padding: 0 1.5rem;
+}
 .api {
   margin-bottom: 1.5rem;
 }
@@ -95,12 +137,12 @@ hr {
 .by a {
   color: var(--cor-5);
 }
-.router-link-active {
+.nav .router-link-active {
   color: var(--cor-5);
   position: relative;
 }
 
-.router-link-active::after {
+.nav .router-link-active::after {
   content: "";
   background: var(--cor-5);
   height: 1.5rem;
@@ -113,15 +155,51 @@ hr {
   border-bottom-left-radius: 5px;
   box-shadow: 0 0 30px 0 var(--cor-5);
 }
+
+.logo {
+  color: var(--cor-5);
+  margin: 0 auto;
+  font-weight: 700;
+}
+
 @media (max-width: 1100px) {
   .header {
     height: 4rem;
-    width: calc(100% - 3rem);
-    padding: 0;
-    left: 1.5rem;
-    top: 0.5rem;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 0 2rem;
+    border-radius: 0;
+    flex-direction: row;
+    align-items: center;
+    border: none;
+    border-bottom: 1px solid var(--cor-8);
+  }
+  .logo {
+    margin: initial;
+  }
+  .menu-btn {
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    background: url("../assets/list.svg");
+    background-size: 2rem;
+    order: 2;
   }
 
+  .menu-btn.active {
+    box-shadow: 0 0 0 2px var(--cor-3);
+    border-radius: 0.2rem;
+  }
+  .by {
+    display: none;
+  }
+
+  .api {
+    padding: 0 1rem;
+    margin-bottom: 0;
+    margin-left: auto;
+  }
   .nav {
     margin-top: 0;
     position: absolute;
@@ -130,7 +208,16 @@ hr {
     border: 1px solid var(--cor-8);
     right: 1.5rem;
     top: 4rem;
-    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .header {
+    padding: 0 0.7rem;
+  }
+
+  .nav {
+    right: 0.7rem;
   }
 }
 </style>

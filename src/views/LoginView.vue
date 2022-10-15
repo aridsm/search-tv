@@ -64,18 +64,18 @@ h1 {
 }
 input {
   width: 100%;
-  background: var(--cor-2);
 }
 
 #user {
   margin-bottom: 1.5em;
 }
 .login {
-  padding: 2rem 2rem 0 2rem;
+  padding: 4rem 2rem 0 2rem;
   max-width: 600px;
   width: 100%;
   margin: 0 auto;
 }
+
 .no-account {
   margin: 1.5rem 0;
 }
@@ -93,9 +93,10 @@ input {
   color: rgb(255, 100, 100);
   margin-top: 1rem;
 }
+
 @media (max-width: 700px) {
   .login {
-    padding: 4rem 0.7rem 0 0.7rem;
+    padding: 2rem 0.7rem 0 0.7rem;
     max-width: 600px;
     width: 100%;
     margin: 0 auto;

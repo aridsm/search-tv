@@ -16,7 +16,7 @@
           <div class="img-person">
             <img
               v-if="person.profile_path"
-              :src="`https://image.tmdb.org/t/p/w780/${person.profile_path}`"
+              :src="`https://image.tmdb.org/t/p/w500/${person.profile_path}`"
               :alt="person.name"
             />
             <NoImage v-else img="person" />

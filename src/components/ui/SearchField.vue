@@ -18,7 +18,7 @@
     </form>
     <transition>
       <div
-        class="results"
+        class="results container-style"
         v-outside-click="cleanSearchQuery"
         v-if="searchQuery.length"
       >
@@ -28,7 +28,7 @@
               <div class="img-container">
                 <img
                   v-if="movie.poster_path"
-                  :src="`https://image.tmdb.org/t/p/w780/${movie.poster_path}`"
+                  :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
                   :alt="movie.title"
                 />
                 <NoImage v-else img="movie" />
@@ -75,6 +75,7 @@ export default {
     },
     cleanSearchQuery() {
       this.searchQuery = "";
+      this.searchData = [];
     },
   },
   computed: {
@@ -90,8 +91,8 @@ export default {
 <style scoped>
 .container-search {
   position: relative;
-  padding: 0 1.5rem;
-  border: 1px solid red;
+  max-width: 22rem;
+  width: 100%;
 }
 #search {
   padding-right: 2rem;
@@ -102,7 +103,6 @@ export default {
 }
 .form {
   position: relative;
-  max-width: 25rem;
   width: 100%;
 }
 
@@ -112,7 +112,7 @@ export default {
   position: absolute;
   display: block;
   right: 1rem;
-  top: 1rem;
+  top: 0.8rem;
   width: 0.8rem;
   height: 0.8rem;
   background-size: 0.8rem;
@@ -121,20 +121,21 @@ export default {
 }
 
 .results {
-  background: var(--cor-1);
   position: absolute;
-  width: 20rem;
+  width: 100%;
   max-height: 20rem;
-  top: 0;
-  right: -20rem;
-  border-radius: 5px;
+  top: 3rem;
+  left: 0;
   padding: 0.5rem;
   overflow: auto;
-  box-shadow: 0 0 0 1px var(--cor-8);
+  z-index: 9;
 }
 
 .results::-webkit-scrollbar-track {
   background: transparent;
+}
+.results::-webkit-scrollbar-thumb {
+  background: var(--cor-1);
 }
 .item-movie {
   padding: 0.5rem;
@@ -144,7 +145,7 @@ export default {
 }
 
 .item-movie:hover {
-  background: var(--cor-2);
+  background: var(--cor-8);
 }
 
 ul li + li {
@@ -168,31 +169,16 @@ ul li + li {
   margin-left: 0.7rem;
 }
 .movie-infos p {
-  font-weight: 700;
   color: var(--cor-5);
 }
 .movie-infos span {
-  margin-top: 0.5em;
+  margin-top: 0.5rem;
   display: block;
-  color: var(--cor-4);
 }
-@media (max-width: 1100px) {
-  .results {
-    background: var(--cor-1);
-    position: absolute;
-    width: 20rem;
-    max-height: 20rem;
-    top: 0;
-    right: -20rem;
-    border-radius: 5px;
-    padding: 0.5rem;
-    overflow: auto;
-    box-shadow: 0 0 0 1px var(--cor-8);
 
-    top: 4rem;
-    right: initial;
-    left: 0;
-    width: 100%;
+@media (max-width: 500px) {
+  .results {
+    width: calc(100vw - 1.4rem);
   }
 }
 </style>

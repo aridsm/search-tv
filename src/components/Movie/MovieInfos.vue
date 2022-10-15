@@ -3,7 +3,7 @@
     <div class="img-container">
       <img
         v-if="movieData.poster_path"
-        :src="`https://image.tmdb.org/t/p/w780/${movieData.poster_path}`"
+        :src="`https://image.tmdb.org/t/p/w500/${movieData.poster_path}`"
         :alt="movieData.title"
       />
       <NoImage v-else img="movie" />
@@ -143,7 +143,6 @@ h1,
     height: 19rem;
     margin: 0 auto;
     padding: 0.5rem;
-    background: var(--cor-6);
     border-radius: 5px;
   }
   .flex {

@@ -5,7 +5,7 @@
       <div class="avatar">
         <img
           v-if="loginStore.userDetails.avatar.tmdb.avatar_path"
-          :src="`https://image.tmdb.org/t/p/w780/${loginStore.userDetails.avatar.tmdb.avatar_path}`"
+          :src="`https://image.tmdb.org/t/p/w500/${loginStore.userDetails.avatar.tmdb.avatar_path}`"
           :alt="loginStore.userDetails.username"
         />
         <NoImage v-else img="person" />
@@ -131,6 +131,17 @@ export default {
   margin-top: 6rem;
 }
 .container {
-  padding-top: 2rem;
+  padding-top: 4rem;
+}
+@media (max-width: 1100px) {
+  .container {
+    padding-top: 2rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .list-movies {
+    margin-top: 4rem;
+  }
 }
 </style>

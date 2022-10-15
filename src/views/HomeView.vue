@@ -34,6 +34,18 @@ export default {
 }
 
 .container {
-  padding-top: 2rem;
+  padding-top: 4rem;
+}
+
+@media (max-width: 1100px) {
+  .container {
+    padding-top: 2rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .list-movies {
+    margin-top: 4rem;
+  }
 }
 </style>

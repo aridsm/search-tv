@@ -25,4 +25,10 @@ export default {
 .footer a:hover {
   color: var(--cor-5);
 }
+
+@media (max-width: 1100px) {
+  .footer {
+    margin-left: 0rem;
+  }
+}
 </style>

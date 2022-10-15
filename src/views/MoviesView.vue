@@ -102,7 +102,7 @@ h2 {
   margin-bottom: 1rem;
 }
 .container {
-  padding-top: 2rem;
+  padding-top: 4rem;
 }
 .list-genres {
   display: grid;
@@ -157,5 +157,11 @@ h2 {
 .height-enter-active,
 .height-leave-active {
   transition: 0.2s;
+}
+
+@media (max-width: 1100px) {
+  .container {
+    padding-top: 2rem;
+  }
 }
 </style>

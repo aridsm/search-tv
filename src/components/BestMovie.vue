@@ -17,7 +17,7 @@
       <Loading v-if="loadingVideo" />
       <div v-else-if="!loadingVideo && !video" class="img">
         <img
-          :src="`https://image.tmdb.org/t/p/w780/${bestMovie.backdrop_path}`"
+          :src="`https://image.tmdb.org/t/p/w500/${bestMovie.backdrop_path}`"
         />
       </div>
       <iframe
@@ -137,6 +137,16 @@ iframe {
   .movie-infos {
     padding: 0;
     margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 500px) {
+  iframe {
+    height: 15rem;
+  }
+
+  .container-style {
+    padding: 1rem;
   }
 }
 </style>

@@ -97,11 +97,11 @@ button {
   border: 1px solid var(--cor-8);
 }
 .input-style {
-  background: var(--cor-1);
+  background: var(--cor-2);
   outline: none;
   border: none;
   border-radius: 0.3rem;
-  height: 2.8rem;
+  height: 2.5rem;
   padding: 0 1rem;
   font-family: inherit;
   color: var(--cor-5);
@@ -166,7 +166,21 @@ button {
   }
   main {
     margin-left: 0;
-    padding-top: 5rem;
+    padding-top: 4rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .container {
+    padding: 0 0.7rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .input-style,
+  .btn-padrao {
+    height: 2.3rem;
+    padding: 0 0.7rem;
   }
 }
 </style>
