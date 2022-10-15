@@ -1,19 +1,5 @@
 # tvsearch
 
-## Project setup
-```
-npm install
-```
+Website de busca de filmes a partir da API TMDB.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+![página inicial](https://github.com/aridsm/search-tv/blob/master/public/home.png)
