@@ -82,6 +82,6 @@ hr {
   top: calc(50% - 0.75rem);
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  box-shadow: 0 0 30px 0 var(--cor-5);
+  box-shadow: 0 0 40px 0 var(--cor-5);
 }
 </style>

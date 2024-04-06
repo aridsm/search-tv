@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div v-if="loading" class="loading">...</div>
+  <div class="container-favorite">
+    <div v-if="loading" class="loading"><Loading :small="true"/></div>
     <button
       :class="['favorite', { favorited: isMovieFavorited }]"
       v-if="!loading && loginStore.isLoggedIn"
@@ -71,6 +71,10 @@ export default {
 </script>
 
 <style scoped>
+
+.container-favorite {
+  height: 1.7em;
+}
 .favorite {
   color: var(--cor-4);
   transition: 0.2s;

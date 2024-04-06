@@ -1,5 +1,7 @@
 <template>
-  <div class="loading-container">
+  <div class="loading-container" :class="{
+    small: small
+  }">
     <div class="loading"></div>
   </div>
 </template>
@@ -7,6 +9,7 @@
 <script>
 export default {
   name: "Loading",
+  props: ["small"]
 };
 </script>
 
@@ -19,8 +22,18 @@ export default {
   border-top-color: var(--cor-3);
   animation: rotate 1s infinite forwards;
 }
+
 .loading-container {
   padding: 2em;
+}
+.loading-container.small {
+  padding: .1em !important;
+}
+.small .loading {
+  width: 1em !important;
+  height: 1em !important;
+  border: 2px solid var(--cor-2);
+  border-top-color: var(--cor-3);
 }
 @keyframes rotate {
   0% {

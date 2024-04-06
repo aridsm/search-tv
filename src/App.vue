@@ -33,14 +33,14 @@ export default {
 }
 
 :root {
-  --cor-1: #1c1d21;
-  --cor-2: #232428;
+  --cor-1: #222329;
+  --cor-2: rgb(45, 46, 52);
   --cor-3: #6fd6ff;
-  --cor-4: #72747a;
+  --cor-4: #898d96;
   --cor-5: #eeedff;
   --cor-6: rgb(35, 126, 136);
   --cor-7: #ffed8d;
-  --cor-8: rgba(89, 90, 96, 0.2);
+  --cor-8: rgba(124, 125, 134, 0.2);
 }
 
 body {
